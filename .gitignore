@@ -18,6 +18,7 @@ _ReSharper*/
 
 #Private files
 .env
+secret.json
 
 #Node modules
 node_modules/
