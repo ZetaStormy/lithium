@@ -1,0 +1,19 @@
+{
+	"prefix": "-",
+	"owner": "340951386676133891",
+  "suggestChannel": "679337670522044451",
+  "ticketLogChannel": "677934880197181456",
+	"mainguildID": "675531469086523436",
+  "editLogChannel": "677935050360356934",  
+	"muteLogChannel": "677578520792399923",  
+	"banLogChannel": "677578520792399923",
+	"kickLogChannel": "677578520792399923",  
+	"joinLogChannel": "676512452568940556",
+  "quitLogChannel": "677934668766773248",
+	"deleteLogChannel": "677935050360356934",
+  "otherLogChannel": "677935942660653089",
+  "ticketText": "Gracias por solicitar soporte al Staff.\nAlguien te atenderá lo más pronto posible. Por favor, describe el problema a detalle para facilitar las cosas para cuando el Staff llegue.\n*(Si sientes que el soporte entregado es inadecuado, contacta a un Staff de alto rango para solucionar el problema.)*",  
+  "prestigeRole": "⁃ Prestigio",
+  "supportRole": "676493941797027862",
+  "ticketsCat": "676493534257217569" 
+}
