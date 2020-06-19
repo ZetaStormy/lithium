@@ -1,3 +1,3 @@
 # Lite
-Official repository of Lite, the discord bot that makes things simple.
+Repository of Lite, the discord server assistant for Literium.
 Soon, with public invitation and support for multiple servers.
