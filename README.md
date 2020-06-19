@@ -1,6 +1,3 @@
 # Lite
-<<<<<<< HEAD
 Official repository of Lite, the discord bot that makes things simple.
-=======
-Official repository of Lite, the discord bot that makes things simple.
->>>>>>> refs/remotes/origin/community
+Soon, with public invitation and support for multiple servers.
