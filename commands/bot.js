@@ -1,23 +1,4 @@
-exports.run = (client, msg, args, content, cooldown, command, Discord, config, request) => {
-const SQLite = require("better-sqlite3");  
-if (!msg.channel.name.startsWith(`💻┋comandos`)) {
-           var embed = new Discord.MessageEmbed()
-            .setColor('#8b0000')
-            .setTimestamp()
-            .setFooter(`Denegado a ${msg.member.displayName}`)        
-            .setTitle(`Error`)
-            .setDescription('Usa comandos en los canales correspondientes.');
-        
-        msg.channel.send({embed}).catch(console.error);
-             return;
-}
-    var game = client.user.presence.type;
-        switch(game) {
-            case 1: var gtype = "Jugando a"; break;
-            case 2: var gtype = "Escuchando a"; break;
-            case 3: var gtype = "Mirando a"; break;
-            case 4: var gtype = "Transmitiendo";  break;
-        };
+exports.run = (client, msg, _args, _command, _content, Discord) => {
     switch(client.user.presence.status){
       case "online": var status = "En línea"; break;
       case "dnd": var status = "No molestar"; break;
@@ -69,7 +50,6 @@ if (!msg.channel.name.startsWith(`💻┋comandos`)) {
 **CPU:** ${result}%
 **Node:** ${process.versions.node}
 **API:** ${Discord.version}
-**SQLite:** 7.1.0
        `)
         .setTimestamp();
     msg.channel.send({embed}).catch(console.error);

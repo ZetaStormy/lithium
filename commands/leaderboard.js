@@ -1,7 +1,6 @@
-exports.run = async (client, msg, args, content, cooldown, command, Discord, config, request) => {
+exports.run = async (client, msg, _args, _content, _command, Discord) => {
 const SQLite = require("better-sqlite3");
 const sql = new SQLite('./scores.sqlite'); 
-let score = client.getScore.get(msg.author.id, msg.guild.id);   
 const getLeaderboardCount = sql.prepare("SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 5;").all(msg.guild.id);
   if (!msg.channel.name.startsWith(`💻┋comandos`)) {
            var embed = new Discord.MessageEmbed()

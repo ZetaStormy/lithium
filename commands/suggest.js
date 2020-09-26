@@ -1,4 +1,4 @@
-exports.run = (client, msg, args, content, cooldown, command, Discord, config, request) => { 
+exports.run = (_client, msg, args, _content, _command, Discord, config) => { 
   let suggestion = args.slice(0).join(' ');
   if (!msg.channel.name.startsWith(`💻┋comandos`)) {
            var embed = new Discord.MessageEmbed()

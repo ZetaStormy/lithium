@@ -1,4 +1,4 @@
-exports.run = (client, msg, args, content, cooldown, command, Discord, config, request) => {
+exports.run = (_client, msg, _command, _content, _args, Discord) => {
 if (!msg.channel.name.startsWith(`💻┋comandos`)) {
            var embed = new Discord.MessageEmbed()
             .setColor('#8b0000')

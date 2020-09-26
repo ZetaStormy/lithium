@@ -1,4 +1,4 @@
-exports.run = (client, msg, args, content, cooldown, command, Discord, config, request) => {
+exports.run = (client, msg, args, _content, _command, Discord, config) => {
       if(!msg.channel.name.startsWith('🗳┋ticket-')) {
         var embed = new Discord.MessageEmbed()
             .setColor('#8b0000')

@@ -1,5 +1,5 @@
 const ms = require('ms');
-exports.run = async (client, msg, args, content, cooldown, command, Discord, config, request) => {  
+exports.run = async (_client, msg, args, _content, _command, Discord, config) => {  
   let tomute = msg.guild.member(msg.mentions.users.first() || msg.guild.members.cache.get(args[0]));
   if(!tomute) {
            var embed = new Discord.MessageEmbed()

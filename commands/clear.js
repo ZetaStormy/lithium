@@ -1,4 +1,4 @@
-exports.run = (client, msg, args, content, cooldown, command, Discord, config) => {
+exports.run = (_client, msg, args, _command, _content, Discord) => {
     if(!msg.member.hasPermission("MANAGE_MESSAGES")) {
            var embed = new Discord.MessageEmbed()
             .setColor('#8b0000')

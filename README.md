@@ -1,3 +1,45 @@
-# Lite
-Repository of Lite, the discord server assistant for Literium.
-Soon, with public invitation and support for multiple servers.
+# Lithium
+
+Repository of Lithium (Community branch), the assistant of LiteriumNT community discord server.
+This discord bot has been created only for Literium Network, but you can use the code as you want. The only objective of this repository is to have a backup of this bot in case something happen.
+
+## Features
+
+  - Moderation commands (Mute, ban and kick).
+  - Administration commands (Announce, user profile and many more).
+  - Useful events actions (Give role on join, welcome message, ranks and more!)
+  - SQLite storage (For levels of guilds).
+  - It is open source, you can use this code wherever you want!
+
+## Installation
+
+Lithium requires [Node.js](https://nodejs.org/) v12+ to run.
+
+Install the dependencies and then you can start the bot.
+
+```sh
+$ cd lithium
+$ npm install
+$ node index.js
+```
+
+### To-Do
+
+  - Code optimization for better performance.
+  - Add more commands and economy system.
+  - Introduce rank of the leaderboard command in the rank command.
+  - Fix role command not displaying role users.
+
+### NPM Packages
+
+Lithium uses NPM packages to work properly:
+
+* [discord.js](https://www.npmjs.com/package/discord.js) - A powerful library for interacting with the Discord API.
+* [better-sqlite3](https://www.npmjs.com/package/better-sqlite3) - The fastest and simplest library for SQLite3 in Node.js.
+* [fs](https://www.npmjs.com/package/fs) - Easy to use file system for node.js.
+* [axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for the browser and node.js.
+* [ms](https://www.npmjs.com/package/ms) - Easily convert various time formats to milliseconds.
+
+### License
+
+Lithium uses the GPL-3.0 (GNU GENERAL PUBLIC LICENSE Version 3) license, you can do everything that the license says.

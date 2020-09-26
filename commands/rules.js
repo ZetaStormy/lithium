@@ -1,4 +1,4 @@
-exports.run = (client, msg, args, content, cooldown, command, Discord, config, request) => {
+exports.run = (_client, msg, _args, _content, _command, Discord) => {
   if (!msg.channel.name.startsWith(`💻┋comandos`)) {
            var embed = new Discord.MessageEmbed()
             .setColor('#8b0000')
@@ -17,10 +17,8 @@ exports.run = (client, msg, args, content, cooldown, command, Discord, config, r
   .setTitle('Literium - Información')
   .setFooter(`Solicitado por ${msg.member.displayName}`)
   .setDescription(`
-Lee nuestras normas con frecuencia para no perderte ninguna modificación.
-**Enlace:**
-**- https://bit.ly/3apryHt**
-*(Nota: El enlace es para descarga directa, si no quieres descargar nada contacta a un Staff)*
+Puedes leer el PDF de nuestras normas desde Google Drive haciendo [click aquí](https://bit.ly/3kGL3k2).
+¡En caso de que tengas alguna duda sobre nuestras normas no dudes en consultar a un Staff!
 `);
         
   msg.channel.send({embed}).catch(console.error);

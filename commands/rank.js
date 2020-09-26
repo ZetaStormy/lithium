@@ -1,6 +1,4 @@
-exports.run = (client, msg, args, content, cooldown, command, Discord, config, request) => {
-const SQLite = require("better-sqlite3");
-const sql = new SQLite('./scores.sqlite');  
+exports.run = (client, msg, args, _content, _command, Discord) => {
 if (!msg.channel.name.startsWith(`💻┋comandos`)) {
            let no = new Discord.MessageEmbed()
             .setColor('#8b0000')

@@ -1,4 +1,4 @@
-exports.run = (client, msg, args, content, cooldown, command, Discord, config, request) => {
+exports.run = (_client, msg, _args, _command, _content, Discord) => {
   const admin = msg.member.roles.cache.find(x => x.name === "⁃ Administración");
   const channel = msg.mentions.channels.first();
   if (!admin) {

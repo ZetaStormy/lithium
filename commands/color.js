@@ -1,4 +1,4 @@
-exports.run = async (client, msg, args, content, cooldown, command, Discord, config) => {
+exports.run = async (_client, msg, args, _content, _command, Discord, config) => {
   let azul = msg.guild.roles.cache.find(azul => azul.name === "⁃ Azul"); 
   let naranja = msg.guild.roles.cache.find(naranja => naranja.name === "⁃ Naranja"); 
   let amarillo = msg.guild.roles.cache.find(amarillo => amarillo.name === "⁃ Amarillo"); 

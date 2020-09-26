@@ -1,4 +1,4 @@
-exports.run = (client, msg, args, content, cooldown, command, Discord, config, request) => {
+exports.run = (_client, msg, args, _command, _content, Discord, config) => {
     var banChannel = config.banLogChannel;
     var user = msg.mentions.users.first();
     const banUser = msg.guild.member(user);
