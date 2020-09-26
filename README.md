@@ -1,5 +1,6 @@
 # Lithium
 
+[![Run on Repl.it](https://repl.it/badge/github/ZetaStormy/lithium)](https://repl.it/github/ZetaStormy/lithium)
 Repository of Lithium (Community branch), the assistant of LiteriumNT community discord server.
 This discord bot has been created only for Literium Network, but you can use the code as you want. The only objective of this repository is to have a backup of this bot in case something happen.
 
