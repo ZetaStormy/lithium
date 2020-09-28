@@ -42,4 +42,4 @@ Lithium uses NPM packages to work properly:
 
 ### License
 
-Lithium uses the [GPL-3.0](https://github.com/ZetaStormy/Lithium/blob/community/LICENSE) (GNU GENERAL PUBLIC LICENSE Version 3) license, you can do everything that the license says.
+Lithium uses the [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) (GNU General Public License v3.0) license, you can do everything that the license says.
