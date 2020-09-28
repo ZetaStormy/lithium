@@ -1,7 +1,5 @@
 # Lithium
 
-[![Run on Repl.it](https://repl.it/badge/github/ZetaStormy/lithium-community)](https://repl.it/github/ZetaStormy/lithium-community)
-
 Repository of Lithium (Community branch), the assistant of LiteriumNT community discord server.
 This discord bot has been created only for Literium Network, but you can use the code as you want. The only objective of this repository is to have a backup of this bot in case something happen.
 
@@ -20,17 +18,17 @@ Lithium requires [Node.js](https://nodejs.org/) v12+ to run.
 Install the dependencies and then you can start the bot.
 
 ```sh
-$ cd lithium
+$ cd Lithium
 $ npm install
 $ node index.js
 ```
 
 ### To-Do
 
+  - Do everything that the TODO comments say.
   - Code optimization for better performance.
   - Add more commands and economy system.
   - Introduce rank of the leaderboard command in the rank command.
-  - Fix role command not displaying role users.
 
 ### NPM Packages
 
@@ -44,4 +42,4 @@ Lithium uses NPM packages to work properly:
 
 ### License
 
-Lithium uses the GPL-3.0 (GNU GENERAL PUBLIC LICENSE Version 3) license, you can do everything that the license says.
+Lithium uses the [GPL-3.0](https://github.com/ZetaStormy/Lithium/blob/community/LICENSE) (GNU GENERAL PUBLIC LICENSE Version 3) license, you can do everything that the license says.
