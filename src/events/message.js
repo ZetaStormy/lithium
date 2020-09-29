@@ -113,7 +113,7 @@ exports.run = (client, message) => {
     //Check if the level is 15 or bigger.
     if (score.level >= 15) {
       //Add the prestige role if it is bigger or equal.
-      message.guild.member.roles.add(message.guild.roles.cache.find(prestigio => prestigio.name === "⁃ Prestigio")).catch(console.error);     
+      message.guild.member.roles.add(message.guild.roles.cache.find(x => x.name === "⁃ Prestigio")).catch(console.error);     
     } 
   }
 }
