@@ -8,7 +8,7 @@ exports.run = (client, oldMessage, newMessage) => {
     if (newMessage.author.bot) return;
     
     //Store the guild ID.
-    var guildIdentification = config.mainguildID;
+    var guildIdentification = config.mainGuildID;
     //Store the edit log channel.
     var editLogChannel = config.editLogChannel;
     
