@@ -16,6 +16,7 @@ This discord bot has been created only for Literium Network, but you can use the
   - Do everything that the TODO comments say.
   - Code optimization for better performance.
   - Add more commands and economy system.
+  - Add translations using a language system.
   - Introduce rank of the leaderboard command in the rank command.
 
 ## Installation
@@ -44,8 +45,8 @@ Lithium uses NPM packages to work properly:
 
 * [discord.js](https://www.npmjs.com/package/discord.js) - A powerful library for interacting with the Discord API.
 * [better-sqlite3](https://www.npmjs.com/package/better-sqlite3) - The fastest and simplest library for SQLite3 in Node.js.
-* [fs](https://www.npmjs.com/package/fs) - Easy to use file system for node.js.
-* [axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for the browser and node.js.
+* [fs](https://www.npmjs.com/package/fs) - Easy to use file system for Node.js.
+* [axios](https://www.npmjs.com/package/axios) - Promise based HTTP client for the browser and Node.js.
 * [ms](https://www.npmjs.com/package/ms) - Easily convert various time formats to milliseconds.
 
 ## License
