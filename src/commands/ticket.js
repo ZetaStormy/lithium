@@ -56,7 +56,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
     //Create ticket text channel with the variables that we created before.
 	  msg.guild.channels.create(`🗳┋ticket-${ticketIdentification}`, {type: 'text'}).then(async ticketChannel => {
       //Set the category parent of the ticket (specified in the configuration).
-      await ticketChannel.setParent(config.ticketsCat);
+      await ticketChannel.setParent(config.ticketsCategory);
       //Set the ticket topic used the variables that we declared before.
       await ticketChannel.setTopic(`**Información** - **Autor:** ${msg.author} | **Motivo:** ${ticketTopic}`);
     
