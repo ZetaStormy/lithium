@@ -37,12 +37,6 @@ ${colorList}
 \`\`\`
   `);
 
-  //Check if enough arguments were given.
-  if (!args[0] || args.length > 2) {
-    msg.channel.send(invalidColor).catch(console.error);
-    return;
-  }
-
   //Create the function to remove all colors of the member
   function removeColors() {
     //Loop through all the colors using this for loop.
@@ -58,7 +52,7 @@ ${colorList}
   }
 
   //Create a function to check if the member has too much colors.
-  function checkExcessColors() {
+  function colorProcess(colorString, colorEntry) {
     //Loop through all the colors using this for loop.
     for (let h = 0; h < colorRoles.length; h++) {
       //Create a boolean variable to check if the user has too much colors.
@@ -81,7 +75,22 @@ ${colorList}
     if (excessColors) {
       removeColors(); //Call the function to remove colors.
     }
+
+    var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[colorEntry]); //Find the role for the blue color.
+    msg.member.roles.add(colorSelected.id).catch(console.error); //Add the role color to the member.    
+
+    //Create an embed to say that the color was applied successfully.
+    var embed = new Discord.MessageEmbed()
+    .setColor('#ff8c00')
+    .setTitle('Lithium - Colores')
+    .setTimestamp()
+    .setFooter(`Solicitado por ${msg.member.displayName}`)
+    .setDescription(`Se te ha colocado el color ${colorString} correctamente.`);
+        
+    //Send the message to the channel.
+    msg.channel.send({embed}).catch(console.error);
   }
+
 
   //Create an array of all the member roles.
   const memberRolesArray = msg.member.roles.cache.array();
@@ -99,232 +108,54 @@ ${colorList}
       .setDescription('Tus colores han sido reiniciados correctamente.'); 
 
       removeColors(); //Call the function to remove the color roles.
-
-      //Send the embed because the code is executed successfully.
       msg.channel.send({embed}).catch(console.error);
       break; //Stop the switch execution.
     case "azul": //If the color selected is blue.
-      checkExcessColors(); //Check if the member has too much colors.
-      //If the user doesn't have too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[0]);
-      msg.member.roles.add(colorSelected.id).catch(console.error); //Add the role color to the member.
-
-      //Create an embed to say that the color was applied successfully.
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Azul correctamente.');
-
-      //Send the message to the channel.
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Azul", 0); //Execute the color process and give it the color properties.
       break; //Stop the switch execution.
     case "naranja": //If the color is orange.
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[1]); //Find the color selected role in the guild.
-      msg.member.roles.add(colorSelected.id).catch(console.error); //Add the color selected ID to the member.
-
-      //Create the successfully added color embed
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Naranja correctamente.');
-
-      //Send the embed.
-      msg.channel.send({embed}).catch(console.error);
-      break; //Break the loop.
+      colorProcess("Naranja", 1); //Execute the color process and give it the color properties.
+      break; //Break the switch.
     case "amarillo": //If the color is yellow
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[2]); //The color selected by the user.
-      msg.member.roles.add(colorSelected.id).catch(console.error); //Add the color
-      
-      //Create the embed
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Amarillo correctamente.');
-
-      msg.channel.send({embed}).catch(console.error); //Send the embed
+      colorProcess("Amarillo", 2); //Execute the color process and give it the color properties.
       break; //Break the switch statement
     case "morado": //In case the color is purple.
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[3]); //the selected color
-      msg.member.roles.add(colorSelected.id).catch(console.error); //add the color
-
-      var embed = new Discord.MessageEmbed() //create the message
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Morado correctamente.');
-
-      msg.channel.send({embed}).catch(console.error); //send the message
+      colorProcess("Morado", 3); //Execute the color process and give it the color properties.
       break; //break the execution of the switch
     case "cian": //cyan color
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[4]); //the color selected
-      msg.member.roles.add(colorSelected.id).catch(console.error); //add the role
-
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Cian correctamente.');
-
-      msg.channel.send({embed}).catch(console.error); //send the embed that we created before.
+      colorProcess("Cian", 4); //Execute the color process and give it the color properties.
       break; //break the switch
     case "lima": //lime color
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[5]);
-      msg.member.roles.add(colorSelected.id).catch(console.error);
-
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Lima correctamente.');
-
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Lima", 5); //Execute the color process and give it the color properties.
       break;
     case "fucsia": //color... idk how to say this in english, sorry
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[6]);
-      msg.member.roles.add(colorSelected.id).catch(console.error);
-
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Fucsia correctamente.');
-
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Fucsia", 6); //Execute the color process and give it the color properties.
       break;
-    /* Sorry, but I don't want to comment this anymore.
-     * TODO: In the future I will improve this commands with functions and that stuff so it doesn't have too much lines
-     * Good night.
-     */
     case "aqua":
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[7]);
-      msg.member.roles.add(colorSelected.id).catch(console.error);
-
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Aqua correctamente.');
-
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Aqua", 7); //Execute the color process and give it the color properties.
       break;
     case "oliva":
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[8]);
-      msg.member.roles.add(colorSelected.id).catch(console.error);
-
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Oliva correctamente.');
-
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Oliva", 8); //Execute the color process and give it the color properties.
       break;
     case "vino tinto":
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[9]);
-      msg.member.roles.add(colorSelected.id).catch(console.error);
-
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Vino Tinto correctamente.');
-
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Vino Tinto", 9); //Execute the color process and give it the color properties.
       break;
     case "gris":
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[10]);
-      msg.member.roles.add(colorSelected.id).catch(console.error);
-
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Gris correctamente.');
-
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Gris", 10); //Execute the color process and give it the color properties.
       break;
     case "verde":
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[11]);
-      msg.member.roles.add(colorSelected.id).catch(console.error);
-
-        
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Verde correctamente.');
-
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Verde", 11); //Execute the color process and give it the color properties.
       break;
     case "magenta":
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[12]);
-      msg.member.roles.add(colorSelected.id).catch(console.error);
-
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Magenta correctamente.');
-
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Magenta", 12); //Execute the color process and give it the color properties.
       break;
     case "rojo":
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[13]);
-      msg.member.roles.add(colorSelected.id).catch(console.error);
-
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Rojo correctamente.');
-
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Rojo", 13); //Execute the color process and give it the color properties.
       break;
     case "rosa":
-      checkExcessColors(); //Check if the member has too much colors.
-      var colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[14]);
-      msg.member.roles.add(colorSelected.id).catch(console.error);
-
-      var embed = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
-      .setTitle('Lithium - Colores')
-      .setTimestamp()
-      .setFooter(`Solicitado por ${msg.member.displayName}`)
-      .setDescription('Se te ha colocado el color Rosa correctamente.');
-
-      msg.channel.send({embed}).catch(console.error);
+      colorProcess("Rosa", 14); //Execute the color process and give it the color properties.
       break;      
-    default:
+    default: //Default case, in this case is used for invalid colors.
       msg.channel.send(invalidColor).catch(console.error);
       return;
   }
@@ -338,4 +169,4 @@ exports.help = {
     usage: "Color [Color/Reset]",
     example: "",
     status: "Ready"
-};
+}
