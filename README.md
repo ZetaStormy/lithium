@@ -1,13 +1,14 @@
 # Lithium
 
-Repository of Lithium (Community branch), the assistant of LiteriumNT community discord server.
-This discord bot has been created only for Literium Network, but you can use the code as you want. The only objective of this repository is to have a backup of this bot in case something happen.
+Repository of Lithium, the assistant of LiteriumNT discord server.
+This discord bot has been created only for Literium Network, but you can use the code as you want. The only objective of this repository is to have a backup of this bot in case something happens and to make things easier for programming begginers.
 
 ### Features
 
   - Moderation commands (Mute, ban and kick).
   - Administration commands (Announce, user profile and many more).
   - Useful events actions (Give role on join, welcome message, ranks and more!)
+  - Change your username color with the color command!
   - SQLite storage (For levels of guilds).
   - It is open source, you can use this code wherever you want!
   
