@@ -4,69 +4,8 @@ const Discord = require("discord.js");
 exports.run = (client, message) => {
   //Check if the message author is a bot.
   if (message.author.bot) return; 
-  //TODO: Improve checks.
-  //Store all the checks in constant using RegExp() constructor.
-  const firstCheckForIP = new RegExp('([\d]{1,3}[., ]{1,}){3,}([\d]{1,3})');
-  const secondCheckForIP = new RegExp('(discord)[^\wñ]*(gg\/|me\/)([\w]( )?){4,}');
-  const thirdCheckForIP = new RegExp('(mc.|.org|hypixel.net|.biz|.name|.xyz|.mobi|.kz|.tk|server.pro|.serv.nu|.adult|.sex|.xxx|.webcam|.wtf|.sexy)');
-  const firstCheckForNSFW = new RegExp('(pornhub.|xvideos.)')
   
-  //Check if the message matches with the first check.
-  if (message.content.match(firstCheckForIP)) {
-    message.delete().catch(console.error);
-    var embed = new Discord.MessageEmbed()
-    .setColor('#8b0000')
-    .setTimestamp()
-    .setFooter(`Enviado a ${message.author.username} | Check: firstCheckForIP`)        
-    .setTitle(`Literium - Moderación Automática`)
-    .setDescription(`Se ha eliminado un mensaje tuyo que contenía **${message.content}** en ${message.channel}, por contener contenido inapropiado. ¿Piensas que eliminé tu mensaje de forma inapropiada?, contacta a un **Staff** en caso de que creas eso.`);        
-
-    message.author.send({embed}).catch(console.error);
-    return;  
-  }
-
-  //Check if the message matches with the second check.
-  if (message.content.match(secondCheckForIP)) {
-    message.delete().catch(console.error);
-    var embed = new Discord.MessageEmbed()
-    .setColor('#8b0000')
-    .setTimestamp()
-    .setFooter(`Enviado a ${message.author.username} | Check: secondCheckForIP`)        
-    .setTitle(`Literium - Moderación Automática`)
-    .setDescription(`Se ha eliminado un mensaje tuyo que contenía **${message.content}** en ${message.channel}, por contener contenido inapropiado. ¿Piensas que eliminé tu mensaje de forma inapropiada?, contacta a un **Staff** en caso de que creas eso.`);        
-
-    message.author.send({embed}).catch(console.error);
-    return;  
-  }  
-  
-  //Check if the message matches with the third check.
-  if (message.content.match(thirdCheckForIP)) {
-    message.delete().catch(console.error);
-    var embed = new Discord.MessageEmbed()
-    .setColor('#8b0000')
-    .setTimestamp()
-    .setFooter(`Enviado a ${message.author.username} | Check: thirdCheckForIP`)        
-    .setTitle(`Literium - Moderación Automática`)
-    .setDescription(`Se ha eliminado un mensaje tuyo que contenía **${message.content}** en ${message.channel}, por contener contenido inapropiado. ¿Piensas que eliminé tu mensaje de forma inapropiada?, contacta a un **Staff** en caso de que creas eso.`);
-
-    message.author.send({embed}).catch(console.error);
-    return;  
-  }   
-  
-  //Check if the message content is a NSFW link.
-  if (message.content.match(firstCheckForNSFW)) {
-    message.delete().catch(console.error);
-    var embed = new Discord.MessageEmbed()
-    .setColor('#8b0000')
-    .setTimestamp()
-    .setFooter(`Enviado a ${message.author.username} | Check: firstCheckForNSFW`)        
-    .setTitle(`Literium - Moderación Automática`)
-    .setDescription(`Se ha eliminado un mensaje tuyo que contenía **${message.content}** en ${message.channel}, por contener contenido inapropiado. ¿Piensas que eliminé tu mensaje de forma inapropiada?, contacta a un **Staff** en caso de que creas eso.`);
-
-    message.author.send({embed}).catch(console.error);
-    return;  
-  }   
-  
+  //Check if the message is in a guild.
   if (message.guild) {
     //Create the variable score.
     let score = client.getScore.get(message.author.id, message.guild.id);
@@ -113,7 +52,7 @@ exports.run = (client, message) => {
     //Check if the level is 15 or bigger.
     if (score.level >= 15) {
       //Add the prestige role if it is bigger or equal.
-      message.guild.member.roles.add(message.guild.roles.cache.find(x => x.name === "⁃ Prestigio")).catch(console.error);     
+      message.member.roles.add(message.guild.roles.cache.find(x => x.name === "⁃ Prestigio")).catch(console.error);     
     } 
   }
 }

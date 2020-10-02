@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 //Define the configuration.
 const config = require("../config.json");
 
+//Export the client (Created with Discord.Client() constructor) and the member (Object of GuildMember).
 exports.run = (client, member) => {
   //Store the ID of this configuration channel.
   var leaveChannel = config.quitLogChannel;
@@ -12,10 +13,14 @@ exports.run = (client, member) => {
   .setTimestamp()
   .setTitle(`Lithium - Salida`)    
   .setDescription(`
-**Nombre:** ${member.displayName}
-**Tag:** ${member.user.tag}
-**ID:** ${member.user.id}
-**Creación:** ${member.user.createdAt}
+¡Alguien ha salido del servidor de Discord!
+\`\`\`yaml
+Informacion:
+  Nombre: ${member.displayName}
+  Tag: ${member.user.tag}
+  ID: ${member.user.id}
+  Creacion: ${member.user.createdAt}
+\`\`\`
   `);
 
   //Send to the leave log channel.

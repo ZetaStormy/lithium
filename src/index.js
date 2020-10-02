@@ -27,10 +27,6 @@ fs.readdir("./events/", (err, files) => {
 client.on("error", (e) => console.error(e));
 client.on("warn", (e) => console.warn(e));
 client.on("debug", (e) => console.info(e));
-//TODO: Change this to the event file.
-client.on('guildMemberAdd', (guildMember) => {
-   guildMember.roles.add(guildMember.guild.roles.cache.find(role => role.name === "⁃ Jugador"));
-});
 
 //On the message event...
 client.on("message", msg => {

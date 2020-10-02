@@ -55,12 +55,12 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
   }
 
   //Get information about the member.
-  let memberScore = client.getScore.get(user.id, msg.guild.id);
+  let memberScore = client.getScore.get(userMention.id, msg.guild.id);
   //If the data of the member doesn't exist, then create it.
   if (!memberScore) {
     memberScore = {
-      id: `${msg.guild.id}-${user.id}`,
-      user: user.id,
+      id: `${msg.guild.id}-${userMention.id}`,
+      user: userMention.id,
       guild: msg.guild.id,
       points: 0,
       level: 1 
