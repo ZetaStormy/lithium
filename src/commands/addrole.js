@@ -3,7 +3,7 @@ exports.run = (_client, msg, args, _command, _content, Discord, config) => {
      * I just made this command to help a friend that needed it.
     */
     //Check if the author is the owner of the bot (You can change that in config.json).
-    if (!msg.author.id === config.owner) {        
+    if (msg.author.id !== config.owner) {        
         let noPerms = new Discord.MessageEmbed()
         .setColor('#8b0000')
         .setTimestamp()
