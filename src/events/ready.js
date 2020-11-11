@@ -8,7 +8,7 @@ exports.run = (client) => {
   client.user.setActivity('LiteriumNT', {
     type: 'STREAMING', 
     url:'https://twitch.tv/zetastormy'
-  }).catch(console.error);  
+  });  
 
   //Get the table.
   const table = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'scores';").get();

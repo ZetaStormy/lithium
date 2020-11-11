@@ -9,9 +9,9 @@ exports.run = (client, member) => {
   const joinChannel = config.joinLogChannel;
 
   const memberJoinMessage = new Discord.MessageEmbed()
-  .setColor('#ff8c00')
+  .setColor("#ff8c00")
   .setTimestamp()
-  .setTitle(`Lithium - Entrada`)
+  .setTitle("Lithium - Entrada")
   .setDescription(`
 ¡Alguien nuevo ha entrado al servidor de Discord!
 \`\`\`yaml
@@ -26,5 +26,5 @@ Informacion:
   //Add default role to the member.
   member.roles.add(member.guild.roles.cache.find(role => role.name === "⁃ Jugador"));
   //Send the message to the join log channel.
-  client.channels.cache.find(x => x.id === joinChannel).send({embed:memberJoinMessage}).catch(console.error);
+  client.channels.cache.find((x) => x.id === joinChannel).send({embed:memberJoinMessage});
 } 

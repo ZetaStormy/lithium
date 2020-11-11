@@ -9,9 +9,9 @@ exports.run = (client, member) => {
   const leaveChannel = config.quitLogChannel;
 
   const memberLeaveMessage = new Discord.MessageEmbed()
-  .setColor('#ff8c00')
+  .setColor("#ff8c00")
   .setTimestamp()
-  .setTitle(`Lithium - Salida`)    
+  .setTitle("Lithium - Salida")    
   .setDescription(`
 ¡Alguien ha salido del servidor de Discord!
 \`\`\`yaml
@@ -24,5 +24,5 @@ Informacion:
   `);
 
   //Send to the leave log channel.
-  client.channels.cache.find(x => x.id === leaveChannel).send({embed: memberLeaveMessage}).catch(console.error);  
+  client.channels.cache.find((x) => x.id === leaveChannel).send({embed: memberLeaveMessage});  
 }

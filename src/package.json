@@ -6,15 +6,15 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.0",
     "better-sqlite3": "^7.1.1",
-    "discord.js": "^12.3.1",
+    "discord.js": "^12.4.1",
     "follow-redirects": "^1.13.0",
     "fs": "^0.0.2",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.1",
-    "node-gyp": "^7.1.0",
-    "prebuild-install": "^5.3.5",
+    "node-gyp": "^7.1.2",
+    "prebuild-install": "^6.0.0",
     "tar": "^6.0.5"
   },
   "engines": {

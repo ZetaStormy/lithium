@@ -1,16 +1,16 @@
 exports.run = (client, msg, _args, _command, _content, Discord) => {
     //Check the channel were the author of message sent the command.
-    if (!(msg.channel.name.startsWith(`💻┋comandos`) || msg.channel.name.startsWith(`💫┋off-topic`))) {
+    if (!(msg.channel.name.startsWith("💻┋comandos") || msg.channel.name.startsWith("💫┋off-topic"))) {
         //Create the embed message using MessageEmbed() constructor.
         const incorrectChannelMessage = new Discord.MessageEmbed()
-            .setColor('#8b0000')
+            .setColor("#8b0000")
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)        
-            .setTitle(`Error`)
-            .setDescription('Usa comandos en los canales correspondientes.');
+            .setTitle("Error")
+            .setDescription("Usa comandos en los canales correspondientes.");
         
         //Send the embed to the channel were the command was called.
-        msg.channel.send({embed: incorrectChannelMessage}).catch(console.error);
+        msg.channel.send({embed: incorrectChannelMessage});
         //The return to exit.
         return;
     }
@@ -87,7 +87,7 @@ exports.run = (client, msg, _args, _command, _content, Discord) => {
     const sucessMessage = new Discord.MessageEmbed()
         .setFooter(`Solicitado por ${msg.member.displayName}`)
         .setTitle('Lithium - Información')
-        .setColor('#ff8c00')
+        .setColor("#ff8c00")
         .setTimestamp()
         .setDescription(`
 Actualmente el bot se encuentra en fase de pruebas y únicamente es usado por LiteriumNT, no obstante, puedes acceder al código fuente desde [Github](https://github.com/LiteriumNT/lithium).
@@ -106,7 +106,7 @@ DiscordJS: ${Discord.version}
         `);
 
     //Just send the created embed and catch if an error occurs.
-    msg.channel.send({embed: sucessMessage}).catch(console.error);
+    msg.channel.send({embed: sucessMessage});
 }
 
 //This is for the help command.

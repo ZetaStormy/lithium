@@ -1,27 +1,27 @@
 exports.run = (_client, msg, args, _content, _command, Discord) => {
     //Check if the member has the administration role.
-    if(!(msg.member.roles.cache.find(x => x.name === "⁃ Administración") || msg.member.hasPermission('ADMINISTRATOR'))) {
+    if(!(msg.member.roles.cache.find((x) => x.name === "⁃ Administración") || msg.member.hasPermission('ADMINISTRATOR'))) {
         const noEnoughPermsMessage = new Discord.MessageEmbed()
-            .setColor('#8b0000')
+            .setColor("#8b0000")
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)        
-            .setTitle(`Error`)
-            .setDescription('No tienes permisos para ejecutar ese comando.');
+            .setTitle("Error")
+            .setDescription("No tienes permisos para ejecutar ese comando.");
         
-        msg.channel.send({embed: noEnoughPermsMessage}).catch(console.error);
+        msg.channel.send({embed: noEnoughPermsMessage});
         return;
     }
 
     //Check if there is a message.
     if (!args[0]) {
         const noEnoughArgumentsMessage = new Discord.MessageEmbed()
-            .setColor('#8b0000')
+            .setColor("#8b0000")
             .setTitle('Literium - Misceláneo')
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)
             .setDescription(`Introduce un mensaje.`);
 
-        msg.channel.send({embed: noEnoughArgumentsMessage}).catch(console.error);
+        msg.channel.send({embed: noEnoughArgumentsMessage});
         return;
     }
     

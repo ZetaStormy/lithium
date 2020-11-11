@@ -1,14 +1,14 @@
 exports.run = (client, msg, args, _content, _command, Discord, config) => {
   //Check if the command executor is an administrator.
-  if (!msg.member.roles.cache.find(x => x.name === "⁃ Administración")) {
+  if (!msg.member.roles.cache.find((x) => x.name === "⁃ Administración")) {
     const noEnoughPermsMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)
-      .setTitle(`Error`)
-      .setDescription('No tienes permisos para ejecutar ese comando.');
+      .setTitle("Error")
+      .setDescription("No tienes permisos para ejecutar ese comando.");
 
-    msg.channel.send({embed: noEnoughPermsMessage}).catch(console.error);
+    msg.channel.send({embed: noEnoughPermsMessage});
     return;
   }
 
@@ -17,13 +17,13 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
   //Check if there is a user mention.
   if (!userMention) {
     const invalidMemberMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)
-      .setTitle(`Error`)
-      .setDescription('Menciona un usuario válido.');
+      .setTitle("Error")
+      .setDescription("Menciona un usuario válido.");
 
-    msg.channel.send({embed: invalidMemberMessage}).catch(console.error);    
+    msg.channel.send({embed: invalidMemberMessage});    
     return;
   }
 
@@ -32,26 +32,26 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
   //Check if there is a mention to this points.
   if(!pointsToTake) {
     const invalidPointsMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('Menciona una cantidad de puntos válida.');
+      .setTitle("Error")
+      .setDescription("Menciona una cantidad de puntos válida.");
 
-    msg.channel.send({embed: invalidPointsMessage}).catch(console.error);    
+    msg.channel.send({embed: invalidPointsMessage});    
     return;
   }
   
   //Check if the quantity of points to take is over 500 to prevent database corruption.
   if(pointsToTake > 500) {
     const tooMuchPointsMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)
-      .setTitle('Error')
-      .setDescription('Introduce una cantidad entre 1 y 500.');
+      .setTitle("Error")
+      .setDescription("Introduce una cantidad entre 1 y 500.");
 
-    msg.channel.send({embed: tooMuchPointsMessage}).catch(console.error);
+    msg.channel.send({embed: tooMuchPointsMessage});
     return;
   }
 
@@ -84,9 +84,9 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
     .setTimestamp()
     .setFooter(`Solicitado por ${msg.member.displayName}`)
     .setDescription(`Al usuario ${userMention.tag} se le ha quitado ${pointsToTake} de XP y ahora tiene ${memberScore.points} de XP.`)
-    .setColor('#ff8c00'); 
+    .setColor("#ff8c00"); 
   
-  msg.channel.send({embed: sucessMessage}).catch(console.error);
+  msg.channel.send({embed: sucessMessage});
 }
 
 //Export to help.

@@ -1,16 +1,16 @@
 exports.run = (_client, msg, Discord, _content, _command) => { 
   //Check the channel were the author of message sent the command.
-  if (!msg.channel.name.startsWith(`💻┋comandos`) && !msg.channel.name.startsWith(`💫┋off-topic`)) {
+  if (!msg.channel.name.startsWith("💻┋comandos") && !msg.channel.name.startsWith("💫┋off-topic")) {
     //Create the embed message using MessageEmbed() constructor.
     const incorrectChannelMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)
-      .setTitle(`Error`)
-      .setDescription('Usa comandos en los canales correspondientes.');
+      .setTitle("Error")
+      .setDescription("Usa comandos en los canales correspondientes.");
       
     //Send the embed to the channel were the command was called.
-    msg.channel.send({embed: incorrectChannelMessage}).catch(console.error);
+    msg.channel.send({embed: incorrectChannelMessage});
     //The return to exit.
     return;
   }
@@ -21,7 +21,7 @@ exports.run = (_client, msg, Discord, _content, _command) => {
 
   const axios = require("axios").default;  
   axios.get(statsUrl).then(function (response) {
-    const Discord = require('discord.js');
+    const Discord = require("discord.js");
     if (response.status == 200) {
       const responseGoodMessage = new Discord.MessageEmbed()
         .setTimestamp()
@@ -31,29 +31,29 @@ exports.run = (_client, msg, Discord, _content, _command) => {
         .addField("Jugadores", `${response.data.players.now}/${response.data.players.max} conectados.`, true)
         .setFooter(`Solicitado por ${msg.member.displayName}`);
   
-      msg.channel.send({embed: responseGoodMessage}).catch(console.error);
+      msg.channel.send({embed: responseGoodMessage});
     } else {
       const responseBadMessage = new Discord.MessageEmbed()
-        .setColor('#8b0000')
+        .setColor("#8b0000")
         .setTimestamp()
         .setFooter(`Denegado a ${msg.member.displayName}`)        
-        .setTitle(`Error`)
-        .setDescription('Error al obtener los datos del servidor.'); 
+        .setTitle("Error")
+        .setDescription("Error al obtener los datos del servidor."); 
       
-      msg.channel.send({embed: responseBadMessage}).catch(console.error);
+      msg.channel.send({embed: responseBadMessage});
       return;
     }
   }).catch(function (error) {
-    const Discord = require('discord.js');
+    const Discord = require("discord.js");
     console.log(error);
     const errorMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('Error al obtener los datos del servidor.'); 
+      .setTitle("Error")
+      .setDescription("Error al obtener los datos del servidor."); 
     
-    msg.channel.send({embed: errorMessage}).catch(console.error);
+    msg.channel.send({embed: errorMessage});
     return;
   });
 }

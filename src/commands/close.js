@@ -2,13 +2,13 @@ exports.run = (client, msg, _args, _content, _command, Discord, config) => {
   //Check if the command is executed from a ticket.
   if (!msg.channel.name.startsWith('🗳┋ticket-')) {
     const invalidChannelMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)
-      .setTitle(`Error`)
-      .setDescription('Este comando sólo puede ser usado en un ticket.');
+      .setTitle("Error")
+      .setDescription("Este comando sólo puede ser usado en un ticket.");
         
-    msg.channel.send({embed: invalidChannelMessage}).catch(console.error);
+    msg.channel.send({embed: invalidChannelMessage});
     return;
   }
 
@@ -18,7 +18,7 @@ exports.run = (client, msg, _args, _content, _command, Discord, config) => {
     //Create an embed with information about the ticket.
   	const ticketInformationMessage = new Discord.MessageEmbed()
   	  .setTitle("Lithium - Tickets")
-      .setColor('#ff8c00')
+      .setColor("#ff8c00")
       .setTimestamp()
       .setDescription(`
 ${msg.author} ha cerrado un ticket de ${ticketTopic[3]} hace un momento usando uno de los comandos de Lithium.

@@ -1,16 +1,16 @@
 exports.run = (client, msg, args, _content, _command, Discord) => {
   //Check the channel were the author of message sent the command.
-  if (!(msg.channel.name.startsWith(`💻┋comandos`) || msg.channel.name.startsWith(`💫┋off-topic`))) {
+  if (!(msg.channel.name.startsWith("💻┋comandos") || msg.channel.name.startsWith("💫┋off-topic"))) {
     //Create the embed message using MessageEmbed() constructor.
     const incorrectChannelMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('Usa comandos en los canales correspondientes.');
+      .setTitle("Error")
+      .setDescription("Usa comandos en los canales correspondientes.");
       
     //Send the embed to the channel were the command was called.
-    msg.channel.send({embed: incorrectChannelMessage}).catch(console.error);
+    msg.channel.send({embed: incorrectChannelMessage});
     //The return to exit.
     return;
   }
@@ -26,7 +26,7 @@ exports.run = (client, msg, args, _content, _command, Discord) => {
   
   //Create the embed for the author rank using MessageEmbed() constructor.
   const authorRankMessage = new Discord.MessageEmbed()
-    .setColor('#ff8c00')
+    .setColor("#ff8c00")
     .setTitle('Lithium - Niveles')
     .setTimestamp()
     .setFooter(`Solicitado por ${msg.member.displayName}`)
@@ -39,7 +39,7 @@ Te falta ${levelDifference} de XP para subir al siguiente nivel.
   //Create memberMention variable to check if there was a name mention in the command.
   const memberObject = msg.mentions.members.first() || msg.guild.members.cache.get(args[0]);
   //There isn't a member mention in the command, return the author rank embed.
-  if(!memberObject) return msg.channel.send({embed: authorRankMessage}).catch(console.error);
+  if(!memberObject) return msg.channel.send({embed: authorRankMessage});
 
   //If there is a member, then get the information from the database of this member.
   const memberScore = client.getScore.get(memberObject.id, msg.guild.id);   
@@ -52,8 +52,8 @@ Te falta ${levelDifference} de XP para subir al siguiente nivel.
 
   //Start the creation of the embed message using MessageEmbed() constructor.
   const memberRankMessage = new Discord.MessageEmbed()
-    .setColor('#ff8c00')
-    .setTitle(`Lithium - Niveles`)
+    .setColor("#ff8c00")
+    .setTitle("Lithium - Niveles")
     .setTimestamp()
     .setFooter(`Solicitado por ${msg.member.displayName}`)
     .setDescription(`
@@ -63,7 +63,7 @@ A ${memberObject.displayName} le falta ${memberLevelDifference} de XP para subir
     `)
 
   //Finally send the embed with the member rank message.
-  msg.channel.send({embed: memberRankMessage}).catch(console.error);
+  msg.channel.send({embed: memberRankMessage});
 }
 
 exports.help = {

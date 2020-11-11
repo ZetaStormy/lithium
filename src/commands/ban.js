@@ -13,50 +13,50 @@ exports.run = (_client, msg, args, _command, _content, Discord, config) => {
     //If the member doesn't have enough permissions, then execute the code inside.
     if (!msg.member.hasPermission('BAN_MEMBERS')) {
         const notEnoughPermissionsMessage = new Discord.MessageEmbed()
-            .setColor('#8b0000')
+            .setColor("#8b0000")
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)        
-            .setTitle(`Error`)
-            .setDescription('No tienes permisos para ejecutar ese comando.');
+            .setTitle("Error")
+            .setDescription("No tienes permisos para ejecutar ese comando.");
         
-        msg.channel.send({embed: notEnoughPermissionsMessage}).catch(console.error);
+        msg.channel.send({embed: notEnoughPermissionsMessage});
         return;
     }
 
     // if there isn't a user to punish or a punishment reason, then execute the code inside.
     if (!memberObject || !punishmentReason) {
         const notEnoughArgumentsMessage = new Discord.MessageEmbed()
-            .setColor('#8b0000')
+            .setColor("#8b0000")
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)        
-            .setTitle(`Error`)
-            .setDescription('Debes mencionar a una persona y poner un motivo.');
+            .setTitle("Error")
+            .setDescription("Debes mencionar a una persona y poner un motivo.");
         
-        msg.channel.send({embed: notEnoughArgumentsMessage}).catch(console.error);
+        msg.channel.send({embed: notEnoughArgumentsMessage});
         return;
     }
 
     if (!memberObject.bannable) {
         const memberNotBannableMessage = new Discord.MessageEmbed()
-            .setColor('#8b0000')
+            .setColor("#8b0000")
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)        
-            .setTitle(`Error`)
-            .setDescription('No puedo banear a ese miembro.');
+            .setTitle("Error")
+            .setDescription("No puedo banear a ese miembro.");
     
-        msg.channel.send({embed: memberNotBannableMessage}).catch(console.error);  
+        msg.channel.send({embed: memberNotBannableMessage});  
         return;      
     }
 
     if (user.id === msg.author.id) {
         const canNotPunishYouMessage = new Discord.MessageEmbed()
-            .setColor('#8b0000')
+            .setColor("#8b0000")
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)        
-            .setTitle(`Error`)
-            .setDescription('No puedes sancionarte a ti mismo.');
+            .setTitle("Error")
+            .setDescription("No puedes sancionarte a ti mismo.");
             
-        msg.channel.send({embed: canNotPunishYouMessage}).catch(console.error);
+        msg.channel.send({embed: canNotPunishYouMessage});
         return;
     }
 
@@ -64,10 +64,10 @@ exports.run = (_client, msg, args, _command, _content, Discord, config) => {
     if (msg.deletable) msg.delete();
     //Create the embed.
     const sucessMessage = new Discord.MessageEmbed()
-        .setColor('#ff8c00')
+        .setColor("#ff8c00")
         .setTimestamp()
         .setFooter(`Sancionado por ${msg.member.displayName}`)  
-        .setTitle(`Lithium - Sanciones`)
+        .setTitle("Lithium - Sanciones")
         .setDescription(`
 **Tag:** ${user.tag}
 **ID:** ${user.id}
@@ -75,14 +75,14 @@ exports.run = (_client, msg, args, _command, _content, Discord, config) => {
         `);
 
     //Send the message to the logs channel.
-    msg.guild.channels.cache.find(x => x.id === logChannel).send({embed: sucessMessage}).catch(console.error);
+    msg.guild.channels.cache.find((x) => x.id === logChannel).send({embed: sucessMessage});
     //Send the message to the channel where the command is executed.
-    msg.channel.send({embed: sucessMessage}).catch(console.error);
+    msg.channel.send({embed: sucessMessage});
 
     //Ban the member and the reason will be the punishmentReason variable.
     memberObject.ban({
         reason: `${punishmentReason}`
-    }).catch(console.error);
+    });
 }
 
 //Create an entry in the help command.

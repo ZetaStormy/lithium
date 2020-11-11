@@ -1,32 +1,32 @@
 exports.run = (client, msg, args, _command, _content, Discord, config) => {
   //Check if the command has been executed in a ticket channel.
-  if (!msg.channel.name.startsWith('🗳┋ticket-')) {
+  if (!msg.channel.name.startsWith("🗳┋ticket-")) {
     //Start the creation of the embed to say that this is not a ticket channel.
     const incorrectChannelMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('Este comando sólo puede ser usado en un ticket.');
+      .setTitle("Error")
+      .setDescription("Este comando sólo puede ser usado en un ticket.");
     
     //Send the error embed.
-    msg.channel.send({embed: incorrectChannelMessage}).catch(console.error);
+    msg.channel.send({embed: incorrectChannelMessage});
     //And then return to exit this command.
     return;
   }
 
   //Check if the sender has the role tickets.
-  if (!msg.member.roles.cache.find(x => x.name === "⁃ Tickets")) {
+  if (!msg.member.roles.cache.find((x) => x.name === "⁃ Tickets")) {
     //Create the embed using the MessageEmbed() constructor.
     const notEnoughPermissionsMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)
-      .setTitle(`Error`)
-      .setDescription('No tienes permisos para ejecutar ese comando.');
+      .setTitle("Error")
+      .setDescription("No tienes permisos para ejecutar ese comando.");
       
     //Send the embed to the channel where this command was executed.
-    msg.channel.send({embed: notEnoughPermissionsMessage}).catch(console.error);
+    msg.channel.send({embed: notEnoughPermissionsMessage});
     //Return to exit this command.
     return;
   }  
@@ -37,14 +37,14 @@ exports.run = (client, msg, args, _command, _content, Discord, config) => {
   if (!memberMention) {
     //Create the embed with the MessageEmbed() constructor.
     const unknownMemberMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('Usuario desconocido, introduce un usuario válido.');
+      .setTitle("Error")
+      .setDescription("Usuario desconocido, introduce un usuario válido.");
     
     //Send the embed.
-    msg.channel.send({embed: unknownMemberMessage}).catch(console.error);
+    msg.channel.send({embed: unknownMemberMessage});
     //And then return to exit.
     return;
   }
@@ -60,9 +60,9 @@ exports.run = (client, msg, args, _command, _content, Discord, config) => {
     
     //Create embed to create a response message to the author.
     const authorResponseMessage = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
+      .setColor("#ff8c00")
       .setTimestamp()
-      .setTitle('Lithium - Tickets')
+      .setTitle("Lithium - Tickets")
       .setDescription(`${memberMention} ha sido añadido correctamente.`)
       .setFooter(`Solicitado por ${msg.member.displayName}`);
 
@@ -74,7 +74,7 @@ exports.run = (client, msg, args, _command, _content, Discord, config) => {
     //Log the action of the author with some details.
     const actionLogMessage = new Discord.MessageEmbed()
       .setTitle("Lithium - Tickets")
-      .setColor('#ff8c00')
+      .setColor("#ff8c00")
       .setTimestamp()
       .setDescription(`
 Se detectó que ${memberMention} fue añadido al ticket de ${ticketTopic[3]} en el canal ${msg.channel} por ${msg.author}.
@@ -87,7 +87,7 @@ Ticket:
       `);
     
     //Send this embed to the channel that is in the config channel.
-    client.channels.cache.get(config.ticketLogChannel).send({embed: actionLogMessage}).catch(console.error);
+    client.channels.cache.get(config.ticketLogChannel).send({embed: actionLogMessage});
   //Catch if an error occurs.
   } catch(err) {
     //Log the error.

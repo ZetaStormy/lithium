@@ -19,13 +19,13 @@ exports.run = (client, oldMessage, newMessage) => {
 
     //Create the embed with information.
     const messageUpdateMessage = new Discord.MessageEmbed()
-    .setColor('#ff8c00')
+    .setColor("#ff8c00")
     .setTimestamp()
-    .setTitle(`Lithium - Mensaje editado`)
+    .setTitle("Lithium - Mensaje editado")
     .setDescription(`**Editado por:** ${newMessage.author.tag}\n**Canal:** ${newMessage.channel}`)
     .addField("Mensaje antiguo", `${oldContent}`)
     .addField("Mensaje nuevo", `${newContent}`);
 
     //Check if the guild has the edit log channel.
-    client.guilds.cache.find(x => x.id === guildIdentification).channels.cache.find(x => x.id === editLogChannel).send({embed: messageUpdateMessage}).catch(console.error);
+    client.guilds.cache.find((x) => x.id === guildIdentification).channels.cache.find((x) => x.id === editLogChannel).send({embed: messageUpdateMessage});
 }

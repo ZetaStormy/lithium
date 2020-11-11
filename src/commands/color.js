@@ -1,30 +1,30 @@
 exports.run = (_client, msg, args, content, _command, Discord) => {
   //Check the channel were the author of message sent the command.
-  if (!(msg.channel.name.startsWith(`💻┋comandos`) || msg.channel.name.startsWith(`💫┋off-topic`))) {
+  if (!(msg.channel.name.startsWith("💻┋comandos") || msg.channel.name.startsWith("💫┋off-topic"))) {
     //Create the embed message using MessageEmbed() constructor.
     const incorrectChannelMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('Usa comandos en los canales correspondientes.');
+      .setTitle("Error")
+      .setDescription("Usa comandos en los canales correspondientes.");
       
     //Send the embed to the channel were the command was called.
-    msg.channel.send({embed: incorrectChannelMessage}).catch(console.error);
+    msg.channel.send({embed: incorrectChannelMessage});
     //The return to exit.
     return;
   }
 
   //Check if the member has the special role.
-  if (!(msg.member.roles.cache.find(x => x.name === "⁃ Prestigio") || msg.member.roles.cache.find(x => x.name === "⁃ Administración"))) {
+  if (!(msg.member.roles.cache.find((x) => x.name === "⁃ Prestigio") || msg.member.roles.cache.find((x) => x.name === "⁃ Administración"))) {
     const notEnoughPermissionsMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('No tienes permisos para hacer esto.');
+      .setTitle("Error")
+      .setDescription("No tienes permisos para hacer esto.");
     
-    msg.channel.send({embed: notEnoughPermissionsMessage}).catch(console.error);
+    msg.channel.send({embed: notEnoughPermissionsMessage});
     return;
   }
   
@@ -39,10 +39,10 @@ exports.run = (_client, msg, args, content, _command, Discord) => {
 
   //Create a constant embed that we are going to send if the color is invalid or something like that.
   const invalidColorMessage = new Discord.MessageEmbed()
-    .setColor('#8b0000')
+    .setColor("#8b0000")
     .setTimestamp()
     .setFooter(`Denegado a ${msg.member.displayName}`)
-    .setTitle('Error')
+    .setTitle("Error")
     .setDescription(`
 El color que introdujiste es inválido, o directamente no
 se ha encontrado un argumento apropiado para obtener el color.
@@ -58,7 +58,7 @@ ${colorList}
     //Loop through all the colors using this for loop.
     for (let n = 0; n < colorRoles.length; n++) {
       //Create the color role variable to check if the user has the color.
-      let colorRole = msg.member.roles.cache.find(r => r.name === colorRoles[n]);
+      let colorRole = msg.member.roles.cache.find((r) => r.name === colorRoles[n]);
       if (!colorRole) {
         continue; //Continue the loop if the member doesn't have the color.
       } else {
@@ -74,7 +74,7 @@ ${colorList}
     for (let h = 0; h < colorRoles.length; h++) {
       //Create a boolean variable to check if the user has too much colors.
       excessColors = false;
-      let colorRole = msg.member.roles.cache.find(r => r.name === colorRoles[h]); //Find the role in the member.
+      let colorRole = msg.member.roles.cache.find((r) => r.name === colorRoles[h]); //Find the role in the member.
       if (!colorRole) {
         continue; //Continue to the next role if the member doesn't have the role.
       } else {
@@ -93,19 +93,19 @@ ${colorList}
       removeColors(); //Call the function to remove colors.
     }
 
-    const colorSelected = msg.guild.roles.cache.find(k => k.name === colorRoles[colorEntry]); //Find the role for the color.
+    const colorSelected = msg.guild.roles.cache.find((k) => k.name === colorRoles[colorEntry]); //Find the role for the color.
     msg.member.roles.add(colorSelected.id).catch(console.error); //Add the role color to the member.    
 
     //Create an embed to say that the color was applied successfully.
     const sucessMessage = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
+      .setColor("#ff8c00")
       .setTitle('Lithium - Colores')
       .setTimestamp()
       .setFooter(`Solicitado por ${msg.member.displayName}`)
       .setDescription(`Se te ha colocado el color ${colorString} correctamente.`);
         
     //Send the message to the channel.
-    msg.channel.send({embed: sucessMessage}).catch(console.error);
+    msg.channel.send({embed: sucessMessage});
   }
 
 
@@ -118,14 +118,14 @@ ${colorList}
     case "reset": //If the arguments are reset.
       //Create an embed to say that the colors were reset successfully.
       const colorResetMessage = new Discord.MessageEmbed()
-        .setColor('#ff8c00')
+        .setColor("#ff8c00")
         .setTitle('Lithium - Colores')
         .setTimestamp()
         .setFooter(`Solicitado por ${msg.member.displayName}`)
-        .setDescription('Tus colores han sido reiniciados correctamente.'); 
+        .setDescription("Tus colores han sido reiniciados correctamente."); 
 
       removeColors(); //Call the function to remove the color roles.
-      msg.channel.send({embed: colorResetMessage}).catch(console.error);
+      msg.channel.send({embed: colorResetMessage});
       break; //Stop the switch execution.
     case "azul": //If the color selected is blue.
       colorProcess("Azul", 0); //Execute the color process and give it the color properties.
@@ -173,7 +173,7 @@ ${colorList}
       colorProcess("Rosa", 14); //Execute the color process and give it the color properties.
       break;      
     default: //Default case, in this case is used for invalid colors.
-      msg.channel.send({embed: invalidColorMessage}).catch(console.error);
+      msg.channel.send({embed: invalidColorMessage});
       return;
   }
 }

@@ -1,33 +1,33 @@
 exports.run = (client, msg, args, _content, _command, Discord, config) => {
   //Check the channel to avoid being used in other channels.
-  if (!msg.channel.name.startsWith(`💻┋comandos`)) {
+  if (!msg.channel.name.startsWith("💻┋comandos")) {
     const incorrectChannelMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('Usa comandos en los canales correspondientes.');
+      .setTitle("Error")
+      .setDescription("Usa comandos en los canales correspondientes.");
         
-    msg.channel.send({embed: incorrectChannelMessage}).catch(console.error);
+    msg.channel.send({embed: incorrectChannelMessage});
     return;
   }
 
   //Get the support role from the configuration. This support role has access to all the tickets.
   const supportRole = msg.guild.roles.cache.get(config.supportRole);
   //Find the default server role.
-  const defaultRole = msg.guild.roles.cache.find(x => x.id === "675762500376985640");
-  const mutedRole = msg.guild.roles.cache.find(x => x.id === "677971241520332821");
+  const defaultRole = msg.guild.roles.cache.find((x) => x.id === "675762500376985640");
+  const mutedRole = msg.guild.roles.cache.find((x) => x.id === "677971241520332821");
   
   //Check if the support role exists.
   if (!supportRole) {
     const roleErrorMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('No se ha encontrado el rol de soporte.');
+      .setTitle("Error")
+      .setDescription("No se ha encontrado el rol de soporte.");
           
-    msg.channel.send({ticketLog: roleErrorMessage}).catch(console.error);
+    msg.channel.send({ticketLog: roleErrorMessage});
     return;
   }
   
@@ -43,13 +43,13 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
   //Check if the user has another ticket.
 	if (msg.guild.channels.cache.find(channel => channel.name === ticketName)) {
     const alreadyOpenMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('Ya has abierto un ticket, por favor, comunícate a través de ese o abre uno nuevo.');
+      .setTitle("Error")
+      .setDescription("Ya has abierto un ticket, por favor, comunícate a través de ese o abre uno nuevo.");
         
-    msg.channel.send({embed: alreadyOpenMessage}).catch(console.error);
+    msg.channel.send({embed: alreadyOpenMessage});
     return;
 	}
 
@@ -65,30 +65,30 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
 		  await ticketChannel.updateOverwrite(defaultRole, {
   			VIEW_CHANNEL: false,
 			  SEND_MESSAGES: false
-      }).catch(console.error);
+      });
 
       await ticketChannel.updateOverwrite(mutedRole, {
   			VIEW_CHANNEL: false,
 			  SEND_MESSAGES: false
-      }).catch(console.error);
+      });
     
       //Overwrite the permissions of the ticket author in the ticket channel.
 		  await ticketChannel.updateOverwrite(msg.author, {
   			VIEW_CHANNEL: true,
 			  SEND_MESSAGES: true,
         ATTACH_FILES: true
-      }).catch(console.error);
+      });
     
       //Overwrite the permissions of the support role in the ticket channel.
 		  await ticketChannel.updateOverwrite(supportRole, {
 	  	  VIEW_CHANNEL: true,
 			  SEND_MESSAGES: true,
         ATTACH_FILES: true
-		  }).catch(console.error);
+		  });
 
       //Create an embed when the creation of the ticket is success.
 		  const ticketCreation = new Discord.MessageEmbed()
-		    .setColor('#ff8c00')
+		    .setColor("#ff8c00")
         .setTimestamp()
         .setTitle('Literium - Tickets')
 		    .setDescription(`
@@ -103,8 +103,8 @@ Ticket:
 
       //Create an embed to give some information about the ticket in the ticket channel.
 		  const ticketWelcome = new Discord.MessageEmbed()
-		    .setColor('#ff8c00')
-        .setTitle('Lithium - Tickets')
+		    .setColor("#ff8c00")
+        .setTitle("Lithium - Tickets")
         .setTimestamp()
         .setFooter(`Solicitado por ${msg.member.displayName}`)      
         .setDescription(`
@@ -130,8 +130,8 @@ Ticket:
       //Create an embed to log the creation of the ticket.
 		  const ticketLogMessage = new Discord.MessageEmbed()
         .setTimestamp()
-        .setColor('#ff8c00')
-        .setTitle(`Lithium - Tickets`)
+        .setColor("#ff8c00")
+        .setTitle("Lithium - Tickets")
         .setDescription(`
 Se detectó la creación de un nuevo ticket en el canal ${ticketChannel}.
 A continuación, se muestra información brevemente de este ticket:
@@ -143,7 +143,7 @@ Ticket:
         `);
 
       //Send the log embed to the ticket log channel from the configuration.
-      await client.channels.cache.get(config.ticketLogChannel).send({embed: ticketLogMessage}).catch(console.error);
+      await client.channels.cache.get(config.ticketLogChannel).send({embed: ticketLogMessage});
     });
   } catch(err) {
     console.log(err);

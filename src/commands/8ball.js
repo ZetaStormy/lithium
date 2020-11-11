@@ -1,16 +1,16 @@
 exports.run = (_client, msg, args, _command, _content, Discord) => {
   //Check the channel were the author of message sent the command.
-  if (!(msg.channel.name.startsWith(`💻┋comandos`) || msg.channel.name.startsWith(`💫┋off-topic`))) {
+  if (!(msg.channel.name.startsWith("💻┋comandos") || msg.channel.name.startsWith("💫┋off-topic"))) {
     //Create the embed message using MessageEmbed() constructor.
     const incorrectChannelMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)
-      .setTitle(`Error`)
-      .setDescription('Usa comandos en los canales correspondientes.');
+      .setTitle("Error")
+      .setDescription("Usa comandos en los canales correspondientes.");
       
     //Send the embed to the channel were the command was called.
-    msg.channel.send({embed: incorrectChannelMessage}).catch(console.error);
+    msg.channel.send({embed: incorrectChannelMessage});
     //The return to exit.
     return;
   }
@@ -19,14 +19,14 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
   if (!args[1]) {
     //If it doesn't exists, create a beatiful embed using MessageEmbed().
     const notEnoughArgumentsMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)
-      .setTitle(`Error`)
-      .setDescription('Debes preguntar algo con más de una palabra.');
+      .setTitle("Error")
+      .setDescription("Debes preguntar algo con más de una palabra.");
     
     //Then, we send this embed.
-    msg.channel.send({embed: notEnoughArgumentsMessage}).catch(console.error);
+    msg.channel.send({embed: notEnoughArgumentsMessage});
     //And return because we don't want to continue the execution of the code.
     return;
   }
@@ -48,7 +48,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
     .addField("**Respuesta**", randomReplies[result]);
 
   //Send the embed.
-  msg.channel.send({embed: sucessMessage}).catch(console.error);
+  msg.channel.send({embed: sucessMessage});
 }
 
 //Create the 8ball entry in help command.

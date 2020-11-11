@@ -37,13 +37,13 @@ exports.run = (client, message) => {
 
       //Create an embed to say that the user level up
       const memberLevelMessage = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
+      .setColor("#ff8c00")
       .setTitle('Lithium - Niveles')
       .setTimestamp()
       .setFooter(`Enviado a ${message.member.displayName}`)
       .setDescription(`¡Has subido a nivel ${currentLevel + 1}!`); 
 
-      message.channel.send({embed: memberLevelMessage}).catch(console.error);        
+      message.channel.send({embed: memberLevelMessage});        
     }
 
     //Set the new experience and level value in the database.
@@ -52,7 +52,7 @@ exports.run = (client, message) => {
     //Check if the level is 15 or bigger.
     if (score.level >= 15) {
       //Add the prestige role if it is bigger or equal.
-      message.member.roles.add(message.guild.roles.cache.find(x => x.name === "⁃ Prestigio")).catch(console.error);     
+      message.member.roles.add(message.guild.roles.cache.find((x) => x.name === "⁃ Prestigio")).catch(console.error);     
     } 
   }
 }

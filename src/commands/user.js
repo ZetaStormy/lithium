@@ -1,14 +1,14 @@
 exports.run = (_client, msg, args, _command, _content, Discord) => {
     //Check if the member has enough permissions.
-    if (!msg.member.roles.cache.find(x => x.name === "⁃ Administración")) {
+    if (!msg.member.roles.cache.find((x) => x.name === "⁃ Administración")) {
         const noEnoughPermsMessage = new Discord.MessageEmbed()
-        .setColor('#8b0000')
+        .setColor("#8b0000")
         .setTimestamp()
         .setFooter(`Denegado a ${msg.member.displayName}`)        
-        .setTitle(`Error`)
-        .setDescription('No tienes permisos para ejecutar ese comando.');
+        .setTitle("Error")
+        .setDescription("No tienes permisos para ejecutar ese comando.");
       
-        msg.channel.send({embed: noEnoughPermsMessage}).catch(console.error);
+        msg.channel.send({embed: noEnoughPermsMessage});
         return;
     }
 
@@ -17,20 +17,20 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
     //Check if there is a member mention.
     if (!memberMention) {
       const invalidMemberMessage = new Discord.MessageEmbed()
-        .setColor('#8b0000')
+        .setColor("#8b0000")
         .setTimestamp()
         .setFooter(`Denegado a ${msg.member.displayName}`)
-        .setTitle('Error')
-        .setDescription('Menciona un usuario o ID válida.');
+        .setTitle("Error")
+        .setDescription("Menciona un usuario o ID válida.");
       
-      msg.channel.send({embed: invalidMemberMessage}).catch(console.error);
+      msg.channel.send({embed: invalidMemberMessage});
       return;
     }
     
     //Variable to store the member activity.
     let memberActivity = "";
     //Check if the activity is undefined.
-    if (memberMention.presence.activities[0] === undefined) { 
+    if (memberMention.presence.activities[0] === "undefined") { 
         memberActivity = "Indefinida"; 
     } else if (memberMention.presence.activities[0].name === "Custom Status") { //Check if it is a custom status.
         memberActivity = `${memberMention.presence.activities[0].state}`;
@@ -80,7 +80,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
     
     //Create the embed with the user information.
     const userInformationMessage = new Discord.MessageEmbed()
-        .setColor('#ff8c00')
+        .setColor("#ff8c00")
         .setTimestamp()
         .setTitle('Lithium - Información')
         .setThumbnail(memberMention.user.avatarURL())
@@ -99,7 +99,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
         .addField("**Roles**", memberRolesList);
 
     //Send the embed.
-    msg.channel.send({embed: userInformationMessage}).catch(console.error);
+    msg.channel.send({embed: userInformationMessage});
 }
 
 //add an entry for this command.

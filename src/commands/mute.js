@@ -2,13 +2,13 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
   //Check the permissions.
   if (!msg.member.hasPermission("MANAGE_MESSAGES")) {
     const notEnoughPermsMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('No tienes permisos para hacer esto.');
+      .setTitle("Error")
+      .setDescription("No tienes permisos para hacer esto.");
  
-    msg.channel.send({embed: notEnoughPermsMessage}).catch(console.error);
+    msg.channel.send({embed: notEnoughPermsMessage});
     return;
   }
 
@@ -17,46 +17,46 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
   //Check if there is a mention
   if (!memberMention) {
     const invalidMemberMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('Menciona a un usuario válido.');
+      .setTitle("Error")
+      .setDescription("Menciona a un usuario válido.");
         
-    msg.channel.send({embed: invalidMemberMessage}).catch(console.error);
+    msg.channel.send({embed: invalidMemberMessage});
     return;
   }
   
   //Check if the member has the permission to punish.
   if (memberMention.hasPermission("MANAGE_MESSAGES")) {
     const canNotPunishMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('No puedo silenciar a este usuario.');
+      .setTitle("Error")
+      .setDescription("No puedo silenciar a este usuario.");
         
-    msg.channel.send({embed: canNotPunishMessage}).catch(console.error);
+    msg.channel.send({embed: canNotPunishMessage});
     return;
   }
   
   //You can't punish your self.
   if (memberMention.id === msg.author.id) {
     const canNotPunishYouMessage = new Discord.MessageEmbed()
-      .setColor('#8b0000')
+      .setColor("#8b0000")
       .setTimestamp()
       .setFooter(`Denegado a ${msg.member.displayName}`)        
-      .setTitle(`Error`)
-      .setDescription('No puedes silenciarte a ti mismo.');
+      .setTitle("Error")
+      .setDescription("No puedes silenciarte a ti mismo.");
         
-    msg.channel.send({embed: canNotPunishYouMessage}).catch(console.error);
+    msg.channel.send({embed: canNotPunishYouMessage});
     return;
   }
   
   //Store the default server role, in this case is the "Jugador" role.
-  const defaultRole = msg.guild.roles.cache.find(x => x.name === '⁃ Jugador');
+  const defaultRole = msg.guild.roles.cache.find((x) => x.name === '⁃ Jugador');
   //Store the role that we want to use to mute in a variable.
-  let mutedRole = msg.guild.roles.cache.find(role => role.name === "⁃ Silenciado");
+  let mutedRole = msg.guild.roles.cache.find((role) => role.name === "⁃ Silenciado");
   //Check if the role exist.
   if (!mutedRole) {
     //If it doesn't exists, then create it.
@@ -68,7 +68,7 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
           color: "#a57474",
           permissions: [] 
         }
-      }).catch(console.error);
+      });
 
       //Overwrite permissions.
       msg.guild.channels.cache.forEach(async (channel) => {
@@ -90,17 +90,17 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
   //Check if we have the time argument and return if we don't have it.
   if(!muteTime) {
     let embed = new Discord.MessageEmbed()
-    .setColor('#8b0000')
+    .setColor("#8b0000")
     .setTimestamp()
     .setFooter(`Denegado a ${msg.member.displayName}`)        
-    .setTitle(`Error`)
+    .setTitle("Error")
     .setDescription(`
 Por favor, especifica una cantidad de tiempo válida usando el sufijo para días (d), horas (h), minutos (m) y segundos (s). Este comando no ha sido tan probado y perfeccionado, por lo que se recomienda no especificar valores tan altos. A continuación, se muestra un ejemplo del uso correcto:
 \`-mute @ZetaStormy 1d Spam\`
 Silencia a ZetaStormy por 1 día con motivo "Spam".
     `);
         
-    msg.channel.send({embed}).catch(console.error);
+    msg.channel.send({embed});
     return;
   }
 
@@ -117,10 +117,10 @@ Silencia a ZetaStormy por 1 día con motivo "Spam".
   if (msg.deletable) msg.delete();
   
   const sucessMessage = new Discord.MessageEmbed()
-    .setColor('#ff8c00')
+    .setColor("#ff8c00")
     .setTimestamp()
     .setFooter(`Sancionado por ${msg.member.displayName}`)  
-    .setTitle(`Lithium - Sanciones`)
+    .setTitle("Lithium - Sanciones")
     .setDescription(`
 **Sanción:** Silenciado
 **Tag:** ${memberMention.user.tag}
@@ -130,9 +130,9 @@ Silencia a ZetaStormy por 1 día con motivo "Spam".
     `);
 
   //Find the log channel in the configuration and send the embed.
-  msg.guild.channels.cache.find(x => x.id === config.muteLogChannel).send({embed: sucessMessage}).catch(console.error);
+  msg.guild.channels.cache.find((x) => x.id === config.muteLogChannel).send({embed: sucessMessage});
   //Send the embed to the channel
-  msg.channel.send({embed: sucessMessage}).catch(console.error);   
+  msg.channel.send({embed: sucessMessage});   
 
   //Set the timeout of the mute using the muteTime and create a function inside the setTimeout function to do some stuff.
   setTimeout(function() {
@@ -143,16 +143,16 @@ Silencia a ZetaStormy por 1 día con motivo "Spam".
 
     //Create the embed to say that the member is no longer muted.
     const noLongerMutedMessage = new Discord.MessageEmbed()
-      .setColor('#ff8c00')
+      .setColor("#ff8c00")
       .setFooter(`Sancionado por ${msg.member.displayName}`)  
-      .setTitle(`Lithium - Sanciones`)
+      .setTitle("Lithium - Sanciones")
       .setTimestamp()
       .setDescription(`<@${memberMention.id}> ya no está silenciado.`);
 
     //Find the mute log channel and send this embed
-    msg.guild.channels.cache.find(x => x.id === config.muteLogChannel).send({embed: noLongerMutedMessage}).catch(console.error);
+    msg.guild.channels.cache.find((x) => x.id === config.muteLogChannel).send({embed: noLongerMutedMessage});
     //Send this message to the channel where the member was muted.
-    msg.channel.send({embed: noLongerMutedMessage}).catch(console.error);
+    msg.channel.send({embed: noLongerMutedMessage});
   }, ms(muteTime)); //Specify the timeout time.
 }
 

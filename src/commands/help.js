@@ -1,16 +1,16 @@
 exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     //Check the channel were the author of message sent the command.
-    if (!(msg.channel.name.startsWith(`💻┋comandos`) || msg.channel.name.startsWith(`💫┋off-topic`))) {
+    if (!(msg.channel.name.startsWith("💻┋comandos") || msg.channel.name.startsWith("💫┋off-topic"))) {
         //Create the embed message using MessageEmbed() constructor.
         const incorrectChannelMessage = new Discord.MessageEmbed()
-            .setColor('#8b0000')
+            .setColor("#8b0000")
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)        
-            .setTitle(`Error`)
-            .setDescription('Usa comandos en los canales correspondientes.');
+            .setTitle("Error")
+            .setDescription("Usa comandos en los canales correspondientes.");
       
         //Send the embed to the channel were the command was called.
-        msg.channel.send({embed: incorrectChannelMessage}).catch(console.error);
+        msg.channel.send({embed: incorrectChannelMessage});
         //The return to exit.
         return;
     }
@@ -21,9 +21,11 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     //Create a constant array where we are going to store the commands.
     const commands = [];
     //Store the commands in the array replacing the extension .js with nothing.
-    for (i in commandFiles) {
-        let cmd = commandFiles[i];
-        commands.push(cmd.replace(".js",""));
+    for (let i in commandFiles) {
+        if (Object.hasOwnProperty.call(commandFiles, i)) {
+            let cmd = commandFiles[i];
+            commands.push(cmd.replace(".js",""));
+        }
     }
 
     //Create a variable where we are going to store the first argument of the command (the category).
@@ -50,31 +52,31 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
         
         //Create a embed message with the categories.
         const availableCategoriesMessage = new Discord.MessageEmbed()
-            .setColor('#ff8c00')
+            .setColor("#ff8c00")
             .setTimestamp()
             .setTitle("Lithium - Comandos")
             .setFooter(`Solicitado por ${msg.member.displayName}`)
             .setDescription(`Obtén la lista de comandos con \`-help [Categoría]\`\nA continuación, se muestran todas las categorías disponibles.\n\`\`\`yaml\nCategorias:\n${availableCategories}\`\`\``);
 
-        msg.channel.send({embed: availableCategoriesMessage}).catch(console.error);
+        msg.channel.send({embed: availableCategoriesMessage});
     } else {
         categoryArgument = categoryArgument.replace(/\w+/g,
             function(w){return w[0].toUpperCase() + w.slice(1).toLowerCase();});
         //Check if the category is restricted to the administration.
-        if (categoryArgument.toLowerCase() === "Administración" && !msg.member.roles.cache.find(x => x.name === "⁃ Administración")) {
+        if (categoryArgument.toLowerCase() === "Administración" && !msg.member.roles.cache.find((x) => x.name === "⁃ Administración")) {
             const noEnoughPermsMessage = new Discord.MessageEmbed()
-                .setColor('#8b0000')
+                .setColor("#8b0000")
                 .setTimestamp()
                 .setFooter(`Denegado a ${msg.member.displayName}`)        
-                .setTitle(`Error`)
-                .setDescription('No tienes permisos para ejecutar ese comando.');
+                .setTitle("Error")
+                .setDescription("No tienes permisos para ejecutar ese comando.");
         
-            msg.channel.send({embed: noEnoughPermsMessage}).catch(console.error);
+            msg.channel.send({embed: noEnoughPermsMessage});
         } else {
             //Create the category help embed.
             const commandHelpMessage = new Discord.MessageEmbed()
-                .setColor('#ff8c00')
-                .setTitle(`Lithium - Comandos`)
+                .setColor("#ff8c00")
+                .setTitle("Lithium - Comandos")
                 .setTimestamp()
                 .setFooter(`Solicitado por ${msg.member.displayName}`)
                 .setDescription(`En caso de que notes que algo no anda bien con este comando, por favor, hazle saber al Staff o a la administración. A continuación, se muestran los comandos de la categoría **${categoryArgument}**:`)
@@ -90,7 +92,7 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
                 }
             }
             //Just send the embed that we created before.
-            msg.channel.send({embed: commandHelpMessage}).catch(console.error);
+            msg.channel.send({embed: commandHelpMessage});
         }
     }
 }
