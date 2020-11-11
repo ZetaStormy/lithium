@@ -1,21 +1,22 @@
 exports.run = (client, msg, _args, _content, _command, Discord, config) => {
   //Check if the command is executed from a ticket.
   if (!msg.channel.name.startsWith('🗳┋ticket-')) {
-    var embed = new Discord.MessageEmbed()
-    .setColor('#8b0000')
-    .setTimestamp()
-    .setFooter(`Denegado a ${msg.member.displayName}`)
-    .setTitle(`Error`)
-    .setDescription('Este comando sólo puede ser usado en un ticket.');
+    const invalidChannelMessage = new Discord.MessageEmbed()
+      .setColor('#8b0000')
+      .setTimestamp()
+      .setFooter(`Denegado a ${msg.member.displayName}`)
+      .setTitle(`Error`)
+      .setDescription('Este comando sólo puede ser usado en un ticket.');
         
-    msg.channel.send({embed}).catch(console.error);
+    msg.channel.send({embed: invalidChannelMessage}).catch(console.error);
     return;
-  } else {
-    try {
-      //Get the ticket topic and split it in arguments.
-      const ticketTopic = msg.channel.topic.trim().split(/ +/g);
-      //Create an embed with information about the ticket.
-  	  const embed = new Discord.MessageEmbed()
+  }
+
+  try {
+    //Get the ticket topic and split it in arguments.
+    const ticketTopic = msg.channel.topic.trim().split(/ +/g);
+    //Create an embed with information about the ticket.
+  	const ticketInformationMessage = new Discord.MessageEmbed()
   	  .setTitle("Lithium - Tickets")
       .setColor('#ff8c00')
       .setTimestamp()
@@ -29,22 +30,20 @@ Ticket:
   Motivo: ${ticketTopic.splice(6, ticketTopic.length).join(" ")}\`\`\`
       `);
 
-      //Send a message to the ticket log channel.
-      client.channels.cache.get(config.ticketLogChannel).send(embed);
-      //Delete the channel successfully if we are in a ticket.
-      msg.channel.delete();
-      } catch(err) {
-        //Log the error if there is one.
-        console.log(err);
-      }
-    }
+    //Send a message to the ticket log channel.
+    client.channels.cache.get(config.ticketLogChannel).send({embed: ticketInformationMessage});
+    //Delete the channel successfully if we are in a ticket.
+    msg.channel.delete();
+  } catch(err) {
+    //Log the error if there is one.
+    console.log(err);
   }
+}
 
-  //Add the entry to the help command.
-  exports.help = {
-    name: "Close",
-    category: "Soporte",
-    description: "Cierra un ticket.",
-    usage: "Close",
-    example: ""
-}; 
+//Add the entry to the help command.
+exports.help = {
+  name: "Close",
+  category: "Soporte",
+  description: "Cierra un ticket.",
+  usage: "Close"
+}

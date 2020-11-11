@@ -24,12 +24,10 @@ This discord bot has been created only for Literium Network, but you can use the
 
 Lithium requires [Node.js](https://nodejs.org/) v12+ to run.
 
-First you have to create a `secret.json` file inside `src` folder to save the token, like this:
+First you have to introduce your token inside `index.js` that is inside `src`, like this:
 
-```json
-{
-    "token": "Insert Token Here"
-}
+```javascript
+  client.login("YOUR_TOKEN_HERE");
 ```
 
 Then just install the dependencies and run the bot with this commands:

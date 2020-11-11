@@ -6,9 +6,9 @@ const config = require("../config.json");
 //Export the client (Created with Discord.Client() constructor) and the member (Object of GuildMember).
 exports.run = (client, member) => {
   //Store the ID of this configuration channel.
-  var leaveChannel = config.quitLogChannel;
+  const leaveChannel = config.quitLogChannel;
 
-  var embed = new Discord.MessageEmbed()
+  const memberLeaveMessage = new Discord.MessageEmbed()
   .setColor('#ff8c00')
   .setTimestamp()
   .setTitle(`Lithium - Salida`)    
@@ -24,5 +24,5 @@ Informacion:
   `);
 
   //Send to the leave log channel.
-  client.channels.cache.find(x => x.id === leaveChannel).send({embed}).catch(console.error);  
+  client.channels.cache.find(x => x.id === leaveChannel).send({embed: memberLeaveMessage}).catch(console.error);  
 }

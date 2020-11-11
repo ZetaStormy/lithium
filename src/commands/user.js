@@ -1,34 +1,34 @@
 exports.run = (_client, msg, args, _command, _content, Discord) => {
     //Check if the member has enough permissions.
     if (!msg.member.roles.cache.find(x => x.name === "⁃ Administración")) {
-        var embed = new Discord.MessageEmbed()
+        const noEnoughPermsMessage = new Discord.MessageEmbed()
         .setColor('#8b0000')
         .setTimestamp()
         .setFooter(`Denegado a ${msg.member.displayName}`)        
         .setTitle(`Error`)
         .setDescription('No tienes permisos para ejecutar ese comando.');
       
-        msg.channel.send({embed}).catch(console.error);
+        msg.channel.send({embed: noEnoughPermsMessage}).catch(console.error);
         return;
     }
 
     //Store the member mention.
-    var memberMention = msg.mentions.members.first() || msg.guild.members.cache.get(args[0]);
+    const memberMention = msg.mentions.members.first() || msg.guild.members.cache.get(args[0]);
     //Check if there is a member mention.
     if (!memberMention) {
-      var embed = new Discord.MessageEmbed()
-      .setColor('#8b0000')
-      .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)
-      .setTitle('Error')
-      .setDescription('Menciona un usuario o ID válida.');
+      const invalidMemberMessage = new Discord.MessageEmbed()
+        .setColor('#8b0000')
+        .setTimestamp()
+        .setFooter(`Denegado a ${msg.member.displayName}`)
+        .setTitle('Error')
+        .setDescription('Menciona un usuario o ID válida.');
       
-      msg.channel.send({embed}).catch(console.error);
+      msg.channel.send({embed: invalidMemberMessage}).catch(console.error);
       return;
     }
     
     //Variable to store the member activity.
-    var memberActivity;
+    let memberActivity = "";
     //Check if the activity is undefined.
     if (memberMention.presence.activities[0] === undefined) { 
         memberActivity = "Indefinida"; 
@@ -54,50 +54,52 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
         memberActivity += memberMention.presence.activities[0].name;
     }
 
-    var memberRolesArray = memberMention.roles.cache.array();
-    for (var i = 0; i < memberRolesArray.length; i++){
-        memberRoles += (String(memberRolesArray[i] + "\n"));
-        var memberRoles =  memberRolesArray;
+    const memberRolesArray = memberMention.roles.cache.array();
+    let memberRolesList = "";
+    for (let i = 0; i < memberRolesArray.length; i++){
+        memberRolesList += (String(memberRolesArray[i] + "\n"));
+        memberRolesList =  memberRolesArray;
     }
 
+    let memberStatus = "";
     //Translate different presence status.
     switch(memberMention.presence.status){
       case "online": 
-        var mstatus = "En línea"; 
+        memberStatus = "En línea"; 
         break;
       case "dnd": 
-        var mstatus = "No molestar"; 
+        memberStatus = "No molestar"; 
         break;
       case "idle": 
-        var mstatus = "Ausente"; 
+        memberStatus = "Ausente"; 
         break;
       case "offline": 
-        var mstatus = "Desconectado"; 
+        memberStatus = "Desconectado"; 
         break;
     }
     
     //Create the embed with the user information.
-    var embed = new Discord.MessageEmbed()
-    .setColor('#ff8c00')
-    .setTimestamp()
-    .setTitle('Lithium - Información')
-    .setThumbnail(memberMention.user.avatarURL())
-    .setFooter(`Solicitado por ${msg.member.displayName}`)	
-    .addField("**Información**",`
+    const userInformationMessage = new Discord.MessageEmbed()
+        .setColor('#ff8c00')
+        .setTimestamp()
+        .setTitle('Lithium - Información')
+        .setThumbnail(memberMention.user.avatarURL())
+        .setFooter(`Solicitado por ${msg.member.displayName}`)	
+        .addField("**Información**",`
 **Tag:** ${memberMention.user.tag}
 **Nombre:** ${memberMention.displayName}
 **ID:** ${memberMention.id}
 **Avatar:** [Click aquí](${memberMention.user.avatarURL()})
 **Creación:** ${memberMention.user.createdAt}
-    `)
-    .addField("**Detalles**",`
-**Estado:** ${mstatus}
+        `)
+        .addField("**Detalles**",`
+**Estado:** ${memberStatus}
 **Presencia:** ${memberActivity}
-            `)
-    .addField("**Roles**", memberRoles);
+        `)
+        .addField("**Roles**", memberRolesList);
 
     //Send the embed.
-    msg.channel.send({embed}).catch(console.error);
+    msg.channel.send({embed: userInformationMessage}).catch(console.error);
 }
 
 //add an entry for this command.
@@ -105,7 +107,5 @@ exports.help = {
     name: "User",
     category: "Información",
     description: "Muestra información relacionada con el usuario.",
-    usage: "User [@Usuario/ID]",
-    example: "",
-    status: "Ready"
-};
+    usage: "User [@Usuario/ID]"
+}

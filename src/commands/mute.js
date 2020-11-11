@@ -1,56 +1,55 @@
-const ms = require('ms');
 exports.run = async (_client, msg, args, _content, _command, Discord, config) => {
   //Check the permissions.
   if (!msg.member.hasPermission("MANAGE_MESSAGES")) {
-    var embed = new Discord.MessageEmbed()
-    .setColor('#8b0000')
-    .setTimestamp()
-    .setFooter(`Denegado a ${msg.member.displayName}`)        
-    .setTitle(`Error`)
-    .setDescription('No tienes permisos para hacer esto.');
+    const notEnoughPermsMessage = new Discord.MessageEmbed()
+      .setColor('#8b0000')
+      .setTimestamp()
+      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setTitle(`Error`)
+      .setDescription('No tienes permisos para hacer esto.');
  
-    msg.channel.send({embed}).catch(console.error);
+    msg.channel.send({embed: notEnoughPermsMessage}).catch(console.error);
     return;
   }
 
   //Store the mention of the member.
-  let memberMention = msg.guild.member(msg.mentions.users.first() || msg.guild.members.cache.get(args[0]));
+  const memberMention = msg.guild.member(msg.mentions.users.first() || msg.guild.members.cache.get(args[0]));
   //Check if there is a mention
   if (!memberMention) {
-    var embed = new Discord.MessageEmbed()
-    .setColor('#8b0000')
-    .setTimestamp()
-    .setFooter(`Denegado a ${msg.member.displayName}`)        
-    .setTitle(`Error`)
-    .setDescription('Menciona a un usuario válido.');
+    const invalidMemberMessage = new Discord.MessageEmbed()
+      .setColor('#8b0000')
+      .setTimestamp()
+      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setTitle(`Error`)
+      .setDescription('Menciona a un usuario válido.');
         
-    msg.channel.send({embed}).catch(console.error);
+    msg.channel.send({embed: invalidMemberMessage}).catch(console.error);
     return;
   }
   
   //Check if the member has the permission to punish.
   if (memberMention.hasPermission("MANAGE_MESSAGES")) {
-    var embed = new Discord.MessageEmbed()
-    .setColor('#8b0000')
-    .setTimestamp()
-    .setFooter(`Denegado a ${msg.member.displayName}`)        
-    .setTitle(`Error`)
-    .setDescription('No puedo silenciar a este usuario.');
+    const canNotPunishMessage = new Discord.MessageEmbed()
+      .setColor('#8b0000')
+      .setTimestamp()
+      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setTitle(`Error`)
+      .setDescription('No puedo silenciar a este usuario.');
         
-    msg.channel.send({embed}).catch(console.error);
+    msg.channel.send({embed: canNotPunishMessage}).catch(console.error);
     return;
   }
   
   //You can't punish your self.
   if (memberMention.id === msg.author.id) {
-    var embed = new Discord.MessageEmbed()
-    .setColor('#8b0000')
-    .setTimestamp()
-    .setFooter(`Denegado a ${msg.member.displayName}`)        
-    .setTitle(`Error`)
-    .setDescription('No puedes silenciarte a ti mismo.');
+    const canNotPunishYouMessage = new Discord.MessageEmbed()
+      .setColor('#8b0000')
+      .setTimestamp()
+      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setTitle(`Error`)
+      .setDescription('No puedes silenciarte a ti mismo.');
         
-    msg.channel.send({embed}).catch(console.error);
+    msg.channel.send({embed: canNotPunishYouMessage}).catch(console.error);
     return;
   }
   
@@ -63,14 +62,16 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
     //If it doesn't exists, then create it.
     try {
       //Create it.
-      mutedRole = await msg.guild.createRole({
-        name: "⁃ Silenciado",
-        color: "#a57474",
-        permissions: []
-      });
+      mutedRole = await msg.guild.roles.create({
+        data: {
+          name: "⁃ Silenciado",
+          color: "#a57474",
+          permissions: [] 
+        }
+      }).catch(console.error);
 
       //Overwrite permissions.
-      msg.guild.channels.forEach(async (channel) => {
+      msg.guild.channels.cache.forEach(async (channel) => {
         await channel.updateOverwrite(mutedRole, {
           SEND_MESSAGES: false,
           ADD_REACTIONS: false
@@ -83,11 +84,12 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
     }
   }
 
+  const ms = require('ms');
   //The second argument will be the mute time.
-  let muteTime = args[1];
+  const muteTime = args[1];
   //Check if we have the time argument and return if we don't have it.
   if(!muteTime) {
-    var embed = new Discord.MessageEmbed()
+    let embed = new Discord.MessageEmbed()
     .setColor('#8b0000')
     .setTimestamp()
     .setFooter(`Denegado a ${msg.member.displayName}`)        
@@ -114,23 +116,23 @@ Silencia a ZetaStormy por 1 día con motivo "Spam".
   //Check if the bot can delete the command message.
   if (msg.deletable) msg.delete();
   
-  var embed = new Discord.MessageEmbed()
-  .setColor('#ff8c00')
-  .setTimestamp()
-  .setFooter(`Sancionado por ${msg.member.displayName}`)  
-  .setTitle(`Lithium - Sanciones`)
-  .setDescription(`
+  const sucessMessage = new Discord.MessageEmbed()
+    .setColor('#ff8c00')
+    .setTimestamp()
+    .setFooter(`Sancionado por ${msg.member.displayName}`)  
+    .setTitle(`Lithium - Sanciones`)
+    .setDescription(`
 **Sanción:** Silenciado
 **Tag:** ${memberMention.user.tag}
 **ID:** ${memberMention.user.id}
 **Motivo:** ${reason}
 **Tiempo:** ${ms(ms(muteTime))}
-  `);
+    `);
 
   //Find the log channel in the configuration and send the embed.
-  msg.guild.channels.cache.find(x => x.id === config.muteLogChannel).send({embed}).catch(console.error);
+  msg.guild.channels.cache.find(x => x.id === config.muteLogChannel).send({embed: sucessMessage}).catch(console.error);
   //Send the embed to the channel
-  msg.channel.send({embed}).catch(console.error);   
+  msg.channel.send({embed: sucessMessage}).catch(console.error);   
 
   //Set the timeout of the mute using the muteTime and create a function inside the setTimeout function to do some stuff.
   setTimeout(function() {
@@ -140,26 +142,24 @@ Silencia a ZetaStormy por 1 día con motivo "Spam".
     memberMention.roles.add(defaultRole.id);
 
     //Create the embed to say that the member is no longer muted.
-    var embed = new Discord.MessageEmbed()
-    .setColor('#ff8c00')
-    .setFooter(`Sancionado por ${msg.member.displayName}`)  
-    .setTitle(`Lithium - Sanciones`)
-    .setTimestamp()
-    .setDescription(`<@${memberMention.id}> ya no está silenciado.`);
+    const noLongerMutedMessage = new Discord.MessageEmbed()
+      .setColor('#ff8c00')
+      .setFooter(`Sancionado por ${msg.member.displayName}`)  
+      .setTitle(`Lithium - Sanciones`)
+      .setTimestamp()
+      .setDescription(`<@${memberMention.id}> ya no está silenciado.`);
 
     //Find the mute log channel and send this embed
-    msg.guild.channels.cache.find(x => x.id === config.muteLogChannel).send({embed}).catch(console.error);
+    msg.guild.channels.cache.find(x => x.id === config.muteLogChannel).send({embed: noLongerMutedMessage}).catch(console.error);
     //Send this message to the channel where the member was muted.
-    msg.channel.send({embed}).catch(console.error);
+    msg.channel.send({embed: noLongerMutedMessage}).catch(console.error);
   }, ms(muteTime)); //Specify the timeout time.
 }
 
 //Information for the help command.
 exports.help = {
-    name: "Mute",
-    category: "Moderación",
-    description: "Silencia a un usuario.",
-    usage: "Mute [@Usuario] [1s/m/h/d]",
-    example: "",
-    status: "Ready"
-};
+  name: "Mute",
+  category: "Moderación",
+  description: "Silencia a un usuario.",
+  usage: "Mute [@Usuario] [1s/m/h/d]"
+}

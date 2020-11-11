@@ -36,14 +36,14 @@ exports.run = (client, message) => {
       score.level = currentLevel + 1;
 
       //Create an embed to say that the user level up
-      var embed = new Discord.MessageEmbed()
+      const memberLevelMessage = new Discord.MessageEmbed()
       .setColor('#ff8c00')
       .setTitle('Lithium - Niveles')
       .setTimestamp()
       .setFooter(`Enviado a ${message.member.displayName}`)
       .setDescription(`¡Has subido a nivel ${currentLevel + 1}!`); 
 
-      message.channel.send({embed}).catch(console.error);        
+      message.channel.send({embed: memberLevelMessage}).catch(console.error);        
     }
 
     //Set the new experience and level value in the database.

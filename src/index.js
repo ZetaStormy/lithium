@@ -4,8 +4,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 //fs requires fs package.
 const fs = require("fs");
-//request requires axios package.
-const request = require("axios");
 
 //config requires the config file.
 const config = require("./config.json");
@@ -44,14 +42,13 @@ client.on("message", msg => {
   
   try {
     let commandFile = require(`./commands/${command}.js`); //Create a variable for the command files.
-    commandFile.run(client, msg, args, content, command, Discord, config, request); //Export all that variables to the command file.
+    commandFile.run(client, msg, args, content, command, Discord, config); //Export all that variables to the command file.
   } catch (err) { //catch if there is an error.
+    console.log(err);
     return;
   }
 
 });
 
-//Create a variable with the secret token file.
-var secret = require("./secret.json");
-//Login with that token.
-client.login(secret.token);
+//Login with the provided token.
+client.login("YOUR_TOKEN_HERE");

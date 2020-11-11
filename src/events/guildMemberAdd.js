@@ -6,9 +6,9 @@ const config = require("../config.json");
 //Export the client (Created with Discord.Client() constructor) and the member (Object of GuildMember).
 exports.run = (client, member) => {
   //Store the join log channel ID
-  var joinChannel = config.joinLogChannel;
+  const joinChannel = config.joinLogChannel;
 
-  var embed = new Discord.MessageEmbed()
+  const memberJoinMessage = new Discord.MessageEmbed()
   .setColor('#ff8c00')
   .setTimestamp()
   .setTitle(`Lithium - Entrada`)
@@ -26,5 +26,5 @@ Informacion:
   //Add default role to the member.
   member.roles.add(member.guild.roles.cache.find(role => role.name === "⁃ Jugador"));
   //Send the message to the join log channel.
-  client.channels.cache.find(x => x.id === joinChannel).send({embed}).catch(console.error);
+  client.channels.cache.find(x => x.id === joinChannel).send({embed:memberJoinMessage}).catch(console.error);
 } 
