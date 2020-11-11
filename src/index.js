@@ -44,7 +44,6 @@ client.on("message", msg => {
     let commandFile = require(`./commands/${command}.js`); //Create a variable for the command files.
     commandFile.run(client, msg, args, content, command, Discord, config); //Export all that variables to the command file.
   } catch (err) { //catch if there is an error.
-    console.log(err);
     return;
   }
 

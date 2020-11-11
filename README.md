@@ -27,7 +27,7 @@ Lithium requires [Node.js](https://nodejs.org/) v12+ to run.
 First you have to introduce your token inside `index.js` that is inside `src`, like this:
 
 ```javascript
-  client.login("YOUR_TOKEN_HERE");
+client.login("YOUR_TOKEN_HERE");
 ```
 
 Then just install the dependencies and run the bot with this commands:
