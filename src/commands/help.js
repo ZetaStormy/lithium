@@ -31,15 +31,19 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     //Create a variable where we are going to store the first argument of the command (the category).
     let categoryArgument = args[0];
     //Check if the argument is undefined or not.
-    if (typeof categoryArgument === 'undefined') {
+    if (typeof categoryArgument === "undefined") {
         //Create an array with all the categories.
         let categoryList = [];
         //Create a for loop that is going to read every command category.
-        for (i in commands) {
-            //Create the variable cmd where we store the commands.
-            let cmd = require("../commands/" + commands[i] + ".js");
-            //Then read the category of each command and check if the index is lower than zero.
-            if (categoryList.indexOf(cmd.help.category) < 0) {categoryList.push(cmd.help.category)}
+        for (let i in commands) {
+            if (Object.hasOwnProperty.call(commands, i)) {
+                //Create the variable cmd where we store the commands.
+                let cmd = require("../commands/" + commands[i] + ".js");
+                //Then read the category of each command and check if the index is lower than zero.
+                if (categoryList.indexOf(cmd.help.category) < 0) {
+                    categoryList.push(cmd.help.category)
+                }
+            }
         }
 
         //Create a variable to store a string of all the categories that we found before.
@@ -84,19 +88,21 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
             
             //Using a for loop to go for each command.
             for (let y in commands) {
-                //Create a variable where we store the commands.
-                let cmd = require("../commands/" + commands[y] + ".js");
-                //Check if the category of the command that we are checking with the for loop equals the category of the args.
-                if (cmd.help.category.toLowerCase() === categoryArgument.toLowerCase()) {
-                    //Add the command prefix, usage and description.
-                    commandHelpMessage.addField(`\`${config.prefix}${cmd.help.usage}\``, `${cmd.help.description}`);
+                if (Object.hasOwnProperty.call(commands, y)) {
+                    //Create a variable where we store the commands.
+                    let cmd = require("../commands/" + commands[y] + ".js");
+                    //Check if the category of the command that we are checking with the for loop equals the category of the args.
+                    if (cmd.help.category.toLowerCase() === categoryArgument.toLowerCase()) {
+                        //Add the command prefix, usage and description.
+                        commandHelpMessage.addField(`\`${config.prefix}${cmd.help.usage}\``, `${cmd.help.description}`);
+                    }
                 }
             }
             //Just send the embed that we created before.
             msg.channel.send({embed: commandHelpMessage});
         }
     }
-};
+}
 
 //Create an entry for this command in -help.
 exports.help = {

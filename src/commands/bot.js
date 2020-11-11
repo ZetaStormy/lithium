@@ -107,7 +107,7 @@ DiscordJS: ${Discord.version}
 
     //Just send the created embed and catch if an error occurs.
     msg.channel.send({embed: sucessMessage});
-};
+}
 
 //This is for the help command.
 exports.help = {

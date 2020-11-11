@@ -87,7 +87,7 @@ exports.run = (_client, msg, args, _command, _content, Discord, config) => {
     memberObject.ban({
         reason: `${punishmentReason}`
     });
-};
+}
 
 //Create an entry in the help command.
 exports.help = {

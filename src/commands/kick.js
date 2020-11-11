@@ -78,7 +78,7 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
   msg.guild.channels.cache.find((x) => x.id === config.kickLogChannel).send({embed: sucessMessage});
   //Send the same punishment message to the channel.
   msg.channel.send({embed: sucessMessage});
-};
+}
 
 //Add an entry for this command in the help command.
 exports.help = {

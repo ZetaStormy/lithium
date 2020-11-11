@@ -54,7 +54,7 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
         message.react("✅");
         message.react("❌");
     });
-};
+}
 
 //Add entry for the help module.
 exports.help = {

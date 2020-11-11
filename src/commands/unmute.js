@@ -64,7 +64,7 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
     msg.channel.send({embed: noLongerMutedMessage});
     //Delete the command.
     msg.delete();
-};
+}
 
 //I think at this point you know what this does (it adds an entry to the help command).
 exports.help = {

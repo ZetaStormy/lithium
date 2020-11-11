@@ -57,4 +57,4 @@ exports.run = (client, message) => {
       message.member.roles.add(message.guild.roles.cache.find((x) => x.name === "⁃ Prestigio"));     
     } 
   }
-};
+}

@@ -6,10 +6,20 @@ This discord bot has been created only for Literium Network, but you can use the
 ## Features
 
 - Moderation commands (Mute, ban and kick).
+
+
 - Administration commands (Announce, user profile and many more).
+
+
 - Useful events actions (Give role on join, welcome message, ranks and more!)
+
+
 - Change your username color with the color command!
+
+
 - SQLite storage (For levels of guilds).
+
+
 - It is open source, you can use this code wherever you want!
   
 ## To-Do

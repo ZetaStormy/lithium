@@ -92,7 +92,7 @@ Ticket:
     //Catch the error and log it.
     console.log(err);
   }
-};
+}
 
 //Help command.
 exports.help = {

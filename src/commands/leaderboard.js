@@ -51,7 +51,7 @@ exports.run = async (client, msg, _args, _content, _command, Discord) => {
   }
   //Send the leaderboard.
   msg.channel.send({embed: leaderboardMessage});  
-};
+}
 
 //Add to the help.
 exports.help = {

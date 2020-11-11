@@ -48,7 +48,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
     msg.channel.send({embed: sucessMessage}).catch(console.error).then((msg) => {
         msg.delete({timeout: 10000});
     });
-};
+}
 
 //Add an entry for this command in the help.
 exports.help = {

@@ -25,4 +25,4 @@ Informacion:
 
   //Send to the leave log channel.
   client.channels.cache.find((x) => x.id === leaveChannel).send({embed: memberLeaveMessage});  
-};
+}

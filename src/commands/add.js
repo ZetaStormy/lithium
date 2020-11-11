@@ -93,7 +93,7 @@ Ticket:
     //Log the error.
     console.log(err);
   }
-};
+}
 
 //Create the entry for this command in the help.
 exports.help = {

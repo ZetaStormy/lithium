@@ -90,7 +90,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
                                         .setColor("#ff8c00")
                                         .setTimestamp()
                                         .setTitle(titleMessage)
-                                        .setThumbnail('https://i.imgur.com/OO3sCse.jpg')
+                                        .setThumbnail("https://i.imgur.com/OO3sCse.jpg")
                                         .setFooter(`Enviado por ${authorName}`,`${authorObject.avatarURL()}`)
                                         .setDescription(announceMessage);
 
@@ -140,7 +140,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
             });
         });
     });
-};
+}
 
 //Create an entry for this command.
 exports.help = {

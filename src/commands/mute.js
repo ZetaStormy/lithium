@@ -157,7 +157,7 @@ Silencia a ZetaStormy por 1 día con motivo "Spam".
     //Send this message to the channel where the member was muted.
     msg.channel.send({embed: noLongerMutedMessage});
   }, ms(muteTime)); //Specify the timeout time.
-};
+}
 
 //Information for the help command.
 exports.help = {

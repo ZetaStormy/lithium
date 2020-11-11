@@ -38,7 +38,7 @@ exports.run = (_client, msg, args, _command, _content, Discord, config) => {
     msg.guild.members.cache.filter((m) => !m.user.bot).forEach((member) => member.roles.add(roleGive.id));
     //Send the embed that we created before.
     msg.channel.send({embed: addRoleSuccessMessage});
-};
+}
 
 //Add this command to the help.
 exports.help = {

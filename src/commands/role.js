@@ -87,7 +87,7 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
             msg.channel.send({embed: sucessMessage});
         }
     }
-};
+}
 
 //Create an entry for this command.
 exports.help = {

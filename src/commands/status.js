@@ -56,7 +56,7 @@ exports.run = (_client, msg, Discord, _content, _command) => {
     msg.channel.send({embed: errorMessage});
     return;
   });
-};
+}
 
 //Add the help for this command.
 exports.help = {

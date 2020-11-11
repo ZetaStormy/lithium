@@ -26,13 +26,13 @@ fs.readdir("./events/", (err, files) => {
 
 //Log everything.
 client.on("error", (e) => {
-  console.error(e)
+  console.error(e);
 });
 client.on("warn", (e) => {
-  console.warn(e)
+  console.warn(e);
 });
 client.on("debug", (e) => {
-  console.info(e)
+  console.info(e);
 });
 
 //On the message event...

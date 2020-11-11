@@ -55,7 +55,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
 
   try {
     //Create ticket text channel with the variables that we created before.
-	  msg.guild.channels.create(`🗳┋ticket-${ticketIdentification}`, {type: "text"}).then(async ticketChannel => {
+    msg.guild.channels.create(`🗳┋ticket-${ticketIdentification}`, {type: "text"}).then(async (ticketChannel) => {
       //Set the category parent of the ticket (specified in the configuration).
       await ticketChannel.setParent(config.ticketsCategory);
       //Set the ticket topic used the variables that we declared before.
@@ -148,7 +148,7 @@ Ticket:
   } catch(err) {
     console.log(err);
   }
-};
+}
 
 //Add an entry for this command in the help.
 exports.help = {

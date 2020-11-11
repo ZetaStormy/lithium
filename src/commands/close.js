@@ -38,7 +38,7 @@ Ticket:
     //Log the error if there is one.
     console.log(err);
   }
-};
+}
 
 //Add the entry to the help command.
 exports.help = {

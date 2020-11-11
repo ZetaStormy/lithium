@@ -46,7 +46,7 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
         //Send a simple message and use join() to skip the spaces.
         msg.channel.send(args.join(" "));
     }
-};
+}
 
 //Add entry for the help command-
 exports.help = {

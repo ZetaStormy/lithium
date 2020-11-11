@@ -176,7 +176,7 @@ ${colorList}
       msg.channel.send({embed: invalidColorMessage});
       return;
   }
-};
+}
 
 //Add the help entry
 exports.help = {

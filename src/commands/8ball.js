@@ -49,7 +49,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
 
   //Send the embed.
   msg.channel.send({embed: sucessMessage});
-};
+}
 
 //Create the 8ball entry in help command.
 exports.help = {

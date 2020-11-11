@@ -30,7 +30,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
     //Variable to store the member activity.
     let memberActivity = "";
     //Check if the activity is undefined.
-    if (memberMention.presence.activities[0] === undefined) { 
+    if (typeof memberMention.presence.activities[0] === "undefined") { 
         memberActivity = "Indefinida"; 
     } else if (memberMention.presence.activities[0].name === "Custom Status") { //Check if it is a custom status.
         memberActivity = `${memberMention.presence.activities[0].state}`;
@@ -100,7 +100,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
 
     //Send the embed.
     msg.channel.send({embed: userInformationMessage});
-};
+}
 
 //add an entry for this command.
 exports.help = {

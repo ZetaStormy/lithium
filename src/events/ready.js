@@ -23,4 +23,4 @@ exports.run = (client) => {
   //Create methods to get and set data from the database.
   client.getScore = sql.prepare("SELECT * FROM scores WHERE user = ? AND guild = ?");
   client.setScore = sql.prepare("INSERT OR REPLACE INTO scores (id, user, guild, points, level) VALUES (@id, @user, @guild, @points, @level);");   
-};
+}
