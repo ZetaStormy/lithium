@@ -16,7 +16,7 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
     }
 
     //Check if the sender has enough permissions.
-    if (!msg.member.hasPermission('MANAGE_ROLES')) {
+    if (!msg.member.hasPermission("MANAGE_ROLES")) {
         const noEnoughPermsMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()
@@ -31,7 +31,7 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
     //Create the variable where we store the arguments.
     const roleInput = args[0];
     //Check if the role ID is undefined or everyone.
-    if (typeof roleInput === "undefined" || roleInput == "675531469086523436") {
+    if (typeof roleInput === "undefined" || roleInput === "675531469086523436") {
         const defaultRoleMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()

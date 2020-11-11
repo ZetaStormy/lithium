@@ -19,7 +19,7 @@ exports.run = (_client, msg, _args, _content, _command, Discord) => {
   const rulesMessage = new Discord.MessageEmbed()
     .setColor("#ff8c00")
     .setTimestamp()
-    .setTitle('Lithium - Información')
+    .setTitle("Lithium - Información")
     .setFooter(`Solicitado por ${msg.member.displayName}`)
     .setDescription(`
 Puedes leer el PDF de nuestras normas desde Google Drive haciendo [click aquí](https://bit.ly/3kGL3k2).

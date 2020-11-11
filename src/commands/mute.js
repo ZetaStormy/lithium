@@ -79,7 +79,7 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
       });
 
     } catch(e) {
-      console.log(err);
+      console.log(e);
     }
   }
 

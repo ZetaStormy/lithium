@@ -16,8 +16,8 @@ exports.run = (client, msg, _args, _content, _command, Discord, config) => {
     //Get the ticket topic and split it in arguments.
     const ticketTopic = msg.channel.topic.trim().split(/ +/g);
     //Create an embed with information about the ticket.
-  	const ticketInformationMessage = new Discord.MessageEmbed()
-  	  .setTitle("Lithium - Tickets")
+    const ticketInformationMessage = new Discord.MessageEmbed()
+      .setTitle("Lithium - Tickets")
       .setColor("#ff8c00")
       .setTimestamp()
       .setDescription(`

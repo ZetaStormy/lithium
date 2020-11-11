@@ -17,7 +17,7 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     
     const fs = require("fs");
     //Use the variable files to read the content of the commands folder.
-    const commandFiles = fs.readdirSync('./commands/');
+    const commandFiles = fs.readdirSync("./commands/");
     //Create a constant array where we are going to store the commands.
     const commands = [];
     //Store the commands in the array replacing the extension .js with nothing.

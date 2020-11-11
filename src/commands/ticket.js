@@ -80,7 +80,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       });
     
       //Overwrite the permissions of the support role in the ticket channel.
-		  await ticketChannel.updateOverwrite(supportRole, {
+      await ticketChannel.updateOverwrite(supportRole, {
         VIEW_CHANNEL: true,
         SEND_MESSAGES: true,
         ATTACH_FILES: true
@@ -123,7 +123,7 @@ Ticket:
       //Send the information about the ticket to the ticket channel when the channel is successfully created.
       await ticketChannel.send(ticketWelcome);
 
-      await ticketChannel.send("<@&676493941797027862>").then(async msg => {
+      await ticketChannel.send("<@&676493941797027862>").then(async (msg) => {
         msg.delete();
       });
     

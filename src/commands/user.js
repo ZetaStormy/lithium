@@ -82,7 +82,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
     const userInformationMessage = new Discord.MessageEmbed()
         .setColor("#ff8c00")
         .setTimestamp()
-        .setTitle('Lithium - Información')
+        .setTitle("Lithium - Información")
         .setThumbnail(memberMention.user.avatarURL())
         .setFooter(`Solicitado por ${msg.member.displayName}`)	
         .addField("**Información**",`

@@ -13,7 +13,7 @@ exports.run = (_client, msg, args, _command, _content, Discord, config) => {
     }  
     
     //If the member doesn't have enough permissions, then execute the code inside.
-    if (!msg.member.hasPermission('BAN_MEMBERS')) {
+    if (!msg.member.hasPermission("BAN_MEMBERS")) {
         const notEnoughPermissionsMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()

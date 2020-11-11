@@ -18,7 +18,7 @@ exports.run = async (client, msg, _args, _content, _command, Discord) => {
   //Create a constant for the SQLite module.
   const SQLite = require("better-sqlite3");
   //Create a constant for the scores database.
-  const sql = new SQLite('./scores.sqlite'); 
+  const sql = new SQLite("./scores.sqlite"); 
   //Get the data from the leaderboard and store it in a constant.
   const getLeaderboardCount = sql.prepare("SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 5;").all(msg.guild.id);
   
@@ -37,7 +37,7 @@ exports.run = async (client, msg, _args, _content, _command, Discord) => {
     //Create a variable for the name of each user.
     let userTag;
     //Check if the data of the user is undefined.
-    if ((await client.users.fetch(data.user)) === undefined) { 
+    if (typeof (await client.users.fetch(data.user)) === "undefined") { 
       userTag = "Usuario Desconocido"; 
     } else {
       userTag = (await client.users.fetch(data.user)).tag;

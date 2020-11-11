@@ -1,6 +1,6 @@
 exports.run = (_client, msg, args, _command, _content, Discord, config) => {
     //Check if the author has ADMINISTRATOR permission.
-    if (!msg.member.hasPermission('ADMINISTRATOR')) {        
+    if (!msg.member.hasPermission("ADMINISTRATOR")) {
         const notEnoughPermissionsMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()

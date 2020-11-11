@@ -67,6 +67,8 @@ ${colorList}
     }
   }
 
+  //Create an array of all the member roles.
+  const memberRolesArray = msg.member.roles.cache.array();
   let excessColors;
   //Create a function to check if the member has too much colors.
   function colorProcess(colorString, colorEntry) {
@@ -99,7 +101,7 @@ ${colorList}
     //Create an embed to say that the color was applied successfully.
     const sucessMessage = new Discord.MessageEmbed()
       .setColor("#ff8c00")
-      .setTitle('Lithium - Colores')
+      .setTitle("Lithium - Colores")
       .setTimestamp()
       .setFooter(`Solicitado por ${msg.member.displayName}`)
       .setDescription(`Se te ha colocado el color ${colorString} correctamente.`);
@@ -108,9 +110,6 @@ ${colorList}
     msg.channel.send({embed: sucessMessage});
   }
 
-
-  //Create an array of all the member roles.
-  const memberRolesArray = msg.member.roles.cache.array();
   //Declare a variable where we are going to store the color selected in lower case and skipping the spaces.
   const colorSelection = args.join(" ").trim().toLowerCase();
   //Create a switch for the different cases of colors.

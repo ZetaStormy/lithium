@@ -19,7 +19,7 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
             .setTitle("Literium - Misceláneo")
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)
-            .setDescription(`Introduce un mensaje.`);
+            .setDescription('Introduce un mensaje.');
 
         msg.channel.send({embed: noEnoughArgumentsMessage});
         return;
