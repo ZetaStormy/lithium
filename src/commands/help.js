@@ -47,7 +47,8 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
         //Then store the categories in the availableCategories variable using a for loop with the lenght of the categoryList array.
         for (let i = 0; i < categoryList.length; i++){
             //Append - and create a new line in each category.
-            availableCategories += ("   - " + String(categoryList[i] + "\n"));
+            let categoryArrayPosition = categoryList[i];
+            availableCategories += ("   - " + String(categoryArrayPosition + "\n"));
         }
         
         //Create a embed message with the categories.
@@ -79,10 +80,10 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
                 .setTitle("Lithium - Comandos")
                 .setTimestamp()
                 .setFooter(`Solicitado por ${msg.member.displayName}`)
-                .setDescription(`En caso de que notes que algo no anda bien con este comando, por favor, hazle saber al Staff o a la administración. A continuación, se muestran los comandos de la categoría **${categoryArgument}**:`)
+                .setDescription(`En caso de que notes que algo no anda bien con este comando, por favor, hazle saber al Staff o a la administración. A continuación, se muestran los comandos de la categoría **${categoryArgument}**:`);
             
             //Using a for loop to go for each command.
-            for (y in commands) {
+            for (let y in commands) {
                 //Create a variable where we store the commands.
                 let cmd = require("../commands/" + commands[y] + ".js");
                 //Check if the category of the command that we are checking with the for loop equals the category of the args.
@@ -95,7 +96,7 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
             msg.channel.send({embed: commandHelpMessage});
         }
     }
-}
+};
 
 //Create an entry for this command in -help.
 exports.help = {

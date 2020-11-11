@@ -8,7 +8,9 @@ exports.run = (_client, msg, args, _command, _content, Discord, config) => {
     //Variable to store the ban reason.
     let punishmentReason = args.splice(1, args.length - 1).join(" ");
     //If there isn't a valid reason, then use this string.
-    if (!punishmentReason) punishmentReason = "Mal comportamiento";  
+    if (!punishmentReason) {
+        punishmentReason = "Mal comportamiento";
+    }  
     
     //If the member doesn't have enough permissions, then execute the code inside.
     if (!msg.member.hasPermission('BAN_MEMBERS')) {
@@ -61,7 +63,9 @@ exports.run = (_client, msg, args, _command, _content, Discord, config) => {
     }
 
     //Check if the bot can delete the message.
-    if (msg.deletable) msg.delete();
+    if (msg.deletable) {
+        msg.delete();
+    }
     //Create the embed.
     const sucessMessage = new Discord.MessageEmbed()
         .setColor("#ff8c00")
@@ -83,7 +87,7 @@ exports.run = (_client, msg, args, _command, _content, Discord, config) => {
     memberObject.ban({
         reason: `${punishmentReason}`
     });
-}
+};
 
 //Create an entry in the help command.
 exports.help = {

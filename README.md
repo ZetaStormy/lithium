@@ -3,22 +3,22 @@
 Repository of Lithium, the assistant of LiteriumNT discord server.
 This discord bot has been created only for Literium Network, but you can use the code as you want. The only objective of this repository is to have a backup of this bot in case something happens and to make things easier for programming begginers.
 
-### Features
+## Features
 
-  - Moderation commands (Mute, ban and kick).
-  - Administration commands (Announce, user profile and many more).
-  - Useful events actions (Give role on join, welcome message, ranks and more!)
-  - Change your username color with the color command!
-  - SQLite storage (For levels of guilds).
-  - It is open source, you can use this code wherever you want!
+- Moderation commands (Mute, ban and kick).
+- Administration commands (Announce, user profile and many more).
+- Useful events actions (Give role on join, welcome message, ranks and more!)
+- Change your username color with the color command!
+- SQLite storage (For levels of guilds).
+- It is open source, you can use this code wherever you want!
   
-### To-Do
+## To-Do
 
-  - Do everything that the TODO comments say.
-  - Code optimization for better performance.
-  - Add more commands and economy system.
-  - Add translations using a language system.
-  - Introduce rank of the leaderboard command in the rank command.
+- Do everything that the TODO comments say.
+- Code optimization for better performance.
+- Add more commands and economy system.
+- Add translations using a language system.
+- Introduce rank of the leaderboard command in the rank command.
 
 ## Installation
 

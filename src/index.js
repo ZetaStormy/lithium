@@ -12,26 +12,39 @@ const prefix = config.prefix;
 
 //Read the directory events.
 fs.readdir("./events/", (err, files) => {
-  if (err) return console.error(err); //Log if an error happens.
+  if (err) {
+    console.error(err);
+    return;
+  } //Log if an error happens.
   //Go for each file that we found before.
-  files.forEach(file => {
-    let eventFunction = require(`./events/${file}`); //Create the event function that requires the event files.
+  files.forEach((file) => {
+    let eventFunction = require("./events/" + file); //Create the event function that requires the event files.
     let eventName = file.split(".")[0]; //Create the event name and split the dot from the name.
     client.on(eventName, (...args) => eventFunction.run(client, ...args)); //When an event happens, use the eventFunction.
   });
 });
 
 //Log everything.
-client.on("error", (e) => console.error(e));
-client.on("warn", (e) => console.warn(e));
-client.on("debug", (e) => console.info(e));
+client.on("error", (e) => {
+  console.error(e)
+});
+client.on("warn", (e) => {
+  console.warn(e)
+});
+client.on("debug", (e) => {
+  console.info(e)
+});
 
 //On the message event...
-client.on("message", msg => {
+client.on("message", (msg) => {
   //Check if the author is a bot.
-  if (msg.author.bot) return;
+  if (msg.author.bot) {
+    return;
+  }
   //Check if the prefix is inside a string or not.
-  if (msg.content.indexOf(config.prefix) !== 0) return;
+  if (msg.content.indexOf(config.prefix) !== 0) {
+    return;
+  }
   
   //Define args that is the message content without the prefix, without final spaces and split everytime it has a space.
   const args = msg.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -41,9 +54,10 @@ client.on("message", msg => {
   const content = msg.content.substr(prefix.length + command.length,msg.content.length - prefix.length - command.length);
   
   try {
-    let commandFile = require(`./commands/${command}.js`); //Create a variable for the command files.
+    let commandFile = require("./commands/" + command + ".js"); //Create a variable for the command files.
     commandFile.run(client, msg, args, content, command, Discord, config); //Export all that variables to the command file.
   } catch (err) { //catch if there is an error.
+    console.log(err);
     return;
   }
 

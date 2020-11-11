@@ -57,18 +57,19 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
             return;
         } else {
             //Create a variable where we map all the members in the role using their user tag and then we sort them in alphabetical order.
-            const mappedMembers = role.members.map(m=>m.user.tag).sort();
-            const numberMembers = mappedMembers.length === 1 ? 'miembro' : 'miembros';
+            const mappedMembers = role.members.map((m) => m.user.tag).sort();
+            const numberMembers = mappedMembers.length === 1 ? "miembro" : "miembros";
 
             //Create a variable to store the members but with a format.
             let formatMembers = "";
             if (mappedMembers.length <= 0) {
-                formatMembers = 'Sin miembros.'
+                formatMembers = "Sin miembros.";
             } else {
                 //Using this for loop we can format the length of the mapped members.
                 for (let i = 0; i < mappedMembers.length; i++){
+                    let mappedMemberArrayPosition = mappedMembers[i];
                     //Here we append the - and we make a new line.
-                    formatMembers += ("\n   - " + String(mappedMembers[i]));
+                    formatMembers += ("\n   - " + String(mappedMemberArrayPosition));
                 }
             }
             
@@ -86,7 +87,7 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
             msg.channel.send({embed: sucessMessage});
         }
     }
-}
+};
 
 //Create an entry for this command.
 exports.help = {

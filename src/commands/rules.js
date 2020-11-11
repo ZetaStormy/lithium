@@ -28,7 +28,7 @@ Puedes leer el PDF de nuestras normas desde Google Drive haciendo [click aquí](
 
   //Send the embed message.
   msg.channel.send({embed: rulesMessage});
-}     
+};
 
 //Add an entry for this command in -help.
 exports.help = {

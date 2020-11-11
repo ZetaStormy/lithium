@@ -5,7 +5,9 @@ const config = require("../config.json");
 
 exports.run = (client, oldMessage, newMessage) => {
     //Check if the author is a bot.
-    if (newMessage.author.bot) return;
+    if (newMessage.author.bot) {
+        return;
+    }
     
     //Store the guild ID.
     const guildIdentification = config.mainGuildIdentificator;
@@ -28,4 +30,4 @@ exports.run = (client, oldMessage, newMessage) => {
 
     //Check if the guild has the edit log channel.
     client.guilds.cache.find((x) => x.id === guildIdentification).channels.cache.find((x) => x.id === editLogChannel).send({embed: messageUpdateMessage});
-}
+};

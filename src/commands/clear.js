@@ -31,13 +31,15 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
     }
     
     //Check if the bot can delete the command message.
-    if (msg.deletable) msg.delete();
+    if (msg.deletable) {
+        msg.delete();
+    }
     //Bulk delete all the messages that were specified in the args.
     msg.channel.bulkDelete(clearMessages);
     //Send a message to the user that all messages were deleted successfully.
     const sucessMessage = new Discord.MessageEmbed()
         .setColor("#ff8c00")
-        .setTitle('Lithium - Limpieza')
+        .setTitle("Lithium - Limpieza")
         .setTimestamp()
         .setFooter(`Solicitado por ${msg.member.displayName}`)
         .setDescription(`Se han borrado ${clearMessages} mensajes.`);
@@ -46,7 +48,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
     msg.channel.send({embed: sucessMessage}).catch(console.error).then((msg) => {
         msg.delete({timeout: 10000});
     });
-}
+};
 
 //Add an entry for this command in the help.
 exports.help = {

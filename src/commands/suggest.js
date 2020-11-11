@@ -16,9 +16,9 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     }
 
     //Create the variable userSuggestion to store the message and skip the spaces of this argument.
-    const userSuggestion = args.slice(0).join(' ');
+    const userSuggestion = args.slice(0).join(" ");
     //Check if there is a suggestion.
-    if (!userSuggestion && !userSuggestion.size() > 20) {
+    if (!userSuggestion) {
         const invalidSuggestionMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()
@@ -51,17 +51,15 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     //Send the suggestion to the suggest channel in the configuration.
     msg.guild.channels.cache.find((x) => x.id === config.suggestChannel).send({embed: suggestMessage}).catch(console.error)
     .then(function (message) { //React to the message to have votes.
-        message.react('✅');
-        message.react('❌');
+        message.react("✅");
+        message.react("❌");
     });
-}  
+};
 
 //Add entry for the help module.
 exports.help = {
     name: "Suggest",
     category: "Soporte",
     description: "Envia una sugerencia.",
-    usage: "Suggest [Mensaje]",
-    example: "",
-    status: "Ready"
-};
+    usage: "Suggest [Mensaje]"
+}

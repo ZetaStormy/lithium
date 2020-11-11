@@ -28,9 +28,9 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
     }
 
     //Store the muted role in a variable.
-    const mutedRole = msg.guild.roles.cache.find(r => r.name === "⁃ Silenciado");
+    const mutedRole = msg.guild.roles.cache.find((r) => r.name === "⁃ Silenciado");
     //Store the default role in a variable.
-    const defaultRole = msg.guild.roles.cache.find(r => r.name === "⁃ Jugador");
+    const defaultRole = msg.guild.roles.cache.find((r) => r.name === "⁃ Jugador");
     
     //Check if the role exists or if the user has the muted role.
     if(!mutedRole || !memberMention.roles.cache.has(mutedRole.id)) {
@@ -61,10 +61,10 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
     //Send to the log channel.
     msg.guild.channels.cache.find((x) => x.id === config.muteLogChannel).send({embed: noLongerMutedMessage});
     //Send to the channel.
-    msg.channel.send({embed: noLongerMutedMessage}).catch(console.error)  
+    msg.channel.send({embed: noLongerMutedMessage});
     //Delete the command.
     msg.delete();
-}  
+};
 
 //I think at this point you know what this does (it adds an entry to the help command).
 exports.help = {

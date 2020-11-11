@@ -62,7 +62,7 @@ ${colorList}
       if (!colorRole) {
         continue; //Continue the loop if the member doesn't have the color.
       } else {
-        msg.member.roles.remove(colorRole.id).catch(console.error); //Remove the role using the role ID.
+        msg.member.roles.remove(colorRole.id); //Remove the role using the role ID.
       }
     }
   }
@@ -94,7 +94,7 @@ ${colorList}
     }
 
     const colorSelected = msg.guild.roles.cache.find((k) => k.name === colorRoles[colorEntry]); //Find the role for the color.
-    msg.member.roles.add(colorSelected.id).catch(console.error); //Add the role color to the member.    
+    msg.member.roles.add(colorSelected.id); //Add the role color to the member.    
 
     //Create an embed to say that the color was applied successfully.
     const sucessMessage = new Discord.MessageEmbed()
@@ -176,7 +176,7 @@ ${colorList}
       msg.channel.send({embed: invalidColorMessage});
       return;
   }
-}
+};
 
 //Add the help entry
 exports.help = {

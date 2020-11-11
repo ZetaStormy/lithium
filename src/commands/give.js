@@ -84,13 +84,13 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
     .setDescription(`${userMention.tag} ha recibido ${pointsToAdd} de XP y ahora tiene ${memberScore.points} de XP.`)
     .setColor("#ff8c00"); 
   
-  msg.channel.send({embed: sucessMessage}).catch(console.error)
-}
+  msg.channel.send({embed: sucessMessage});
+};
 
 //add the entry to help.
 exports.help = {
-    name: "Give",
-    category: "Administración",
-    description: "Entrega XP a un usuario.",
-    usage: "Give [@Usuario] [Cantidad]"
+  name: "Give",
+  category: "Administración",
+  description: "Entrega XP a un usuario.",
+  usage: "Give [@Usuario] [Cantidad]"
 }

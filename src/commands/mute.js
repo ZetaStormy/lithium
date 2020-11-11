@@ -54,7 +54,7 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
   }
   
   //Store the default server role, in this case is the "Jugador" role.
-  const defaultRole = msg.guild.roles.cache.find((x) => x.name === '⁃ Jugador');
+  const defaultRole = msg.guild.roles.cache.find((x) => x.name === "⁃ Jugador");
   //Store the role that we want to use to mute in a variable.
   let mutedRole = msg.guild.roles.cache.find((role) => role.name === "⁃ Silenciado");
   //Check if the role exist.
@@ -79,12 +79,11 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
       });
 
     } catch(e) {
-      //Catch and log the error.
-      console.log(e);
+      console.log(err);
     }
   }
 
-  const ms = require('ms');
+  const ms = require("ms");
   //The second argument will be the mute time.
   const muteTime = args[1];
   //Check if we have the time argument and return if we don't have it.
@@ -105,8 +104,10 @@ Silencia a ZetaStormy por 1 día con motivo "Spam".
   }
 
   //Create the reason variable and verify if it is empty.
-  let reason = args.slice(2).join(' ');
-  if(!reason) reason = "Mal comportamiento";
+  let reason = args.slice(2).join(" ");
+  if(!reason) {
+    reason = "Mal comportamiento";
+  }
 
   //Add the mute role to the member.
   await(memberMention.roles.add(mutedRole.id));
@@ -114,7 +115,9 @@ Silencia a ZetaStormy por 1 día con motivo "Spam".
   await(memberMention.roles.remove(defaultRole.id));
 
   //Check if the bot can delete the command message.
-  if (msg.deletable) msg.delete();
+  if (msg.deletable) {
+    msg.delete();
+  }
   
   const sucessMessage = new Discord.MessageEmbed()
     .setColor("#ff8c00")
@@ -154,7 +157,7 @@ Silencia a ZetaStormy por 1 día con motivo "Spam".
     //Send this message to the channel where the member was muted.
     msg.channel.send({embed: noLongerMutedMessage});
   }, ms(muteTime)); //Specify the timeout time.
-}
+};
 
 //Information for the help command.
 exports.help = {

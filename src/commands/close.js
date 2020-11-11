@@ -1,6 +1,6 @@
 exports.run = (client, msg, _args, _content, _command, Discord, config) => {
   //Check if the command is executed from a ticket.
-  if (!msg.channel.name.startsWith('🗳┋ticket-')) {
+  if (!msg.channel.name.startsWith("🗳┋ticket-")) {
     const invalidChannelMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
@@ -38,7 +38,7 @@ Ticket:
     //Log the error if there is one.
     console.log(err);
   }
-}
+};
 
 //Add the entry to the help command.
 exports.help = {

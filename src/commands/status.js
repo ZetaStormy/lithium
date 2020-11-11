@@ -17,12 +17,12 @@ exports.run = (_client, msg, Discord, _content, _command) => {
   
   let adressDomain = "play.literium.net";
   let adressPort = "25565";
-  let statsUrl = 'https://mcapi.us/server/status?ip=' + adressDomain + '&port=' + adressPort;
+  let statsUrl = "https://mcapi.us/server/status?ip=" + adressDomain + "&port=" + adressPort;
 
   const axios = require("axios").default;  
   axios.get(statsUrl).then(function (response) {
     const Discord = require("discord.js");
-    if (response.status == 200) {
+    if (response.status === 200) {
       const responseGoodMessage = new Discord.MessageEmbed()
         .setTimestamp()
         .setColor("#ff8c00")
@@ -56,7 +56,7 @@ exports.run = (_client, msg, Discord, _content, _command) => {
     msg.channel.send({embed: errorMessage});
     return;
   });
-}
+};
 
 //Add the help for this command.
 exports.help = {

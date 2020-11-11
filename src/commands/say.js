@@ -1,6 +1,6 @@
 exports.run = (_client, msg, args, _content, _command, Discord) => {
     //Check if the member has the administration role.
-    if(!(msg.member.roles.cache.find((x) => x.name === "⁃ Administración") || msg.member.hasPermission('ADMINISTRATOR'))) {
+    if(!(msg.member.roles.cache.find((x) => x.name === "⁃ Administración") || msg.member.hasPermission("ADMINISTRATOR"))) {
         const noEnoughPermsMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()
@@ -16,7 +16,7 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
     if (!args[0]) {
         const noEnoughArgumentsMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
-            .setTitle('Literium - Misceláneo')
+            .setTitle("Literium - Misceláneo")
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)
             .setDescription(`Introduce un mensaje.`);
@@ -26,7 +26,9 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
     }
     
     //Check if the bot can delete the command message.
-    if (msg.deletable) msg.delete();
+    if (msg.deletable) {
+        msg.delete();
+    }
     
     //Store the HEX color of the highest role of the guild.
     const roleColor = msg.guild.me.roles.highest.hexColor;
@@ -44,7 +46,7 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
         //Send a simple message and use join() to skip the spaces.
         msg.channel.send(args.join(" "));
     }
-}
+};
 
 //Add entry for the help command-
 exports.help = {

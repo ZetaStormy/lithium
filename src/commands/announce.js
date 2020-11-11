@@ -31,7 +31,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
             .setDescription("Ingresa un canal válido.");
         
         //Send this embed and then return to exit the command.
-        msg.channel.send({embed: notEnoughArgumentsMessage}).catch(console.error)
+        msg.channel.send({embed: notEnoughArgumentsMessage});
         return;
     }
 
@@ -40,17 +40,17 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
         .setTitle("Lithium - Administración")
         .setTimestamp()
         .setFooter(`Enviado a ${authorName}`)
-        .setDescription(`Por favor, ingresa un título en menos de 30 segundos.`);
+        .setDescription("Por favor, ingresa un título en menos de 30 segundos.");
     
     //Send the embed and then delete the embed to keep the chat clear.
-    msg.channel.send({embed: awaitTitleMessage}).catch(console.error).then((msg) => {
+    msg.channel.send({embed: awaitTitleMessage}).then((msg) => {
         const filter = (m) => m.author.id === authorObject.id;
         msg.channel.awaitMessages(filter, {
             max: 1,
             time: 30000,
-            errors: ['time']
+            errors: ["time"]
         }).then((collected) => {
-            msg.delete().catch(console.error);
+            msg.delete();
             const titleMessage = collected.array();
             const titleCollectedMessage = new Discord.MessageEmbed()
                 .setColor("#ff8c00")
@@ -59,21 +59,22 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
                 .setFooter(`Enviado a ${authorName}`)
                 .setDescription("El título del anuncio será: " + titleMessage);
             
-            msg.channel.send({embed: titleCollectedMessage}).catch(console.error).then((msg) => {
-                msg.delete({timeout: 10000}).catch(console.error).then((msg) => {
+            msg.channel.send({embed: titleCollectedMessage}).then((msg) => {
+                msg.delete({timeout: 10000}).then((msg) => {
                     const awaitAnnounceMessage = new Discord.MessageEmbed()
                         .setColor("#ff8c00")
                         .setTitle("Lithium - Administración")
                         .setTimestamp()
                         .setFooter(`Enviado a ${authorName}`)
-                        .setDescription("Por favor, ingresa un anuncio en menos de 120 segundos.")
+                        .setDescription("Por favor, ingresa un anuncio en menos de 120 segundos.");
 
-                    msg.channel.send({embed: awaitAnnounceMessage}).catch(console.error).then((msg) => {
+                    msg.channel.send({embed: awaitAnnounceMessage}).then((msg) => {
                         msg.channel.awaitMessages(filter, {
                             max: 1,
                             time: 120000,
-                            errors: ['time']
+                            errors: ["time"]
                         }).then((collected) => {
+                            msg.delete();
                             const announceMessage = collected.array();
                             const announceCollectedMessage = new Discord.MessageEmbed()
                                 .setColor("#ff8c00")
@@ -82,7 +83,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
                                 .setFooter(`Enviado a ${authorName}`)
                                 .setDescription("El mensaje del anuncio será: " + announceMessage);
                         
-                            msg.channel.send({embed: announceCollectedMessage}).catch(console.error).then((msg) => {
+                            msg.channel.send({embed: announceCollectedMessage}).then((msg) => {
                                 msg.delete({timeout: 20000}).catch(console.error).then((_msg) => {
                                     //Create the embed of the announcement.
                                     const announcementMessage = new Discord.MessageEmbed()
@@ -94,15 +95,15 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
                                         .setDescription(announceMessage);
 
                                     //Send this embed to the channel in the arguments.
-                                    announcementChannel.send({embed: announcementMessage}).catch(console.error).then((msg) => {
+                                    announcementChannel.send({embed: announcementMessage}).then((msg) => {
                                         const announceSucessMessage = new Discord.MessageEmbed()
                                             .setColor("#ff8c00")
                                             .setTitle("Lithium - Administración")
                                             .setTimestamp()
                                             .setFooter(`Solicitado por ${authorName}`)
-                                            .setDescription(`Se ha enviado tu anuncio al canal ${announcementChannel} correctamente.`)
+                                            .setDescription(`Se ha enviado tu anuncio al canal ${announcementChannel} correctamente.`);
                                         
-                                        messageChannel.send({embed: announceSucessMessage}).catch(console.error).then((msg) => {
+                                        messageChannel.send({embed: announceSucessMessage}).then((msg) => {
                                             msg.delete({timeout: 10000});
                                         });
                                     });
@@ -117,7 +118,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
                                 .setDescription("No se ha recibido ningún mensaje válido.");
                         
                             //Send the embed and then delete the embed to keep the chat clear.
-                            msg.channel.send({embed: timeoutAnnounceMessage}).catch(console.error).then((msg) => {
+                            msg.channel.send({embed: timeoutAnnounceMessage}).then((msg) => {
                                 msg.delete({timeout: 10000});
                             });
                         });
@@ -125,7 +126,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
                 });
             });
         }).catch((_collected) => {
-            msg.delete().catch(console.error);
+            msg.delete();
             const timeoutTitleMessage = new Discord.MessageEmbed()
                 .setColor("#8b0000")
                 .setTimestamp()
@@ -134,12 +135,12 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
                 .setDescription("No se ha recibido ningún título válido.");
             
             //Send the embed and then delete the embed to keep the chat clear.
-            msg.channel.send({embed: timeoutTitleMessage}).catch(console.error).then((msg) => {
+            msg.channel.send({embed: timeoutTitleMessage}).then((msg) => {
                 msg.delete({timeout: 10000});
             });
         });
     });
-}   
+};
 
 //Create an entry for this command.
 exports.help = {

@@ -54,7 +54,7 @@ exports.run = (client, msg, _args, _command, _content, Discord) => {
             operativeSystem = "FreeBSD"; 
             break;
         default:
-            operativeSystem = "Desconocido"
+            operativeSystem = "Desconocido";
             break;
     }
 
@@ -86,7 +86,7 @@ exports.run = (client, msg, _args, _command, _content, Discord) => {
     //Create the embed message using the MessageEmbed() constructor and then set footer and that stuff.
     const sucessMessage = new Discord.MessageEmbed()
         .setFooter(`Solicitado por ${msg.member.displayName}`)
-        .setTitle('Lithium - Información')
+        .setTitle("Lithium - Información")
         .setColor("#ff8c00")
         .setTimestamp()
         .setDescription(`
@@ -107,12 +107,12 @@ DiscordJS: ${Discord.version}
 
     //Just send the created embed and catch if an error occurs.
     msg.channel.send({embed: sucessMessage});
-}
+};
 
 //This is for the help command.
 exports.help = {
     name: "Bot",
-    category: "Administración",
+    category: "Información",
     description: "Muestra información del bot.",
     usage: "Bot"
 }

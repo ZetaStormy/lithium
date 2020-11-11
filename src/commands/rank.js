@@ -27,7 +27,7 @@ exports.run = (client, msg, args, _content, _command, Discord) => {
   //Create the embed for the author rank using MessageEmbed() constructor.
   const authorRankMessage = new Discord.MessageEmbed()
     .setColor("#ff8c00")
-    .setTitle('Lithium - Niveles')
+    .setTitle("Lithium - Niveles")
     .setTimestamp()
     .setFooter(`Solicitado por ${msg.member.displayName}`)
     .setDescription(`
@@ -64,7 +64,7 @@ A ${memberObject.displayName} le falta ${memberLevelDifference} de XP para subir
 
   //Finally send the embed with the member rank message.
   msg.channel.send({embed: memberRankMessage});
-}
+};
 
 exports.help = {
   name: "Rank",

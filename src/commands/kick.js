@@ -1,6 +1,6 @@
-exports.run = async (_client, msg, args, _content, _command, Discord, config) => {
+exports.run = (_client, msg, args, _content, _command, Discord, config) => {
   //Check if the author has enough permissions.
-  if (!msg.member.hasPermission('KICK_MEMBERS')) {
+  if (!msg.member.hasPermission("KICK_MEMBERS")) {
     const noEnoughPermsMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
@@ -41,12 +41,12 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
   }
   
   //Create the variable reason to store the reason obviously.
-  let punishmentReason = args.slice(1).join(' ');
+  let punishmentReason = args.slice(1).join(" ");
   //If there is no reason, then use this string.
   if (!punishmentReason) punishmentReason = "Mal comportamiento";
   
   //Wait for the reason to avoid errors.
-  await memberMention.kick(punishmentReason).catch(error => {
+  memberMention.kick(punishmentReason).catch((error) => {
     //Send a message with the error if theres is one.
     const errorMessage = new Discord.MessageEmbed()
     .setColor("#8b0000")
@@ -59,7 +59,9 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
   });
   
   //Check if the bot can delete the command message.
-  if (msg.deletable) msg.delete();
+  if (msg.deletable) {
+    msg.delete();
+  }
   const sucessMessage = new Discord.MessageEmbed()
     .setColor("#ff8c00")
     .setTimestamp()
@@ -76,7 +78,7 @@ exports.run = async (_client, msg, args, _content, _command, Discord, config) =>
   msg.guild.channels.cache.find((x) => x.id === config.kickLogChannel).send({embed: sucessMessage});
   //Send the same punishment message to the channel.
   msg.channel.send({embed: sucessMessage});
-}
+};
 
 //Add an entry for this command in the help command.
 exports.help = {

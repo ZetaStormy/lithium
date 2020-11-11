@@ -24,7 +24,7 @@ Informacion:
   `);
 
   //Add default role to the member.
-  member.roles.add(member.guild.roles.cache.find(role => role.name === "⁃ Jugador"));
+  member.roles.add(member.guild.roles.cache.find((role) => role.name === "⁃ Jugador"));
   //Send the message to the join log channel.
   client.channels.cache.find((x) => x.id === joinChannel).send({embed:memberJoinMessage});
-} 
+};

@@ -1,6 +1,6 @@
 exports.run = (client, msg, args, _content, _command, Discord, config) => {
   //Check if the command has been executed in a ticket channel.
-  if (!msg.channel.name.startsWith('🗳┋ticket-')) {
+  if (!msg.channel.name.startsWith("🗳┋ticket-")) {
     //Start the creation of the embed to say that this is not a ticket channel.
     const incorrectChannelMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
@@ -64,7 +64,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       .setTimestamp()
       .setTitle("Lithium - Tickets")
       .setDescription(`${memberMention} ha sido removido correctamente.`)
-      .setFooter(`Solicitado por ${msg.member.displayName}`)   
+      .setFooter(`Solicitado por ${msg.member.displayName}`);
 
     //Send the response to the author.
     msg.channel.send({embed: authorResponseMessage});
@@ -92,7 +92,7 @@ Ticket:
     //Catch the error and log it.
     console.log(err);
   }
-}
+};
 
 //Help command.
 exports.help = {

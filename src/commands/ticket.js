@@ -41,7 +41,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
 	const ticketName = `🗳┋ticket-${ticketIdentification}`;
 
   //Check if the user has another ticket.
-	if (msg.guild.channels.cache.find(channel => channel.name === ticketName)) {
+	if (msg.guild.channels.cache.find((channel) => channel.name === ticketName)) {
     const alreadyOpenMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
@@ -55,55 +55,55 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
 
   try {
     //Create ticket text channel with the variables that we created before.
-	  msg.guild.channels.create(`🗳┋ticket-${ticketIdentification}`, {type: 'text'}).then(async ticketChannel => {
+	  msg.guild.channels.create(`🗳┋ticket-${ticketIdentification}`, {type: "text"}).then(async ticketChannel => {
       //Set the category parent of the ticket (specified in the configuration).
       await ticketChannel.setParent(config.ticketsCategory);
       //Set the ticket topic used the variables that we declared before.
       await ticketChannel.setTopic(`**Información** - **Autor:** ${msg.author} | **Motivo:** ${ticketTopic}`);
     
       //Overwrite the permissions of the default role in the ticket channel.
-		  await ticketChannel.updateOverwrite(defaultRole, {
-  			VIEW_CHANNEL: false,
-			  SEND_MESSAGES: false
+      await ticketChannel.updateOverwrite(defaultRole, {
+        VIEW_CHANNEL: false,
+        SEND_MESSAGES: false
       });
 
       await ticketChannel.updateOverwrite(mutedRole, {
-  			VIEW_CHANNEL: false,
-			  SEND_MESSAGES: false
+        VIEW_CHANNEL: false,
+        SEND_MESSAGES: false
       });
     
       //Overwrite the permissions of the ticket author in the ticket channel.
-		  await ticketChannel.updateOverwrite(msg.author, {
-  			VIEW_CHANNEL: true,
-			  SEND_MESSAGES: true,
+      await ticketChannel.updateOverwrite(msg.author, {
+        VIEW_CHANNEL: true,
+        SEND_MESSAGES: true,
         ATTACH_FILES: true
       });
     
       //Overwrite the permissions of the support role in the ticket channel.
 		  await ticketChannel.updateOverwrite(supportRole, {
-	  	  VIEW_CHANNEL: true,
-			  SEND_MESSAGES: true,
+        VIEW_CHANNEL: true,
+        SEND_MESSAGES: true,
         ATTACH_FILES: true
-		  });
-
+      });
+      
       //Create an embed when the creation of the ticket is success.
-		  const ticketCreation = new Discord.MessageEmbed()
-		    .setColor("#ff8c00")
+      const ticketCreation = new Discord.MessageEmbed()
+        .setColor("#ff8c00")
         .setTimestamp()
-        .setTitle('Literium - Tickets')
-		    .setDescription(`
+        .setTitle("Literium - Tickets")
+        .setDescription(`
 Un nuevo ticket ha sido creado en el canal ${ticketChannel} para obtener soporte. Por favor, lee las instrucciones dadas y sigue los pasos para recibir un soporte adecuado.
 \`\`\`yaml
 Ticket:
   ID: ${ticketIdentification}
   Motivo: ${ticketTopic}\`\`\`
         `)
-		    .setTimestamp()
+        .setTimestamp()
         .setFooter(`Solicitado por ${msg.member.displayName}`);
 
       //Create an embed to give some information about the ticket in the ticket channel.
 		  const ticketWelcome = new Discord.MessageEmbed()
-		    .setColor("#ff8c00")
+        .setColor("#ff8c00")
         .setTitle("Lithium - Tickets")
         .setTimestamp()
         .setFooter(`Solicitado por ${msg.member.displayName}`)      
@@ -119,16 +119,16 @@ Ticket:
         `);      
 
       //Send the embed with the ticket creation message.
-      await msg.channel.send(ticketCreation).catch(console.error);
+      await msg.channel.send(ticketCreation);
       //Send the information about the ticket to the ticket channel when the channel is successfully created.
-      await ticketChannel.send(ticketWelcome).catch(console.error);
+      await ticketChannel.send(ticketWelcome);
 
-      await ticketChannel.send("<@&676493941797027862>").catch(console.error).then(async msg => {
-        msg.delete().catch(console.error);
+      await ticketChannel.send("<@&676493941797027862>").then(async msg => {
+        msg.delete();
       });
     
       //Create an embed to log the creation of the ticket.
-		  const ticketLogMessage = new Discord.MessageEmbed()
+      const ticketLogMessage = new Discord.MessageEmbed()
         .setTimestamp()
         .setColor("#ff8c00")
         .setTitle("Lithium - Tickets")
@@ -148,7 +148,7 @@ Ticket:
   } catch(err) {
     console.log(err);
   }
-}
+};
 
 //Add an entry for this command in the help.
 exports.help = {

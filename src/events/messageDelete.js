@@ -5,7 +5,9 @@ const config = require("../config.json");
 
 exports.run = (client, message) => {
     //Check if the message author is a bot.
-    if (message.author.bot) return;   
+    if (message.author.bot) {
+        return;
+    }
 
     //Store the guild identification.
     const guildIdentification = config.mainGuildIdentificator;
@@ -24,4 +26,4 @@ exports.run = (client, message) => {
 
     //Check if the guild has the delete log channel.
     client.guilds.cache.find((x) => x.id === guildIdentification).channels.cache.find((x) => x.id === delLogChannel).send({embed: messageDeletedMessage});
-}
+};

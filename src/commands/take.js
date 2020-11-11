@@ -87,7 +87,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
     .setColor("#ff8c00"); 
   
   msg.channel.send({embed: sucessMessage});
-}
+};
 
 //Export to help.
 exports.help = {
