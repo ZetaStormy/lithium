@@ -118,7 +118,7 @@ ${colorList}
       //Create an embed to say that the colors were reset successfully.
       const colorResetMessage = new Discord.MessageEmbed()
         .setColor("#ff8c00")
-        .setTitle('Lithium - Colores')
+        .setTitle("Lithium - Colores")
         .setTimestamp()
         .setFooter(`Solicitado por ${msg.member.displayName}`)
         .setDescription("Tus colores han sido reiniciados correctamente."); 

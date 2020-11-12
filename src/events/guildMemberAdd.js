@@ -23,8 +23,17 @@ Informacion:
 \`\`\`
   `);
 
-  //Add default role to the member.
-  member.roles.add(member.guild.roles.cache.find((role) => role.name === "⁃ Jugador"));
+  switch (member.guild.id) {
+    case "675531469086523436":
+      member.roles.add(member.guild.roles.cache.find((role) => role.name === "⁃ Jugador"));
+      break;
+    case "670056419726196736":
+      member.roles.add(member.guild.roles.cache.find((role) => role.name === "⁃ Staff"));
+      break;
+    default:
+      break;
+  }
+  
   //Send the message to the join log channel.
   client.channels.cache.find((x) => x.id === joinChannel).send({embed:memberJoinMessage});
 }

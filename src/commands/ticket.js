@@ -102,7 +102,7 @@ Ticket:
         .setFooter(`Solicitado por ${msg.member.displayName}`);
 
       //Create an embed to give some information about the ticket in the ticket channel.
-		  const ticketWelcome = new Discord.MessageEmbed()
+      const ticketWelcome = new Discord.MessageEmbed()
         .setColor("#ff8c00")
         .setTitle("Lithium - Tickets")
         .setTimestamp()
