@@ -90,7 +90,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       const ticketCreation = new Discord.MessageEmbed()
         .setColor("#ff8c00")
         .setTimestamp()
-        .setTitle("Literium - Tickets")
+        .setTitle("Lithium - Tickets")
         .setDescription(`
 Un nuevo ticket ha sido creado en el canal ${ticketChannel} para obtener soporte. Por favor, lee las instrucciones dadas y sigue los pasos para recibir un soporte adecuado.
 \`\`\`yaml

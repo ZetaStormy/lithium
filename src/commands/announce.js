@@ -35,6 +35,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
         return;
     }
 
+    msg.delete();
     const awaitTitleMessage = new Discord.MessageEmbed()
         .setColor("#ff8c00")
         .setTitle("Lithium - Administración")
@@ -51,6 +52,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
             errors: ["time"]
         }).then((collected) => {
             msg.delete();
+            collected.first().delete();
             const titleMessage = collected.array();
             const titleCollectedMessage = new Discord.MessageEmbed()
                 .setColor("#ff8c00")
@@ -75,6 +77,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
                             errors: ["time"]
                         }).then((collected) => {
                             msg.delete();
+                            collected.first().delete();
                             const announceMessage = collected.array();
                             const announceCollectedMessage = new Discord.MessageEmbed()
                                 .setColor("#ff8c00")
@@ -87,15 +90,15 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
                                 msg.delete({timeout: 20000}).catch(console.error).then((_msg) => {
                                     //Create the embed of the announcement.
                                     const announcementMessage = new Discord.MessageEmbed()
-                                        .setColor("#ff8c00")
+                                        .setColor("#00365c")
                                         .setTimestamp()
                                         .setTitle(titleMessage)
-                                        .setThumbnail("https://i.imgur.com/OO3sCse.jpg")
+                                        .setThumbnail(msg.guild.iconURL())
                                         .setFooter(`Enviado por ${authorName}`,`${authorObject.avatarURL()}`)
                                         .setDescription(announceMessage);
 
                                     //Send this embed to the channel in the arguments.
-                                    announcementChannel.send({embed: announcementMessage}).then((msg) => {
+                                    announcementChannel.send({embed: announcementMessage}).then((_msg) => {
                                         const announceSucessMessage = new Discord.MessageEmbed()
                                             .setColor("#ff8c00")
                                             .setTitle("Lithium - Administración")

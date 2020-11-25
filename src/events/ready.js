@@ -5,7 +5,7 @@ exports.run = (client) => {
   const sql = new SQLite("./scores.sqlite");  
   
   //Set the streaming presence activity.
-  client.user.setActivity("LiteriumNT", {
+  client.user.setActivity("ZafireNT", {
     type: "STREAMING", 
     url: "https://twitch.tv/zetastormy"
   });  

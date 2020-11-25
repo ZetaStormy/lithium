@@ -1,4 +1,4 @@
-exports.run = (_client, msg, Discord, _content, _command) => { 
+exports.run = (_client, msg, _args, _content, _command, Discord) => { 
   //Check the channel were the author of message sent the command.
   if (!msg.channel.name.startsWith("💻┋comandos") && !msg.channel.name.startsWith("💫┋off-topic")) {
     //Create the embed message using MessageEmbed() constructor.
@@ -15,20 +15,25 @@ exports.run = (_client, msg, Discord, _content, _command) => {
     return;
   }
   
-  let adressDomain = "play.literium.net";
+  let adressDomain = "play.zafire.org";
   let adressPort = "25565";
   let statsUrl = "https://mcapi.us/server/status?ip=" + adressDomain + "&port=" + adressPort;
 
   const axios = require("axios").default;  
   axios.get(statsUrl).then(function (response) {
-    const Discord = require("discord.js");
     if (response.status === 200) {
       const responseGoodMessage = new Discord.MessageEmbed()
         .setTimestamp()
         .setColor("#ff8c00")
-        .setTitle("Literium - Información")
-        .addField("Estado", response.data.online ? "En línea." : "Apagado.", true)
-        .addField("Jugadores", `${response.data.players.now}/${response.data.players.max} conectados.`, true)
+        .setTitle("Lithium - Información")
+        .setDescription(`
+Puede que haya un leve retraso en algunas ocasiones.
+A continuación, se muestra un resumen del estado actual del servidor:
+\`\`\`yaml
+Estado: ${response.data.players.max < 1 ? "Mantenimiento" : "En línea"}
+Jugadores: ${response.data.players.now} conectados
+\`\`\`
+        `)
         .setFooter(`Solicitado por ${msg.member.displayName}`);
   
       msg.channel.send({embed: responseGoodMessage});
@@ -44,7 +49,6 @@ exports.run = (_client, msg, Discord, _content, _command) => {
       return;
     }
   }).catch(function (error) {
-    const Discord = require("discord.js");
     console.log(error);
     const errorMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")

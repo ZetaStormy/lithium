@@ -16,7 +16,7 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
     if (!args[0]) {
         const noEnoughArgumentsMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
-            .setTitle("Literium - Misceláneo")
+            .setTitle("Lithium - Misceláneo")
             .setTimestamp()
             .setFooter(`Denegado a ${msg.member.displayName}`)
             .setDescription("Introduce un mensaje.");

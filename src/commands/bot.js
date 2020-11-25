@@ -90,8 +90,8 @@ exports.run = (client, msg, _args, _command, _content, Discord) => {
         .setColor("#ff8c00")
         .setTimestamp()
         .setDescription(`
-Actualmente el bot se encuentra en fase de pruebas y únicamente es usado por LiteriumNT, no obstante, puedes acceder al código fuente desde [Github](https://github.com/LiteriumNT/lithium).
-Lithium está bajo la licencia [GPL-3.0](https://github.com/LiteriumNT/lithium/blob/community/LICENSE), por lo que es de código abierto y de libre uso.
+Actualmente el bot se encuentra en fase de pruebas y únicamente es usado por ZafireNT, no obstante, puedes acceder al código fuente desde [Github](https://github.com/ZafireNT/lithium).
+Lithium está bajo la licencia [GPL-3.0](https://github.com/ZafireNT/lithium/blob/main/LICENSE), por lo que es de código abierto y de libre uso.
 A continuación, se muestra la información técnica de Lithium:
 \`\`\`yaml
 Presencia: ${presenceStatus}
