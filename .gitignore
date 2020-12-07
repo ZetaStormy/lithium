@@ -1,0 +1,28 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Tooling
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esult*
+
+#Project files
+[Bb]uild/
+
+#Subversion files
+.svn
+
+#Temp files
+~$*
+
+#Node modules
+node_modules/
+
+#SQLite files
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+#Other files (idk how to name this)
+package-lock.json
