@@ -90,7 +90,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
                                 msg.delete({timeout: 20000}).catch(console.error).then((_msg) => {
                                     //Create the embed of the announcement.
                                     const announcementMessage = new Discord.MessageEmbed()
-                                        .setColor("#00365c")
+                                        .setColor("#075e9b")
                                         .setTimestamp()
                                         .setTitle(titleMessage)
                                         .setThumbnail(msg.guild.iconURL())
