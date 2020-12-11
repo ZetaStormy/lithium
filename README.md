@@ -11,8 +11,6 @@ This discord bot has been created only for Zafire Network, but you can use the c
 - It is open source, you can use this code wherever you want!
   
 ## To-Do
-- Do everything that the TODO comments say.
-- Code optimization for better performance.
 - Add more commands and economy system.
 - Add translations using a language system.
 - Introduce rank of the leaderboard command in the rank command.
@@ -44,4 +42,4 @@ Lithium uses NPM packages to work properly:
 * [ms](https://www.npmjs.com/package/ms) - Easily convert various time formats to milliseconds.
 
 ## License
-Lithium uses the [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) (GNU General Public License v3.0) license, you can do everything that the license says.
+Lithium is licensed under [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) (GNU General Public License v3.0) license.
