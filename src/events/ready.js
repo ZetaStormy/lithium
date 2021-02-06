@@ -2,13 +2,13 @@ exports.run = (client) => {
   //SQLite requires better-sqlite3
   const SQLite = require("better-sqlite3");
   //Create a new database using SQLite() constructor.
-  const sql = new SQLite("./scores.sqlite");  
-  
+  const sql = new SQLite("./scores.sqlite");
+
   //Set the streaming presence activity.
   client.user.setActivity("ZafireNT", {
-    type: "STREAMING", 
+    type: "STREAMING",
     url: "https://twitch.tv/zetastormy"
-  });  
+  });
 
   //Get the table.
   const table = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'scores';").get();
@@ -22,5 +22,5 @@ exports.run = (client) => {
 
   //Create methods to get and set data from the database.
   client.getScore = sql.prepare("SELECT * FROM scores WHERE user = ? AND guild = ?");
-  client.setScore = sql.prepare("INSERT OR REPLACE INTO scores (id, user, guild, points, level) VALUES (@id, @user, @guild, @points, @level);");   
+  client.setScore = sql.prepare("INSERT OR REPLACE INTO scores (id, user, guild, points, level) VALUES (@id, @user, @guild, @points, @level);");
 }

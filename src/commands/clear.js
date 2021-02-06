@@ -8,9 +8,9 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
             .setFooter(`Denegado a ${msg.member.displayName}`)
             .setTitle("Error")
             .setDescription("No tienes permisos para ejecutar ese comando.");
-        
+
         //Send the embed to the channel where this command was executed.
-        msg.channel.send({embed: notEnoughPermissionsMessage});
+        msg.channel.send({ embed: notEnoughPermissionsMessage });
         //Return to exit this command.
         return;
     }
@@ -25,11 +25,11 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
             .setFooter(`Denegado a ${msg.member.displayName}`)
             .setTitle("Error")
             .setDescription("Debes mencionar un número mayor a 0 y menor o igual a 100.");
-        
-        msg.channel.send({embed: numberInvalidMessage});
+
+        msg.channel.send({ embed: numberInvalidMessage });
         return;
     }
-    
+
     //Check if the bot can delete the command message.
     if (msg.deletable) {
         msg.delete();
@@ -43,10 +43,10 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
         .setTimestamp()
         .setFooter(`Solicitado por ${msg.member.displayName}`)
         .setDescription(`Se han borrado ${clearMessages} mensajes.`);
-    
+
     //Send the embed and then delete the embed to keep the chat clear.
-    msg.channel.send({embed: sucessMessage}).catch(console.error).then((msg) => {
-        msg.delete({timeout: 10000});
+    msg.channel.send({ embed: sucessMessage }).catch(console.error).then((msg) => {
+        msg.delete({ timeout: 10000 });
     });
 }
 

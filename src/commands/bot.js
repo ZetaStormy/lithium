@@ -5,12 +5,12 @@ exports.run = (client, msg, _args, _command, _content, Discord) => {
         const incorrectChannelMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()
-            .setFooter(`Denegado a ${msg.member.displayName}`)        
+            .setFooter(`Denegado a ${msg.member.displayName}`)
             .setTitle("Error")
             .setDescription("Usa comandos en los canales correspondientes.");
-        
+
         //Send the embed to the channel were the command was called.
-        msg.channel.send({embed: incorrectChannelMessage});
+        msg.channel.send({ embed: incorrectChannelMessage });
         //The return to exit.
         return;
     }
@@ -18,40 +18,40 @@ exports.run = (client, msg, _args, _command, _content, Discord) => {
     let presenceStatus;
     //Get the bot presence status and give a format to the string.
     switch (client.user.presence.status) {
-        case "online": 
-            presenceStatus = "En línea"; 
+        case "online":
+            presenceStatus = "En línea";
             break;
-        case "dnd": 
-            presenceStatus = "No molestar"; 
+        case "dnd":
+            presenceStatus = "No molestar";
             break;
-        case "idle": 
-            presenceStatus = "Ausente"; 
+        case "idle":
+            presenceStatus = "Ausente";
             break;
-        case "offline": 
-            presenceStatus = "Desconectado"; 
+        case "offline":
+            presenceStatus = "Desconectado";
             break;
     }
 
     let operativeSystem;
     //Get the process platform and give a format to the string.
     switch (process.platform) {
-        case "win32": 
-            operativeSystem = "Windows"; 
+        case "win32":
+            operativeSystem = "Windows";
             break;
-        case "linux": 
-            operativeSystem = "Linux"; 
+        case "linux":
+            operativeSystem = "Linux";
             break;
-        case "darwin": 
-            operativeSystem = "Darwin"; 
+        case "darwin":
+            operativeSystem = "Darwin";
             break;
-        case "openbsd": 
-            operativeSystem = "OpenBSD"; 
+        case "openbsd":
+            operativeSystem = "OpenBSD";
             break;
-        case "sunos": 
-            operativeSystem = "Solaris"; 
+        case "sunos":
+            operativeSystem = "Solaris";
             break;
-        case "freebst": 
-            operativeSystem = "FreeBSD"; 
+        case "freebst":
+            operativeSystem = "FreeBSD";
             break;
         default:
             operativeSystem = "Desconocido";
@@ -60,14 +60,14 @@ exports.run = (client, msg, _args, _command, _content, Discord) => {
 
     //Call functions to get process CPU information.
     const startUsage = process.cpuUsage();
-    
+
     //Spin the CPU for 500 milliseconds.
     const startTime = Date.now();
     while (Date.now() - startTime < 500);
-    
+
     //Get elapsed time.
     const elapUsage = process.cpuUsage(startUsage);
-    
+
     //Get system CPU usage and give it a format.
     const cpuPercent = 10 * (elapUsage.system) / ((Date.now() - startTime) * 1000)
 
@@ -81,7 +81,7 @@ exports.run = (client, msg, _args, _command, _content, Discord) => {
     const seconds = Math.round(processUptime % 60);
 
     //Give a format to the process uptime.
-    const uptimeFormat = (days > 0 ? days + " día(s), ":"") + (hours > 0 ? hours + " hora(s), ":"") + (minutes > 0 ? minutes + " minuto(s), ":"") + (seconds > 0 ? seconds + " segundo(s)":"");
+    const uptimeFormat = (days > 0 ? days + " día(s), " : "") + (hours > 0 ? hours + " hora(s), " : "") + (minutes > 0 ? minutes + " minuto(s), " : "") + (seconds > 0 ? seconds + " segundo(s)" : "");
 
     //Create the embed message using the MessageEmbed() constructor and then set footer and that stuff.
     const sucessMessage = new Discord.MessageEmbed()
@@ -106,7 +106,7 @@ DiscordJS: ${Discord.version}
         `);
 
     //Just send the created embed and catch if an error occurs.
-    msg.channel.send({embed: sucessMessage});
+    msg.channel.send({ embed: sucessMessage });
 }
 
 //This is for the help command.

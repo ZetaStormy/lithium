@@ -4,14 +4,14 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     const noEnoughPermsMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("No tienes permisos para ejecutar ese comando.");
-    
-    msg.channel.send({embed: noEnoughPermsMessage});
+
+    msg.channel.send({ embed: noEnoughPermsMessage });
     return;
   }
-  
+
   //Get the first argument that would be the member.
   const memberMention = msg.mentions.members.first() || msg.guild.members.cache.get(args[0]);
   //If the member doesn't exist, execute the code.
@@ -19,11 +19,11 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     const invalidMemberMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("Menciona a un usuario válido.");
-    
-    msg.channel.send({embed: invalidMemberMessage});
+
+    msg.channel.send({ embed: invalidMemberMessage });
     return;
   }
 
@@ -32,32 +32,32 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     const canNotKickMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("No puedes expulsar a ese usuario.");
-    
-    msg.channel.send({embed: canNotKickMessage});
+
+    msg.channel.send({ embed: canNotKickMessage });
     return;
   }
-  
+
   //Create the variable reason to store the reason obviously.
   let punishmentReason = args.slice(1).join(" ");
   //If there is no reason, then use this string.
   if (!punishmentReason) punishmentReason = "Mal comportamiento";
-  
+
   //Wait for the reason to avoid errors.
   memberMention.kick(punishmentReason).catch((error) => {
     //Send a message with the error if theres is one.
     const errorMessage = new Discord.MessageEmbed()
-    .setColor("#8b0000")
-    .setTimestamp()
-    .setFooter(`Denegado a ${msg.member.displayName}`)        
-    .setTitle("Error")
-    .setDescription(`No pude expulsar por ${error}.`);
-    
-    msg.channel.send({embed: errorMessage});
+      .setColor("#8b0000")
+      .setTimestamp()
+      .setFooter(`Denegado a ${msg.member.displayName}`)
+      .setTitle("Error")
+      .setDescription(`No pude expulsar por ${error}.`);
+
+    msg.channel.send({ embed: errorMessage });
   });
-  
+
   //Check if the bot can delete the command message.
   if (msg.deletable) {
     msg.delete();
@@ -65,7 +65,7 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
   const sucessMessage = new Discord.MessageEmbed()
     .setColor("#ff8c00")
     .setTimestamp()
-    .setFooter(`Sancionado por ${msg.member.displayName}`)  
+    .setFooter(`Sancionado por ${msg.member.displayName}`)
     .setTitle("Lithium - Sanciones")
     .setDescription(`
 **Sanción:** Expulsión
@@ -75,9 +75,9 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     `);
 
   //Log the punishment to the kick log channel in the configuration.
-  msg.guild.channels.cache.find((x) => x.id === config.kickLogChannel).send({embed: sucessMessage});
+  msg.guild.channels.cache.find((x) => x.id === config.kickLogChannel).send({ embed: sucessMessage });
   //Send the same punishment message to the channel.
-  msg.channel.send({embed: sucessMessage});
+  msg.channel.send({ embed: sucessMessage });
 }
 
 //Add an entry for this command in the help command.

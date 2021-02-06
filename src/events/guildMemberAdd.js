@@ -9,10 +9,10 @@ exports.run = (client, member) => {
   const joinChannel = config.joinLogChannel;
 
   const memberJoinMessage = new Discord.MessageEmbed()
-  .setColor("#ff8c00")
-  .setTimestamp()
-  .setTitle("Lithium - Entrada")
-  .setDescription(`
+    .setColor("#ff8c00")
+    .setTimestamp()
+    .setTitle("Lithium - Entrada")
+    .setDescription(`
 ¡Alguien nuevo ha entrado al servidor de Discord!
 \`\`\`yaml
 Informacion:
@@ -33,7 +33,7 @@ Informacion:
     default:
       break;
   }
-  
+
   //Send the message to the join log channel.
-  client.channels.cache.find((x) => x.id === joinChannel).send({embed:memberJoinMessage});
+  client.channels.cache.find((x) => x.id === joinChannel).send({ embed: memberJoinMessage });
 }

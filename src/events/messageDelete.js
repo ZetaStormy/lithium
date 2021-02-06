@@ -15,15 +15,15 @@ exports.run = (client, message) => {
     const delLogChannel = config.deleteLogChannel;
 
     //Check if the message content is bigger than 1900 characters.
-    const deletedContent = message.content.length > 1900 ? "*Contenido comprimido debido a la longitud.* - " + message.content.substr(0,1900) : message.content;
+    const deletedContent = message.content.length > 1900 ? "*Contenido comprimido debido a la longitud.* - " + message.content.substr(0, 1900) : message.content;
 
     //Create the embed with the information.
     const messageDeletedMessage = new Discord.MessageEmbed()
-    .setColor("#ff8c00")
-    .setTimestamp()
-    .setTitle("Lithium - Mensaje borrado")
-    .setDescription(`**Nombre:** ${message.member.displayName}\n**Tag:** ${message.author.tag}\n**Canal:** ${message.channel.name}\n**Contenido:** ${deletedContent}`);
+        .setColor("#ff8c00")
+        .setTimestamp()
+        .setTitle("Lithium - Mensaje borrado")
+        .setDescription(`**Nombre:** ${message.member.displayName}\n**Tag:** ${message.author.tag}\n**Canal:** ${message.channel.name}\n**Contenido:** ${deletedContent}`);
 
     //Check if the guild has the delete log channel.
-    client.guilds.cache.find((x) => x.id === guildIdentification).channels.cache.find((x) => x.id === delLogChannel).send({embed: messageDeletedMessage});
+    client.guilds.cache.find((x) => x.id === guildIdentification).channels.cache.find((x) => x.id === delLogChannel).send({ embed: messageDeletedMessage });
 }

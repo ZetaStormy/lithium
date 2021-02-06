@@ -6,7 +6,7 @@ exports.run = (client, message) => {
   if (message.author.bot) {
     return;
   }
-  
+
   //Check if the message is in a guild.
   if (message.guild) {
     //Create the variable score.
@@ -18,10 +18,10 @@ exports.run = (client, message) => {
         user: message.author.id,
         guild: message.guild.id,
         points: 0,
-        level: 1,
+        level: 1
       }
     }
-    
+
     //Create the formula to increment the experience every message.
     const experienceIncrement = Math.floor(Math.random() * 1) + 500;
     //Create a constant of the current experience.
@@ -39,13 +39,13 @@ exports.run = (client, message) => {
 
       //Create an embed to say that the user level up
       const memberLevelMessage = new Discord.MessageEmbed()
-      .setColor("#ff8c00")
-      .setTitle("Lithium - Niveles")
-      .setTimestamp()
-      .setFooter(`Enviado a ${message.member.displayName}`)
-      .setDescription(`¡Has subido a nivel ${currentLevel + 1}!`); 
+        .setColor("#ff8c00")
+        .setTitle("Lithium - Niveles")
+        .setTimestamp()
+        .setFooter(`Enviado a ${message.member.displayName}`)
+        .setDescription(`¡Has subido a nivel ${currentLevel + 1}!`);
 
-      message.channel.send({embed: memberLevelMessage});        
+      message.channel.send({ embed: memberLevelMessage });
     }
 
     //Set the new experience and level value in the database.
@@ -54,7 +54,7 @@ exports.run = (client, message) => {
     //Check if the level is 15 or bigger.
     if (score.level >= 15) {
       //Add the prestige role if it is bigger or equal.
-      message.member.roles.add(message.guild.roles.cache.find((x) => x.name === "⁃ Prestigio"));     
-    } 
+      message.member.roles.add(message.guild.roles.cache.find((x) => x.name === "⁃ Prestigio"));
+    }
   }
 }

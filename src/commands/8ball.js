@@ -8,9 +8,9 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
       .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("Usa comandos en los canales correspondientes.");
-      
+
     //Send the embed to the channel were the command was called.
-    msg.channel.send({embed: incorrectChannelMessage});
+    msg.channel.send({ embed: incorrectChannelMessage });
     //The return to exit.
     return;
   }
@@ -24,15 +24,15 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
       .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("Debes preguntar algo con más de una palabra.");
-    
+
     //Then, we send this embed.
-    msg.channel.send({embed: notEnoughArgumentsMessage});
+    msg.channel.send({ embed: notEnoughArgumentsMessage });
     //And return because we don't want to continue the execution of the code.
     return;
   }
 
   //Create an array of replies, a looooot of them.
-  const randomReplies = ["Sí.", "No.", "No lo sé.", "Claro, lo que tú digas.", "¡Pregunta más tarde!", "¡No estoy seguro!", "Por favor, no.", "Dígame usted.", "Sin duda.", "No te lo puedo decir ahora.", "Sí, claro.", "Mmm", "No tengo ni idea.", "Ehh... Pregunta en otro momento." ];
+  const randomReplies = ["Sí.", "No.", "No lo sé.", "Claro, lo que tú digas.", "¡Pregunta más tarde!", "¡No estoy seguro!", "Por favor, no.", "Dígame usted.", "Sin duda.", "No te lo puedo decir ahora.", "Sí, claro.", "Mmm", "No tengo ni idea.", "Ehh... Pregunta en otro momento."];
   //Chose a random reply from the array using Math.
   const result = Math.floor((Math.random() * randomReplies.length));
   //Create the question variable without skipping the spaces.
@@ -48,7 +48,7 @@ exports.run = (_client, msg, args, _command, _content, Discord) => {
     .addField("**Respuesta**", randomReplies[result]);
 
   //Send the embed.
-  msg.channel.send({embed: sucessMessage});
+  msg.channel.send({ embed: sucessMessage });
 }
 
 //Create the 8ball entry in help command.

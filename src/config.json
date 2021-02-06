@@ -1,17 +1,17 @@
 {
 	"prefix": "-",
 	"owner": "340951386676133891",
-  	"suggestChannel": "679337670522044451",
-  	"ticketLogChannel": "677934880197181456",
+	"suggestChannel": "679337670522044451",
+	"ticketLogChannel": "677934880197181456",
 	"mainGuildIdentificator": "675531469086523436",
-  	"editLogChannel": "677935050360356934",  
-	"muteLogChannel": "677578520792399923",  
+	"editLogChannel": "677935050360356934",
+	"muteLogChannel": "677578520792399923",
 	"banLogChannel": "677578520792399923",
-	"kickLogChannel": "677578520792399923",  
+	"kickLogChannel": "677578520792399923",
 	"joinLogChannel": "676512452568940556",
-  	"quitLogChannel": "677934668766773248",
+	"quitLogChannel": "677934668766773248",
 	"deleteLogChannel": "677935050360356934",
-  	"otherLogChannel": "677935942660653089",
-  	"supportRole": "676493941797027862",
-  	"ticketsCategory": "676493534257217569" 
+	"otherLogChannel": "677935942660653089",
+	"supportRole": "676493941797027862",
+	"ticketsCategory": "676493534257217569"
 }

@@ -5,12 +5,12 @@ exports.run = (client, msg, args, _command, _content, Discord, config) => {
     const incorrectChannelMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("Este comando sólo puede ser usado en un ticket.");
-    
+
     //Send the error embed.
-    msg.channel.send({embed: incorrectChannelMessage});
+    msg.channel.send({ embed: incorrectChannelMessage });
     //And then return to exit this command.
     return;
   }
@@ -24,12 +24,12 @@ exports.run = (client, msg, args, _command, _content, Discord, config) => {
       .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("No tienes permisos para ejecutar ese comando.");
-      
+
     //Send the embed to the channel where this command was executed.
-    msg.channel.send({embed: notEnoughPermissionsMessage});
+    msg.channel.send({ embed: notEnoughPermissionsMessage });
     //Return to exit this command.
     return;
-  }  
+  }
 
   //Create a variable with the user that we want to add to the ticket.
   const memberMention = msg.guild.member(msg.mentions.users.first() || msg.guild.members.cache.get(args[0]));
@@ -39,12 +39,12 @@ exports.run = (client, msg, args, _command, _content, Discord, config) => {
     const unknownMemberMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("Usuario desconocido, introduce un usuario válido.");
-    
+
     //Send the embed.
-    msg.channel.send({embed: unknownMemberMessage});
+    msg.channel.send({ embed: unknownMemberMessage });
     //And then return to exit.
     return;
   }
@@ -53,11 +53,11 @@ exports.run = (client, msg, args, _command, _content, Discord, config) => {
   try {
     //Update the user permissions in the channel.
     msg.channel.updateOverwrite(memberMention, {
-			VIEW_CHANNEL: true,
-			SEND_MESSAGES: true,
+      VIEW_CHANNEL: true,
+      SEND_MESSAGES: true,
       ATTACH_FILES: true
     });
-    
+
     //Create embed to create a response message to the author.
     const authorResponseMessage = new Discord.MessageEmbed()
       .setColor("#ff8c00")
@@ -67,8 +67,8 @@ exports.run = (client, msg, args, _command, _content, Discord, config) => {
       .setFooter(`Solicitado por ${msg.member.displayName}`);
 
     //Send this response to the author.
-    msg.channel.send({embed: authorResponseMessage});
-    
+    msg.channel.send({ embed: authorResponseMessage });
+
     //Get the ticket topic and split it in arguments.
     const ticketTopic = msg.channel.topic.trim().split(/ +/g);
     //Log the action of the author with some details.
@@ -85,11 +85,11 @@ Ticket:
   Canal: ${msg.channel.name}
   Motivo: ${ticketTopic.splice(6, ticketTopic.length).join(" ")}\`\`\`
       `);
-    
+
     //Send this embed to the channel that is in the config channel.
-    client.channels.cache.get(config.ticketLogChannel).send({embed: actionLogMessage});
-  //Catch if an error occurs.
-  } catch(err) {
+    client.channels.cache.get(config.ticketLogChannel).send({ embed: actionLogMessage });
+    //Catch if an error occurs.
+  } catch (err) {
     //Log the error.
     console.log(err);
   }

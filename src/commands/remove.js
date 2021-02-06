@@ -5,12 +5,12 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
     const incorrectChannelMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("Este comando sólo puede ser usado en un ticket.");
-    
+
     //Send the error embed.
-    msg.channel.send({embed: incorrectChannelMessage});
+    msg.channel.send({ embed: incorrectChannelMessage });
     //And then return to exit this command.
     return;
   }
@@ -24,9 +24,9 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("No tienes permisos para ejecutar ese comando.");
-      
+
     //Send the embed to the channel where this command was executed.
-    msg.channel.send({embed: notEnoughPermissionsMessage});
+    msg.channel.send({ embed: notEnoughPermissionsMessage });
     //Return to exit this command.
     return;
   }
@@ -39,12 +39,12 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
     const unknownMemberMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("Usuario desconocido, introduce un usuario válido.");
-    
+
     //Send the embed.
-    msg.channel.send({embed: unknownMemberMessage});
+    msg.channel.send({ embed: unknownMemberMessage });
     //And then return to exit.
     return;
   }
@@ -53,11 +53,11 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
   try {
     //Remove permissions for member.
     msg.channel.updateOverwrite(memberMention, {
-			VIEW_CHANNEL: false,
-			SEND_MESSAGES: false,
+      VIEW_CHANNEL: false,
+      SEND_MESSAGES: false,
       ATTACH_FILES: false
     });
-    
+
     //Create the embed with the response to the author.
     const authorResponseMessage = new Discord.MessageEmbed()
       .setColor("#ff8c00")
@@ -67,7 +67,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       .setFooter(`Solicitado por ${msg.member.displayName}`);
 
     //Send the response to the author.
-    msg.channel.send({embed: authorResponseMessage});
+    msg.channel.send({ embed: authorResponseMessage });
 
     //Get the ticket topic and split it in arguments.
     const ticketTopic = msg.channel.topic.trim().split(/ +/g);
@@ -84,11 +84,11 @@ Ticket:
   ID: ${msg.channel.name.substr(10)}
   Canal: ${msg.channel.name}
   Motivo: ${ticketTopic.splice(6, ticketTopic.length).join(" ")}\`\`\`
-      `);    
-    
+      `);
+
     //Send to the log channel that is in the configuration.
-    client.channels.cache.get(config.ticketLogChannel).send({embed: logActionMessage});
-  } catch(err) {
+    client.channels.cache.get(config.ticketLogChannel).send({ embed: logActionMessage });
+  } catch (err) {
     //Catch the error and log it.
     console.log(err);
   }

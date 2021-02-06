@@ -7,8 +7,8 @@ exports.run = (client, msg, _args, _content, _command, Discord, config) => {
       .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("Este comando sólo puede ser usado en un ticket.");
-        
-    msg.channel.send({embed: invalidChannelMessage});
+
+    msg.channel.send({ embed: invalidChannelMessage });
     return;
   }
 
@@ -31,10 +31,10 @@ Ticket:
       `);
 
     //Send a message to the ticket log channel.
-    client.channels.cache.get(config.ticketLogChannel).send({embed: ticketInformationMessage});
+    client.channels.cache.get(config.ticketLogChannel).send({ embed: ticketInformationMessage });
     //Delete the channel successfully if we are in a ticket.
     msg.channel.delete();
-  } catch(err) {
+  } catch (err) {
     //Log the error if there is one.
     console.log(err);
   }

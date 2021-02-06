@@ -8,7 +8,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       .setTitle("Error")
       .setDescription("No tienes permisos para ejecutar ese comando.");
 
-    msg.channel.send({embed: noEnoughPermsMessage});
+    msg.channel.send({ embed: noEnoughPermsMessage });
     return;
   }
 
@@ -23,7 +23,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       .setTitle("Error")
       .setDescription("Menciona un usuario válido.");
 
-    msg.channel.send({embed: invalidMemberMessage});    
+    msg.channel.send({ embed: invalidMemberMessage });
     return;
   }
 
@@ -38,10 +38,10 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       .setTitle("Error")
       .setDescription("Menciona una cantidad de puntos válida.");
 
-    msg.channel.send({embed: invalidPointsMessage});    
+    msg.channel.send({ embed: invalidPointsMessage });
     return;
   }
-  
+
   //Check if the quantity of points to give is over 500 to prevent database corruption.
   if (pointsToAdd > 500) {
     const tooMuchPointsMessage = new Discord.MessageEmbed()
@@ -51,7 +51,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       .setTitle("Error")
       .setDescription("Introduce una cantidad entre 1 y 500.");
 
-    msg.channel.send({embed: tooMuchPointsMessage});
+    msg.channel.send({ embed: tooMuchPointsMessage });
     return;
   }
 
@@ -59,11 +59,11 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
   let memberScore = client.getScore.get(userMention.id, msg.guild.id);
   //If the data of the member doesn't exist, then create it.
   if (!memberScore) {
-    memberScore = { 
+    memberScore = {
       id: `${msg.guild.id}-${userMention.id}`,
       user: userMention.id, guild: msg.guild.id,
       points: 0,
-      level: 1 
+      level: 1
     }
   }
   //Idk what this does, I forgot it and i don't understand because i'm sleepy.
@@ -82,9 +82,9 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
     .setTimestamp()
     .setFooter(`Solicitado por ${msg.member.displayName}`)
     .setDescription(`${userMention.tag} ha recibido ${pointsToAdd} de XP y ahora tiene ${memberScore.points} de XP.`)
-    .setColor("#ff8c00"); 
-  
-  msg.channel.send({embed: sucessMessage});
+    .setColor("#ff8c00");
+
+  msg.channel.send({ embed: sucessMessage });
 }
 
 //add the entry to help.

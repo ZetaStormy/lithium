@@ -5,12 +5,12 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
         const incorrectChannelMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()
-            .setFooter(`Denegado a ${msg.member.displayName}`)        
+            .setFooter(`Denegado a ${msg.member.displayName}`)
             .setTitle("Error")
             .setDescription("Usa comandos en los canales correspondientes.");
-      
+
         //Send the embed to the channel were the command was called.
-        msg.channel.send({embed: incorrectChannelMessage});
+        msg.channel.send({ embed: incorrectChannelMessage });
         //The return to exit.
         return;
     }
@@ -20,11 +20,11 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
         const noEnoughPermsMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()
-            .setFooter(`Denegado a ${msg.member.displayName}`)        
+            .setFooter(`Denegado a ${msg.member.displayName}`)
             .setTitle("Error")
             .setDescription("No tienes permisos para ejecutar ese comando.");
-        
-        msg.channel.send({embed: noEnoughPermsMessage});
+
+        msg.channel.send({ embed: noEnoughPermsMessage });
         return;
     }
 
@@ -35,11 +35,11 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
         const defaultRoleMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()
-            .setFooter(`Denegado a ${msg.member.displayName}`)        
+            .setFooter(`Denegado a ${msg.member.displayName}`)
             .setTitle("Error")
             .setDescription("Por favor, ingresa la ID de un rol que no sea el por defecto o indefinido.");
-        
-        msg.channel.send({embed: defaultRoleMessage});
+
+        msg.channel.send({ embed: defaultRoleMessage });
         return;
     } else {
         //Create a variable where we find the role in the cache.
@@ -49,11 +49,11 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
             const invalidRoleMessage = new Discord.MessageEmbed()
                 .setColor("#8b0000")
                 .setTimestamp()
-                .setFooter(`Denegado a ${msg.member.displayName}`)        
+                .setFooter(`Denegado a ${msg.member.displayName}`)
                 .setTitle("Error")
                 .setDescription("Por favor, ingresa una ID de un rol válido.");
-        
-            msg.channel.send({embed: invalidRoleMessage});
+
+            msg.channel.send({ embed: invalidRoleMessage });
             return;
         } else {
             //Create a variable where we map all the members in the role using their user tag and then we sort them in alphabetical order.
@@ -66,13 +66,13 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
                 formatMembers = "Sin miembros.";
             } else {
                 //Using this for loop we can format the length of the mapped members.
-                for (let i = 0; i < mappedMembers.length; i++){
+                for (let i = 0; i < mappedMembers.length; i++) {
                     let mappedMemberArrayPosition = mappedMembers[i];
                     //Here we append the - and we make a new line.
                     formatMembers += ("\n   - " + String(mappedMemberArrayPosition));
                 }
             }
-            
+
             //Create a simple string with the two variables.
             const totalMembers = `\`${mappedMembers.length}\` ${numberMembers}`;
 
@@ -83,8 +83,8 @@ exports.run = (_client, msg, args, _content, _command, Discord) => {
                 .setDescription(`El rol \`${role.name}\` tiene un total de ${totalMembers}.\nA continuación, se muestran todos los miembros de este rol:\n\`\`\`yaml\nMiembros:${formatMembers}\`\`\``)
                 .setTimestamp()
                 .setFooter(`Solicitado por ${msg.member.displayName}`);
-            
-            msg.channel.send({embed: sucessMessage});
+
+            msg.channel.send({ embed: sucessMessage });
         }
     }
 }

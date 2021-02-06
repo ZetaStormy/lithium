@@ -8,7 +8,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       .setTitle("Error")
       .setDescription("No tienes permisos para ejecutar ese comando.");
 
-    msg.channel.send({embed: noEnoughPermsMessage});
+    msg.channel.send({ embed: noEnoughPermsMessage });
     return;
   }
 
@@ -23,27 +23,27 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       .setTitle("Error")
       .setDescription("Menciona un usuario válido.");
 
-    msg.channel.send({embed: invalidMemberMessage});    
+    msg.channel.send({ embed: invalidMemberMessage });
     return;
   }
 
   //Parse to integer the quantity of points that we want to take.
   const pointsToTake = parseInt(args[1], 10);
   //Check if there is a mention to this points.
-  if(!pointsToTake) {
+  if (!pointsToTake) {
     const invalidPointsMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("Menciona una cantidad de puntos válida.");
 
-    msg.channel.send({embed: invalidPointsMessage});    
+    msg.channel.send({ embed: invalidPointsMessage });
     return;
   }
-  
+
   //Check if the quantity of points to take is over 500 to prevent database corruption.
-  if(pointsToTake > 500) {
+  if (pointsToTake > 500) {
     const tooMuchPointsMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
@@ -51,7 +51,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       .setTitle("Error")
       .setDescription("Introduce una cantidad entre 1 y 500.");
 
-    msg.channel.send({embed: tooMuchPointsMessage});
+    msg.channel.send({ embed: tooMuchPointsMessage });
     return;
   }
 
@@ -64,7 +64,7 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
       user: userMention.id,
       guild: msg.guild.id,
       points: 0,
-      level: 1 
+      level: 1
     }
   }
 
@@ -84,9 +84,9 @@ exports.run = (client, msg, args, _content, _command, Discord, config) => {
     .setTimestamp()
     .setFooter(`Solicitado por ${msg.member.displayName}`)
     .setDescription(`Al usuario ${userMention.tag} se le ha quitado ${pointsToTake} de XP y ahora tiene ${memberScore.points} de XP.`)
-    .setColor("#ff8c00"); 
-  
-  msg.channel.send({embed: sucessMessage});
+    .setColor("#ff8c00");
+
+  msg.channel.send({ embed: sucessMessage });
 }
 
 //Export to help.

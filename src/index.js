@@ -45,14 +45,14 @@ client.on("message", (msg) => {
   if (msg.content.indexOf(config.prefix) !== 0) {
     return;
   }
-  
+
   //Define args that is the message content without the prefix, without final spaces and split everytime it has a space.
   const args = msg.content.slice(config.prefix.length).trim().split(/ +/g);
   //Command is just the command, but in lower case.
   const command = args.shift().toLowerCase();
   //Get the content of the message using the sub string method.
-  const content = msg.content.substr(prefix.length + command.length,msg.content.length - prefix.length - command.length);
-  
+  const content = msg.content.substr(prefix.length + command.length, msg.content.length - prefix.length - command.length);
+
   try {
     let commandFile = require("./commands/" + command + ".js"); //Create a variable for the command files.
     commandFile.run(client, msg, args, content, command, Discord, config); //Export all that variables to the command file.

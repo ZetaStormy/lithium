@@ -5,12 +5,12 @@ exports.run = (_client, msg, args, content, _command, Discord) => {
     const incorrectChannelMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("Usa comandos en los canales correspondientes.");
-      
+
     //Send the embed to the channel were the command was called.
-    msg.channel.send({embed: incorrectChannelMessage});
+    msg.channel.send({ embed: incorrectChannelMessage });
     //The return to exit.
     return;
   }
@@ -20,14 +20,14 @@ exports.run = (_client, msg, args, content, _command, Discord) => {
     const notEnoughPermissionsMessage = new Discord.MessageEmbed()
       .setColor("#8b0000")
       .setTimestamp()
-      .setFooter(`Denegado a ${msg.member.displayName}`)        
+      .setFooter(`Denegado a ${msg.member.displayName}`)
       .setTitle("Error")
       .setDescription("No tienes permisos para hacer esto.");
-    
-    msg.channel.send({embed: notEnoughPermissionsMessage});
+
+    msg.channel.send({ embed: notEnoughPermissionsMessage });
     return;
   }
-  
+
   //Declare an array with all the color roles, there are 15 in total.
   const colorRoles = ["⁃ Azul", "⁃ Naranja", "⁃ Amarillo", "⁃ Morado", "⁃ Cian", "⁃ Lima", "⁃ Fucsia", "⁃ Aqua", "⁃ Oliva", "⁃ Vino Tinto", "⁃ Gris", "⁃ Verde", "⁃ Magenta", "⁃ Rojo", "⁃ Rosa"];
   //Declare an empty string variable for the color list.
@@ -89,7 +89,7 @@ ${colorList}
         }
       }
     }
-    
+
     //If the user has too much colors.
     if (excessColors) {
       removeColors(); //Call the function to remove colors.
@@ -105,9 +105,9 @@ ${colorList}
       .setTimestamp()
       .setFooter(`Solicitado por ${msg.member.displayName}`)
       .setDescription(`Se te ha colocado el color ${colorString} correctamente.`);
-        
+
     //Send the message to the channel.
-    msg.channel.send({embed: sucessMessage});
+    msg.channel.send({ embed: sucessMessage });
   }
 
   //Declare a variable where we are going to store the color selected in lower case and skipping the spaces.
@@ -121,10 +121,10 @@ ${colorList}
         .setTitle("Lithium - Colores")
         .setTimestamp()
         .setFooter(`Solicitado por ${msg.member.displayName}`)
-        .setDescription("Tus colores han sido reiniciados correctamente."); 
+        .setDescription("Tus colores han sido reiniciados correctamente.");
 
       removeColors(); //Call the function to remove the color roles.
-      msg.channel.send({embed: colorResetMessage});
+      msg.channel.send({ embed: colorResetMessage });
       break; //Stop the switch execution.
     case "azul": //If the color selected is blue.
       colorProcess("Azul", 0); //Execute the color process and give it the color properties.
@@ -170,9 +170,9 @@ ${colorList}
       break;
     case "rosa":
       colorProcess("Rosa", 14); //Execute the color process and give it the color properties.
-      break;      
+      break;
     default: //Default case, in this case is used for invalid colors.
-      msg.channel.send({embed: invalidColorMessage});
+      msg.channel.send({ embed: invalidColorMessage });
       return;
   }
 }

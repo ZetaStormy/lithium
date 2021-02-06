@@ -5,16 +5,16 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
         const incorrectChannelMessage = new Discord.MessageEmbed()
             .setColor("#8b0000")
             .setTimestamp()
-            .setFooter(`Denegado a ${msg.member.displayName}`)        
+            .setFooter(`Denegado a ${msg.member.displayName}`)
             .setTitle("Error")
             .setDescription("Usa comandos en los canales correspondientes.");
-      
+
         //Send the embed to the channel were the command was called.
-        msg.channel.send({embed: incorrectChannelMessage});
+        msg.channel.send({ embed: incorrectChannelMessage });
         //The return to exit.
         return;
     }
-    
+
     const fs = require("fs");
     //Use the variable files to read the content of the commands folder.
     const commandFiles = fs.readdirSync("./commands/");
@@ -24,7 +24,7 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
     for (let i in commandFiles) {
         if (Object.hasOwnProperty.call(commandFiles, i)) {
             let cmd = commandFiles[i];
-            commands.push(cmd.replace(".js",""));
+            commands.push(cmd.replace(".js", ""));
         }
     }
 
@@ -49,12 +49,12 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
         //Create a variable to store a string of all the categories that we found before.
         let availableCategories = "";
         //Then store the categories in the availableCategories variable using a for loop with the lenght of the categoryList array.
-        for (let i = 0; i < categoryList.length; i++){
+        for (let i = 0; i < categoryList.length; i++) {
             //Append - and create a new line in each category.
             let categoryArrayPosition = categoryList[i];
             availableCategories += ("   - " + String(categoryArrayPosition + "\n"));
         }
-        
+
         //Create a embed message with the categories.
         const availableCategoriesMessage = new Discord.MessageEmbed()
             .setColor("#ff8c00")
@@ -63,20 +63,20 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
             .setFooter(`Solicitado por ${msg.member.displayName}`)
             .setDescription(`Obtén la lista de comandos con \`-help [Categoría]\`\nA continuación, se muestran todas las categorías disponibles.\n\`\`\`yaml\nCategorias:\n${availableCategories}\`\`\``);
 
-        msg.channel.send({embed: availableCategoriesMessage});
+        msg.channel.send({ embed: availableCategoriesMessage });
     } else {
         categoryArgument = categoryArgument.replace(/\w+/g,
-            function(w){return w[0].toUpperCase() + w.slice(1).toLowerCase();});
+            function (w) { return w[0].toUpperCase() + w.slice(1).toLowerCase(); });
         //Check if the category is restricted to the administration.
         if (categoryArgument.toLowerCase() === "Administración" && !msg.member.roles.cache.find((x) => x.name === "⁃ Administración")) {
             const noEnoughPermsMessage = new Discord.MessageEmbed()
                 .setColor("#8b0000")
                 .setTimestamp()
-                .setFooter(`Denegado a ${msg.member.displayName}`)        
+                .setFooter(`Denegado a ${msg.member.displayName}`)
                 .setTitle("Error")
                 .setDescription("No tienes permisos para ejecutar ese comando.");
-        
-            msg.channel.send({embed: noEnoughPermsMessage});
+
+            msg.channel.send({ embed: noEnoughPermsMessage });
         } else {
             //Create the category help embed.
             const commandHelpMessage = new Discord.MessageEmbed()
@@ -85,7 +85,7 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
                 .setTimestamp()
                 .setFooter(`Solicitado por ${msg.member.displayName}`)
                 .setDescription(`En caso de que notes que algo no anda bien con este comando, por favor, hazle saber al Staff o a la administración. A continuación, se muestran los comandos de la categoría **${categoryArgument}**:`);
-            
+
             //Using a for loop to go for each command.
             for (let y in commands) {
                 if (Object.hasOwnProperty.call(commands, y)) {
@@ -99,7 +99,7 @@ exports.run = (_client, msg, args, _content, _command, Discord, config) => {
                 }
             }
             //Just send the embed that we created before.
-            msg.channel.send({embed: commandHelpMessage});
+            msg.channel.send({ embed: commandHelpMessage });
         }
     }
 }
