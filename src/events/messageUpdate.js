@@ -29,5 +29,7 @@ exports.run = (client, oldMessage, newMessage) => {
         .addField("Mensaje nuevo", `${newContent}`);
 
     //Check if the guild has the edit log channel.
-    client.guilds.cache.find((x) => x.id === guildIdentification).channels.cache.find((x) => x.id === editLogChannel).send({ embed: messageUpdateMessage });
+    if (client.guilds.cache.has((x) => x.id === guildIdentification)) {
+        client.guilds.cache.find((x) => x.id === guildIdentification).channels.cache.find((x) => x.id === editLogChannel).send({ embed: messageUpdateMessage });
+    }
 }

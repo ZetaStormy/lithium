@@ -25,5 +25,7 @@ exports.run = (client, message) => {
         .setDescription(`**Nombre:** ${message.member.displayName}\n**Tag:** ${message.author.tag}\n**Canal:** ${message.channel.name}\n**Contenido:** ${deletedContent}`);
 
     //Check if the guild has the delete log channel.
-    client.guilds.cache.find((x) => x.id === guildIdentification).channels.cache.find((x) => x.id === delLogChannel).send({ embed: messageDeletedMessage });
+    if (client.guilds.cache.has((x) => x.id === guildIdentification)) {
+        client.guilds.cache.find((x) => x.id === guildIdentification).channels.cache.find((x) => x.id === delLogChannel).send({ embed: messageDeletedMessage });
+    }
 }
