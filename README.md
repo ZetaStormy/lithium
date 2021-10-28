@@ -1,6 +1,6 @@
 # Lithium [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1dc1ab3f62b34a228eda5c964fcc4585)](https://www.codacy.com/gh/ZafireStudios/lithium/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ZafireNT/lithium&amp;utm_campaign=Badge_Grade)
 
-This project has been abandoned, as I have nearly zero knowledge about JavaScript and I just wrote this bot by taking parts from other bots. If someday I learn JavaScript (currently I only know Java properly), I will rewrite this bot in a proper way.
+This project has been abandoned, as I have nearly zero knowledge about JavaScript and I just wrote this bot by taking parts from other bots a long time ago. If someday I learn JavaScript (currently I only know Java properly), I will rewrite this bot in a proper way.
 
 Repository of Lithium, the assistant of ZafireNT discord server. 
 This discord bot has been created only for Zafire Network, but you can use the code as you want. The only objective of this repository is to have a backup of this bot in case something happens and to make things easier for programming begginers.
